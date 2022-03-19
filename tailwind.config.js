@@ -1,0 +1,29 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
+module.exports = {
+    content: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+        './storage/framework/views/*.php',
+        './resources/views/**/*.blade.php',
+        './node_modules/tw-elements/dist/js/**/*.js'
+    ],
+
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Fredoka', ...defaultTheme.fontFamily.sans],
+            },
+            backgroundImage: {
+                'arma3': "url('/images/bg.png')",
+                'sg-icon': "url('/images/sg.png')"
+            },
+            opacity: ['enabled'],
+            colors: {
+                'sg-red': '#D02F3C',
+                'sg-gray': '#0E0E0D'
+            }
+        },
+    },
+
+    plugins: [require('@tailwindcss/forms'), require('tw-elements/dist/plugin')],
+};

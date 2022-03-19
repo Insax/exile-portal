@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Fredoka");
+
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+@layer base {
+    [type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], input textarea, select {
+        @apply bg-sg-gray border-sg-red focus:border-transparent focus:outline-none focus:text-sg-gray focus:bg-sg-red target:outline-none target:border-transparent active:outline-none transition ease-in-out duration-150
+    }
+
+    .card-sg {
+        @apply bg-gray-500/5 border-gray-400/5 border-2 text-sg-red
+    }
+
+    .card-header-sg {
+        @apply bg-gray-900/5 border-gray-800/5 border-2 text-sg-red
+    }
+
+    .btn-sg {
+        @apply bg-gray-900/30 border-gray-800/30 border-2 text-sg-red hover:bg-sg-red hover:text-sg-gray
+    }
+}
