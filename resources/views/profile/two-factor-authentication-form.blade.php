@@ -1,16 +1,16 @@
-<section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg mt-4">
+<section class="flex flex-col break-words sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg mt-4">
 
-    <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+    <header class="font-semibold card-header-portal py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
         Two factor authentication
     </header>
 
-    <div class="px-4 py-5 sm:p-6 bg-white shadow sm:rounded-lg">
+    <div class="px-4 py-5 sm:p-6 card-portal shadow sm:rounded-lg">
         @if(! auth()->user()->two_factor_secret)
             {{-- Enable 2FA --}}
             <form method="POST" action="{{ url('user/two-factor-authentication') }}" name="two-factor-authentication">
                 @csrf
 
-                <button type="submit" name="enable-two-factor-authentication" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                <button type="submit" name="enable-two-factor-authentication" class="inline-flex items-center px-4 py-2 rounded-md font-semibold text-xs uppercase tracking-widest btn-portal">
                     {{ __('Enable Two-Factor') }}
                 </button>
             </form>
@@ -20,7 +20,7 @@
                 @csrf
                 @method('DELETE')
 
-                <button type="submit">
+                <button type="submit" class="inline-flex items-center px-4 py-2 rounded-md font-semibold text-xs uppercase tracking-widest btn-portal">
                     {{ __('Disable Two-Factor') }}
                 </button>
             </form>

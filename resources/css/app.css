@@ -8,18 +8,58 @@
 
 @layer base {
     [type='text'], [type='email'], [type='url'], [type='password'], [type='number'], [type='date'], [type='datetime-local'], [type='month'], [type='search'], [type='tel'], [type='time'], [type='week'], [multiple], input textarea, select {
-        @apply bg-sg-gray border-sg-red focus:border-transparent focus:outline-none focus:text-sg-gray focus:bg-sg-red target:outline-none target:border-transparent active:outline-none transition ease-in-out duration-150
+        @apply bg-portal-gray border-portal-red rounded rounded-2xl focus:outline-none focus:text-portal-gray focus:bg-portal-red/50 target:outline-none active:outline-none focus:ring-0 focus:shadow-none focus:border-portal-gray transition ease-in-out duration-150
     }
 
-    .card-sg {
-        @apply bg-gray-500/5 border-gray-400/5 border-2 text-sg-red
+    select option {
+        @apply hover:bg-portal-gray focus:bg-portal-gray bg-portal-red/70
+    }
+}
+
+@layer components {
+    .nav-portal {
+        @apply border-none bg-portal-gray/10 text-portal-red
     }
 
-    .card-header-sg {
-        @apply bg-gray-900/5 border-gray-800/5 border-2 text-sg-red
+    .nav-item-portal {
+
     }
 
-    .btn-sg {
-        @apply bg-gray-900/30 border-gray-800/30 border-2 text-sg-red hover:bg-sg-red hover:text-sg-gray
+    .link-underline {
+        border-bottom-width: 0;
+        background-image: linear-gradient(transparent, transparent), linear-gradient(#D02F3C, #D02F3C);
+        background-size: 0 3px;
+        background-position: 0 100%;
+        background-repeat: no-repeat;
+        transition: background-size .5s ease-in-out;
+    }
+
+    .link-underline:hover {
+        background-size: 100% 3px;
+        background-position: 0 100%
+    }
+
+    .card-portal {
+        @apply bg-gray-500/5 border-gray-400/5 border-2 text-portal-red
+    }
+
+    .container-portal {
+        @apply bg-portal-gray/5 border-portal-gray/10 border-4 text-portal-red rounded-2xl
+    }
+
+    .table-row-portal {
+        @apply bg-portal-gray/5 border-portal-gray/10 border-4 text-portal-red rounded-2xl hover:bg-portal-gray/20 hover:border-portal-gray/50 hover:border-4 hover:text-portal-red
+    }
+
+    .card-header-portal {
+        @apply bg-gray-900/5 border-gray-800/5 border-2 text-portal-red backdrop-blur
+    }
+
+    .btn-portal {
+        @apply bg-portal-gray/50 border-portal-gray border-2 text-portal-red hover:bg-portal-red hover:text-portal-gray hover:border-portal-gray
+    }
+
+    .btn-portal-inv {
+        @apply bg-portal-red/50 border-portal-gray border-2 text-portal-gray
     }
 }

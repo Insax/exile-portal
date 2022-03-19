@@ -10,13 +10,13 @@
 
     <div class="flex">
         <div class="w-full">
-            <section class="flex flex-col break-words card-sg sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
+            <section class="flex flex-col break-words card-portal sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
 
-                <header class="font-semibold card-header-sg py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+                <header class="font-semibold card-header-portal py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
                     {{ __('Login') }}
                 </header>
 
-                <form class="w-full card-sg px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">
+                <form class="w-full card-portal px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <div class="flex flex-wrap">
@@ -53,13 +53,13 @@
 
                     <div class="flex items-center">
                         <label class="inline-flex items-center text-sm" for="remember">
-                            <input type="checkbox" name="remember" id="remember" class="form-checkbox h-5 w-5 bg-sg-gray checked:bg-sg-gray text-sg-red"
+                            <input type="checkbox" name="remember" id="remember" class="form-checkbox h-5 w-5 bg-portal-gray checked:bg-portal-gray text-portal-red"
                                 {{ old('remember') ? 'checked' : '' }}>
                             <span class="ml-2">{{ __('Remember Me') }}</span>
                         </label>
 
                         @if (Route::has('password.request'))
-                        <a class="text-sm text-sg-red hover:text-blue-700 whitespace-no-wrap underline hover:underline ml-auto"
+                        <a class="text-sm text-portal-red hover:text-blue-700 whitespace-no-wrap underline hover:underline ml-auto"
                             href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
@@ -68,7 +68,7 @@
 
                     <div class="flex flex-wrap">
                         <button type="submit"
-                        class="mb-6 w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline btn-sg sm:py-4">
+                        class="mb-6 w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline btn-portal sm:py-4">
                             {{ __('Login') }}
                         </button>
                     </div>

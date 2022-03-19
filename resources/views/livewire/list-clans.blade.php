@@ -1,5 +1,5 @@
 <div>
-    <div class="container mx-auto px-4 sm:px-8 card-sg">
+    <div class="container mx-auto px-4 sm:px-8 container-portal mt-10">
         <div class="py-8">
             <div>
                 <h2 class="text-2xl font-semibold leading-tight">Clan Overview</h2>
@@ -8,7 +8,7 @@
                 <div class="flex flex-row mb-1 sm:mb-0">
                     <div class="relative">
                         <select wire:model="items"
-                                class="appearance-none h-full rounded-l border block appearance-none w-full py-2 px-4 pr-8 leading-tight">
+                                class="appearance-none h-full rounded-r border block appearance-none w-full py-2 px-4 pr-8 leading-tight">
                             @foreach($amounts as $key => $amount)
                                 <option {{ $key != 'default' ? : 'selected="selected"' }}> {{ $amount }}</option>
                             @endforeach
@@ -24,46 +24,46 @@
                         </svg>
                     </span>
                     <input placeholder="Search for a Name..." wire:model="name"
-                           type="text" class="rounded-r rounded-l sm:rounded-l-none block pl-8 pr-6 py-2 w-full text-sm" />
+                           type="text" class="rounded-l sm:rounded-l-none block pl-8 pr-6 py-2 w-full text-sm" />
                 </div>
             </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="min-w-full shadow rounded-lg overflow-hidden">
                     {{ $clans->links() }}
                     <table class="min-w-full leading-normal">
-                        <thead>
+                        <thead class="container-portal">
                         <tr>
                             <th
-                                class="card-header-sg px-5 py-3 border-b-2 text-left text-xs font-semibold uppercase tracking-wider">
+                                class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
                                 #ID
                             </th>
                             <th
-                                class="card-header-sg px-5 py-3 border-b-2 text-left text-xs font-semibold uppercase tracking-wider">
+                                class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
                                 Name
                             </th>
                             <th
-                                class="card-header-sg px-5 py-3 border-b-2 text-left text-xs font-semibold uppercase tracking-wider">
+                                class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
                                 Leader
                             </th>
                             <th
-                                class="card-header-sg px-5 py-3 border-b-2 text-left text-xs font-semibold uppercase tracking-wider">
+                                class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
                                 Members
                             </th>
                         </tr>
                         </thead>
-                        <tbody class="card-sg">
+                        <tbody class="container-portal">
                         @foreach($clans as $clan)
-                            <tr>
-                                <td class="px-5 py-5 card-sg text-sm">
+                            <tr class="table-row-portal">
+                                <td class="px-5 py-5 text-center text-sm">
                                     <p class="whitespace-no-wrap">{{ $clan->id }}</p>
                                 </td>
-                                <td class="px-5 py-5 text-sm">
+                                <td class="px-5 py-5 text-center text-sm">
                                     <a class="whitespace-no-wrap underline" href="{{ route('clan.view', ['clan' => $clan->id]) }}">{{ $clan->name }}</a>
                                 </td>
-                                <td class="px-5 py-5 text-sm">
+                                <td class="px-5 py-5 text-center text-sm">
                                     <a class="whitespace-no-wrap underline" href="{{ route('account.view', ['account' => $clan->leader_uid]) }}">{{ $clan->leaderAccount->name }} </a>
                                 </td>
-                                <td class="px-5 py-5 text-sm">
+                                <td class="px-5 py-5 text-center text-sm">
                                     <p class="whitespace-no-wrap">{{ $clan->accounts->count() }}</p>
                                 </td>
                             </tr>

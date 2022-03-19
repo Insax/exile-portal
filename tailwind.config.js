@@ -14,13 +14,13 @@ module.exports = {
                 sans: ['Fredoka', ...defaultTheme.fontFamily.sans],
             },
             backgroundImage: {
-                'arma3': "url('/images/bg.png')",
+                'arma3': "url('/images/bg.jpg')",
                 'sg-icon': "url('/images/sg.png')"
             },
             opacity: ['enabled'],
             colors: {
-                'sg-red': '#D02F3C',
-                'sg-gray': '#0E0E0D'
+                'portal-red': '#D02F3C',
+                'portal-gray': '#0E0E0D'
             }
         },
     },
