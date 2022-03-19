@@ -6,7 +6,7 @@
         <p class="block mx-auto text-2xl">ID: {{$clan->id}}</p>
         <p class="block mx-auto text-3xl">{{config('portal.instanceName')}}</p>
     </div>
-    <h1 class="text-sg-red my-8 text-center text-5xl">Territory Information</h1>
+    <h1 class="text-sg-red my-8 text-center text-5xl">Clan Information</h1>
     <div class="w-3/4 grid grid-cols-3 gap-8 mx-auto">
         <div class="card-header-sg p-6 rounded-2xl shadow-lg text-center">
             <p class="text-lg">Created</p>
