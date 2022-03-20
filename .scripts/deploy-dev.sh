@@ -13,6 +13,9 @@ php artisan clear-compiled
 
 php artisan optimize
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
 npm install
 
 npm run prod
