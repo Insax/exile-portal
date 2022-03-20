@@ -20,4 +20,4 @@ jobs:
           username: ${{ secrets.USERNAME_CHERNO }}
           port: ${{ secrets.PORT_ALTIS }}
           key: ${{ secrets.SSHKEY_ALTIS }}
-          script: "cd /var/www/altis.1ns.at && ./.scripts/deploy-prod.sh"
+          script: "export NVM_DIR=~/.nvm source ~/.nvm/nvm.sh cd /var/www/altis.1ns.at && ./.scripts/deploy-prod.sh"
