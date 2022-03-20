@@ -33,10 +33,6 @@ class RefreshAllTerritoryInformation implements ShouldQueue
      */
     public function handle()
     {
-
-        /** @var int $currentInstance Needed for inserting */
-        $currentInstance = PortalInstance::whereName(config('portal.instanceName'))->first()->id;
-
         TerritoryMember::truncate();
         $territories = Territory::withTrashed()->get();
 
@@ -49,7 +45,6 @@ class RefreshAllTerritoryInformation implements ShouldQueue
             foreach ($members as $member)
             if($member) {
                 TerritoryMember::create([
-                    'portal_instance_id' => $currentInstance,
                     'territory_id' => $territory->id,
                     'account_uid' => $member
                 ]);

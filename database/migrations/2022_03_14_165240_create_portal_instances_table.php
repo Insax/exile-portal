@@ -24,7 +24,7 @@ return new class extends Migration
 
         PortalInstance::create([
             'name' => config('portal.instanceName'),
-            'url' => 'http://portal.test/'
+            'url' => config('app.url')
         ]);
     }
 

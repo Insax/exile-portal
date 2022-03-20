@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clan;
+use App\Models\PortalInstance;
 use App\Models\Territory;
 use Illuminate\Http\Request;
 

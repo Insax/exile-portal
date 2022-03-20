@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\PortalInstance;
 use App\Models\TerritoryContainerContent;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -40,7 +41,8 @@ class ContainerContent extends Component
 
     private function queryBuilder()
     {
-        $territoryContainerContent = TerritoryContainerContent::whereTerritoryId($this->territory->id);
+        $instanceId = PortalInstance::whereName(config('portal.instanceName'))->first()->id;
+        $territoryContainerContent = TerritoryContainerContent::wherePortalInstanceId($instanceId)->whereTerritoryId($this->territory->id);
         if ($this->name)
             $territoryContainerContent->where('item', 'LIKE', '%'.$this->name.'%');
 
