@@ -41,7 +41,7 @@ class ParseAllContainersJob implements ShouldQueue
 
         /** @var int $currentInstance Needed for inserting */
         $currentInstance = PortalInstance::whereName(config('portal.instanceName'))->first()->id;
-        TerritoryContainerContent::truncate();
+        TerritoryContainerContent::wherePortalInstanceId($currentInstance)->delete;
         foreach (Territory::all() as $territory) {
             foreach ($territory->containers as $container) {
                 $cargoItems = json_decode($container->cargo_items);
