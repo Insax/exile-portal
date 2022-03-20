@@ -84,5 +84,6 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         @livewireScripts
+        @livewire('livewire-ui-modal')
     </body>
 </html>

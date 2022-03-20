@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ClanController;
 use App\Http\Controllers\ManagePortalController;
 use App\Http\Controllers\TerritoryController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSettingsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -48,4 +49,8 @@ Route::prefix('territories')->middleware(['auth', 'verified'])->controller(Terri
 Route::prefix('clans')->middleware(['auth', 'verified'])->controller(ClanController::class)->group(function () {
     Route::get('/', 'listClans')->name('clan.list');
     Route::get('/view/{clan}', 'viewClan')->name('clan.view');
+});
+
+Route::prefix('users')->middleware(['auth', 'verified'])->controller(UserController::class)->group(function () {
+    Route::get('/manage', 'manageUsers')->name('users.manage');
 });

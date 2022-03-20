@@ -9,11 +9,20 @@
                 {{__('Account Settings')}}
             </a>
         </li>
+        @can('Modify portal instances')
         <li>
             <a class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap link-underline" href="{{ route('portal.home')}}">
                 {{__('portal.manage')}}
             </a>
         </li>
+        @endcan
+        @can('Create new User')
+            <li>
+                <a class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap link-underline" href="{{ route('users.manage')}}">
+                    {{__('Manage Users')}}
+                </a>
+            </li>
+        @endcan
         <li>
             <a class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap link-underline" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
