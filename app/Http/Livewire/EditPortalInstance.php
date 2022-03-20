@@ -9,11 +9,12 @@ use JetBrains\PhpStorm\ArrayShape;
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
-class CreatePortalInstance extends ModalComponent
+class EditPortalInstance extends ModalComponent
 {
-    public string $name = '';
-    public string $url = '';
-    public string $active = 'checked';
+    public int $portalId;
+    public string $name;
+    public string $url;
+    public string $active;
 
 
     /**
@@ -30,16 +31,16 @@ class CreatePortalInstance extends ModalComponent
     public function rules(): array
     {
         return [
-            'name' => ['required', Rule::unique('portal_instances')],
-            'url' => ['required', Rule::unique('portal_instances')],
+            'name' => ['required', Rule::unique('portal_instances')->ignore($this->portalId)],
+            'url' => ['required', Rule::unique('portal_instances')->ignore($this->portalId)],
         ];
     }
 
-    public function store()
+    public function update()
     {
         $this->validate();
 
-        PortalInstance::create([
+        PortalInstance::find($this->portalId)->update([
             'name' => $this->name,
             'url' => $this->url,
             'active' => $this->active == 'checked'
@@ -50,8 +51,16 @@ class CreatePortalInstance extends ModalComponent
         ]);
     }
 
+    public function mount(PortalInstance $instance)
+    {
+        $this->portalId = $instance->id;
+        $this->name = $instance->name;
+        $this->url = $instance->url;
+        $this->active = $instance->active ? 'checked' : '';
+    }
+
     public function render()
     {
-        return view('livewire.create-portal-instance');
+        return view('livewire.edit-portal-instance');
     }
 }
