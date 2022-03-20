@@ -27,12 +27,12 @@
 
             @if(session('status') == 'two-factor-authentication-enabled')
                 {{-- Show SVG QR Code, After Enabling 2FA --}}
-                <div class="container-portal text-center bg-portal-gray">
+                <div class="container-portal text-center bg-gray-300">
                     <div>
                         {{ __('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application.') }}
                     </div>
 
-                    <div class="block m-auto my-10 inline-flex items-center">
+                    <div class="block m-auto my-10 inline-flex items-center text-black">
                         {!! auth()->user()->twoFactorQrCodeSvg() !!}
                     </div>
                 </div>
