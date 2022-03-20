@@ -20,4 +20,4 @@ jobs:
           username: ${{ secrets.USERNAME_CHERNO }}
           port: ${{ secrets.PORT_CHERNO }}
           key: ${{ secrets.SSHKEY_CHERNO }}
-          script: "cd /var/www/cherno.1ns.at && ./.scripts/deploy-prod.sh && chown -R www-data ../cherno.1ns.at"
+          script: "cd /var/www/cherno.1ns.at && chown -R root ../cherno.1ns.at && ./.scripts/deploy-prod.sh && chown -R www-data ../cherno.1ns.at"
