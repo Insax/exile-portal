@@ -32,6 +32,7 @@
                             <img src="{{ asset('images/sg.png') }}" alt="" loading="lazy" />
                         </a>
                         <!-- Left links -->
+                        @auth()
                         <ul class="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
                             <li class="nav-item p-2">
                                 <a class="nav-item p-0 link link-underline" href="{{ route('territory.list') }}">
@@ -41,6 +42,7 @@
                             <li class="nav-item p-2">
                                 <a class="nav-link p-0 link link-underline" href="{{ route('clan.list') }}">Clans</a>
                             </li>
+                        @endauth
                             <li class="nav-item p-2">
                                 <a class="nav-link p-0 link link-underline" href="#">Dummy Menu 3</a>
                             </li>
@@ -74,10 +76,10 @@
             <div class="mb-10">
                 @yield('content')
             </div>
-            <footer class="bg-gray-200 text-center lg:text-left fixed-bottom space-y-20">
-                <div class="text-gray-700 text-center p-4" style="background-color: rgba(0, 0, 0, 0.2);">
-                    © 2021 Copyright:
-                    <a class="text-gray-800" href="https://tailwind-elements.com/">Tailwind Elements</a>
+            <footer class="container-portal lg:text-left fixed-bottom">
+                <div class="p-4" style="background-color: rgba(0, 0, 0, 0.2);">
+                    © 2022 Copyright:
+                    <a class="link-underline" href="https://1ns.at">Insax</a>
                 </div>
             </footer>
         </div>
