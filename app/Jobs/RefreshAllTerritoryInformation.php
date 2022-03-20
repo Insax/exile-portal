@@ -34,7 +34,7 @@ class RefreshAllTerritoryInformation implements ShouldQueue
     public function handle()
     {
         TerritoryMember::truncate();
-        $territories = Territory::withTrashed()->get();
+        $territories = Territory::get();
 
         foreach ($territories as $territory) {
             $moderators = json_decode($territory->moderators);

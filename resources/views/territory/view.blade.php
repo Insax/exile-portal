@@ -5,6 +5,19 @@
         <h1 class="block mx-auto text-5xl">{{$territory->name}}</h1>
         <p class="block mx-auto text-2xl">ID: {{$territory->id}}</p>
         <p class="block mx-auto text-3xl">{{config('portal.instanceName')}}</p>
+        @can('Delete Territory')
+            <p class="block mx-auto">
+                <button type="button"
+                        class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
+                        onclick='Livewire.emit("openModal", "delete-or-restore-territory", {{ json_encode(["territory" => $territory->id]) }})'>
+                    @if(!$territory->deleted_at)
+                        Delete Territory!
+                    @else
+                        Restore Territory!
+                    @endif
+                </button>
+            </p>
+        @endcan
     </div>
     <h1 class="text-portal-red my-8 text-center text-5xl">Territory Information</h1>
     <div class="w-3/4 grid grid-cols-3 gap-8 mx-auto">

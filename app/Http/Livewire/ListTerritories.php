@@ -51,9 +51,9 @@ class ListTerritories extends Component
     private function queryBuilder(): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
         $territory = match ($this->type) {
-            'Deleted' => Territory::onlyTrashed(),
-            'Active' => Territory::withoutTrashed(),
-            default => Territory::withTrashed(),
+            'Deleted' => Territory::whereNotNull('deleted_at'),
+            'Active' => Territory::whereNull('deleted_at'),
+            default => Territory::query(),
         };
 
         if ($this->name)
