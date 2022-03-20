@@ -4,7 +4,7 @@
         Two factor authentication
     </header>
 
-    <div class="px-4 py-5 sm:p-6 card-portal shadow sm:rounded-lg">
+    <div class="px-4 py-5 sm:p-6 container-portal shadow sm:rounded-lg">
         @if(! auth()->user()->two_factor_secret)
             {{-- Enable 2FA --}}
             <form method="POST" action="{{ url('user/two-factor-authentication') }}" name="two-factor-authentication">
@@ -27,21 +27,23 @@
 
             @if(session('status') == 'two-factor-authentication-enabled')
                 {{-- Show SVG QR Code, After Enabling 2FA --}}
-                <div>
-                    {{ __('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application.') }}
-                </div>
+                <div class="container-portal text-center bg-portal-gray">
+                    <div>
+                        {{ __('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application.') }}
+                    </div>
 
-                <div>
-                    {!! auth()->user()->twoFactorQrCodeSvg() !!}
+                    <div class="block m-auto my-10 inline-flex items-center">
+                        {!! auth()->user()->twoFactorQrCodeSvg() !!}
+                    </div>
                 </div>
             @endif
 
             {{-- Show 2FA Recovery Codes --}}
-            <div>
+            <div class="text-center">
                 {{ __('Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.') }}
             </div>
 
-            <div>
+            <div class="text-center">
                 @foreach (json_decode(decrypt(auth()->user()->two_factor_recovery_codes), true) as $code)
                     <div>{{ $code }}</div>
                 @endforeach
@@ -51,7 +53,7 @@
             <form method="POST" action="{{ url('user/two-factor-recovery-codes') }}">
                 @csrf
 
-                <button type="submit">
+                <button type="submit" class="inline-flex items-center px-4 py-2 rounded-md font-semibold text-xs uppercase tracking-widest btn-portal">
                     {{ __('Regenerate Recovery Codes') }}
                 </button>
             </form>

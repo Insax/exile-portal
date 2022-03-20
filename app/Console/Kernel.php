@@ -18,8 +18,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new RefreshAllTerritoryInformation())->everyMinute();
-        $schedule->job(new ParseAllContainersJob())->everyMinute();
+        $schedule->job(new RefreshAllTerritoryInformation())->everyFifteenMinutes();
+        $schedule->job(new ParseAllContainersJob())->everyFiveMinutes();
     }
 
     /**
