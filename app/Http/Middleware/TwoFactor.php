@@ -19,7 +19,7 @@ class TwoFactor
      */
     public function handle(Request $request, Closure $next): Response|RedirectResponse
     {
-        if(!Auth::user()->two_factor_secret) {
+        if(!Auth::user()->two_factor_secret && !app()->environment('local')) {
             return redirect()->route('settings.home');
         }
         return $next($request);

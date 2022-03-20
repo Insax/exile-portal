@@ -41,10 +41,18 @@
             <p class="text-2xl">{{ $account->kills }}</p>
         </div>
         <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
-            <p class="text-lg">Reset EXP</p>
-            <p>
-                <button class="btn-portal mb-6 w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline btn-portal sm:py-4 text-portal-gray">Reset Exp</button>
-            </p>
+            @can('Reset XP')
+                <p class="text-lg">Reset EXP</p>
+                    @if($account->last_connected_at > $account->last_disconnected_at)
+                        <p class="text-2xl"> Player is online! Can't do it!</p>
+                    @else
+                        <button class="btn-portal mb-6 w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline btn-portal sm:py-4">Reset Exp</button>
+                    @endif
+            @elsecan
+                <p class="text-lg">Total EXP</p>
+                <p class="text-2xl">{{ $account->exp_total }}</p>
+            @endcan
+
         </div>
         <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
             <p class="text-lg">Deaths</p>

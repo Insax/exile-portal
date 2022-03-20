@@ -26,9 +26,9 @@ Route::get('/', function () {
 
 Route::view('dashboard', 'dashboard')
 	->name('dashboard')
-	->middleware(['auth', 'verified']);
+	->middleware(['auth', 'verified', 'twoFactor']);
 
-Route::prefix('portal')->middleware(['auth', 'verified'])->controller(ManagePortalController::class)->group(function () {
+Route::prefix('portal')->middleware(['auth', 'verified', 'twoFactor', 'can: Modify portal instances'])->controller(ManagePortalController::class)->group(function () {
     Route::get('/', 'home')->name('portal.home');
 });
 
@@ -36,21 +36,21 @@ Route::prefix('settings')->middleware(['auth', 'verified'])->controller(UserSett
     Route::get('/', 'home')->name('settings.home');
 });
 
-Route::prefix('accounts')->middleware(['auth', 'verified'])->controller(AccountController::class)->group(function () {
+Route::prefix('accounts')->middleware(['auth', 'verified', 'twoFactor'])->controller(AccountController::class)->group(function () {
     Route::get('/', 'home')->name('account.home');
     Route::get('/view/{account}', 'viewAccount')->name('account.view');
 });
 
-Route::prefix('territories')->middleware(['auth', 'verified'])->controller(TerritoryController::class)->group(function () {
+Route::prefix('territories')->middleware(['auth', 'verified', 'twoFactor'])->controller(TerritoryController::class)->group(function () {
     Route::get('/', 'listTerritories')->name('territory.list');
     Route::get('/view/{territory}', 'viewTerritory')->name('territory.view');
 });
 
-Route::prefix('clans')->middleware(['auth', 'verified'])->controller(ClanController::class)->group(function () {
+Route::prefix('clans')->middleware(['auth', 'verified', 'twoFactor'])->controller(ClanController::class)->group(function () {
     Route::get('/', 'listClans')->name('clan.list');
     Route::get('/view/{clan}', 'viewClan')->name('clan.view');
 });
 
-Route::prefix('users')->middleware(['auth', 'verified'])->controller(UserController::class)->group(function () {
+Route::prefix('users')->middleware(['auth', 'verified', 'twoFactor', 'can:Create new User'])->controller(UserController::class)->group(function () {
     Route::get('/manage', 'manageUsers')->name('users.manage');
 });
