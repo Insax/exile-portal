@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\InfistarLog;
 use App\Models\ParsedInfistarLog;
+use App\Models\ParsedInmateMarketLog;
 use App\Models\PortalInstance;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -73,7 +74,7 @@ class ParseInmateMarketLogs implements ShouldQueue
                 switch ($typeMatch[1]) {
                     case self::LOGTYPE_BUY_NOW_REQUEST:
                         preg_match(self::ACCEPTED_LOGS[$typeMatch[1]], $infiStarLog->logentry, $logMatches);
-                        ParsedInfistarLog::create([
+                        ParsedInmateMarketLog::create([
                             'portal_instance_id' => $currentInstance,
                             'source_account_id' => $logMatches[2],
                             'receiver_account_id' => $logMatches[1],
@@ -85,7 +86,7 @@ class ParseInmateMarketLogs implements ShouldQueue
                     case self::LOGTYPE_CREATE_NEW_LISTING_REQUEST:
                         preg_match(self::ACCEPTED_LOGS[$typeMatch[1]], $infiStarLog->logentry, $logMatches);
                         $decodedSellerLog = json_decode($logMatches[1]);
-                        ParsedInfistarLog::create([
+                        ParsedInmateMarketLog::create([
                             'portal_instance_id' => $currentInstance,
                             'source_account_id' => $decodedSellerLog[4],
                             'receiver_account_id' => null,

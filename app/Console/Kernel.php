@@ -2,7 +2,9 @@
 
 namespace App\Console;
 
+use App\Jobs\ParseAllContainersJob;
 use App\Jobs\RefreshAllTerritoryInformation;
+use App\Models\ParsedInmateMarketLog;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,7 +18,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(RefreshAllTerritoryInformation::class, "refreshTerritory")->everyThreeHours();
+        $schedule->job(new RefreshAllTerritoryInformation())->everyMinute();
+        $schedule->job(new ParseAllContainersJob())->everyMinute();
+        //$schedule->job(new ParsedInmateMarketLog())
     }
 
     /**
