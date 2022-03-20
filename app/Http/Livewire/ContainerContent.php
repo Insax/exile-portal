@@ -13,6 +13,7 @@ class ContainerContent extends Component
 
     public $territory;
 
+    /** @var int[]  */
     const AMOUNTS = [
         'default' => 20,
         'more' => 50,
