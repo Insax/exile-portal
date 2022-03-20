@@ -13,6 +13,7 @@ class ListClans extends Component
 {
     use WithPagination;
 
+    /** @var int[]  */
     const AMOUNTS = [
         'default' => 20,
         'more' => 50,
