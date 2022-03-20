@@ -20,7 +20,6 @@ class Kernel extends ConsoleKernel
     {
         $schedule->job(new RefreshAllTerritoryInformation())->everyMinute();
         $schedule->job(new ParseAllContainersJob())->everyMinute();
-        //$schedule->job(new ParsedInmateMarketLog())
     }
 
     /**
