@@ -46,7 +46,7 @@
                     @if($account->last_connect_at > $account->last_disconnect_at)
                         <p class="text-2xl"> Player is online! Can't do it!</p>
                     @else
-                        <button class="btn-portal mb-6 w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline btn-portal sm:py-4">Reset Exp</button>
+                        <button onclick='Livewire.emit("openModal", "reset-exp", {{ json_encode(["account" => $account->uid]) }})' class="btn-portal mb-6 w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline btn-portal sm:py-4">Reset Exp</button>
                     @endif
             @elsecan
                 <p class="text-lg">Total EXP</p>

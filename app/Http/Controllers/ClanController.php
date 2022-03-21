@@ -34,7 +34,7 @@ class ClanController extends Controller
         $territories = null;
         if(count($territoryIds)) {
             $territories = Cache::remember('whereTerritoryId'.serialize($territoryIds), 15*60, function () use ($territoryIds) {
-                Territory::whereIn('id', $territoryIds)->get();
+                return Territory::whereIn('id', $territoryIds)->get();
             });
         }
         return view('clan.view', ['clan' => $clan, 'territories' => $territories]);
