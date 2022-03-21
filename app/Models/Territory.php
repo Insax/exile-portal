@@ -91,6 +91,7 @@ class Territory extends Model
         'esm_payment_counter' => 'int'
     ];
 
+    /** @var string[]  */
     protected $dates = [
         'flag_stolen_at',
         'last_paid_at'
