@@ -14,21 +14,23 @@ class ClanMembers extends Component
     ];
 
     const TYPES = [
-        'default' => 'name',
-        'accountId' => 'uid'
+        'default' => 'NAME',
+        'accountId' => 'UID'
     ];
 
     protected $queryString = [
         'items' => ['except' => 20],
         'name' => ['except' => ''],
-        'sorting' => ['except' => 'name'],
-        'sortType' => ['except' => 'ASC']
+        'sorting' => ['except' => 'NAME'],
+        'sortType' => ['except' => 'ASC'],
+        'page' => ['except' => 1]
     ];
 
     public string $name = '';
     public int $items = 20;
-    public string $sorting = 'name';
+    public string $sorting = 'NAME';
     public string $sortType = 'ASC';
+    public $page = 1;
     public Clan $clan;
 
     public function mount(Clan $clan)
@@ -38,7 +40,7 @@ class ClanMembers extends Component
 
     private function buildQuery()
     {
-        return $this->clan->accounts()->where('name', 'LIKE', '%'.$this->name.'%')->orderBy($this->sorting, $this->sortType)->paginate($this->items);
+        return $this->clan->accounts()->where('name', 'LIKE', '%'.$this->name.'%')->orderBy(strtolower($this->sorting), $this->sortType)->paginate($this->items);
     }
 
     public function render()

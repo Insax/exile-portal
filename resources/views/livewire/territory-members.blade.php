@@ -22,7 +22,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="sort type">
+                    <div class="relative">
                         <select wire:model="sortType"
                                 class="rounded-none h-full none border-t block appearance-none w-full py-2 px-4 pr-8 leading-tight">
                                 <option selected="selected">ASC</option>

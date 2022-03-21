@@ -138,7 +138,7 @@ class Territory extends Model
      */
     public function territoryFlagStealer(): HasOne
     {
-        return $this->hasOne(Account::class, 'account_uid', 'flag_stolen_by_uid');
+        return $this->hasOne(Account::class, 'uid', 'flag_stolen_by_uid');
     }
 
     public function containers(): HasMany

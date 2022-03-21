@@ -20,7 +20,8 @@ class ListTerritories extends Component
     const TYPES = [
         'default' => 'All',
         'deleted' => 'Deleted',
-        'active' => 'Active'
+        'active' => 'Active',
+        'stolen' => 'Stolen'
     ];
 
     const AMOUNTS = [
@@ -29,19 +30,31 @@ class ListTerritories extends Component
         'most' => 100
     ];
 
+    const SORT_VALUES = [
+        'default' => 'ID',
+        'name' => 'NAME',
+        'leader' => 'LEADER'
+    ];
+
     public int $items = 20;
     public string $type = 'All';
     public string $name = '';
     public $page = 1;
+    public string $sorting = 'ID';
+    public string $sortType = 'ASC';
 
     protected $queryString = [
         'items' => ['except' => 20],
         'type' => ['except' => 'All'],
         'name' => ['except' => ''],
-        'page' => ['except' => 1]
+        'page' => ['except' => 1],
+        'sorting' => ['except' => 'ID'],
+        'sortType' => ['except' => 'ASC']
     ];
 
-
+    protected $listeners = [
+        'restored' => '$refresh'
+    ];
 
     public function updatingName()
     {
@@ -53,11 +66,13 @@ class ListTerritories extends Component
         $territory = match ($this->type) {
             'Deleted' => Territory::whereNotNull('deleted_at'),
             'Active' => Territory::whereNull('deleted_at'),
+            'Stolen' => Territory::whereNotNull('flag_stolen_at'),
             default => Territory::query(),
         };
 
-        if ($this->name)
-            $territory->where('name', 'LIKE', '%'.$this->name.'%')->with(['ownerAccount', 'members']);
+        $territory->where('name', 'LIKE', '%'.$this->name.'%')
+            ->orderBy(strtolower($this->sorting), $this->sortType)
+            ->with(['ownerAccount', 'members']);
 
         return $territory->paginate($this->items);
     }
@@ -67,7 +82,8 @@ class ListTerritories extends Component
         return view('livewire.list-territories', [
             'territories' => $this->queryBuilder(),
             'types' => self::TYPES,
-            'amounts' => self::AMOUNTS
+            'amounts' => self::AMOUNTS,
+            'sorts' => self::SORT_VALUES
         ]);
     }
 }
