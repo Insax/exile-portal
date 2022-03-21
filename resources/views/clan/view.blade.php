@@ -21,6 +21,7 @@
             <p class="text-2xl">{{ $clan->accounts->count() }}</p>
         </div>
     </div>
+    @livewire('clan-members', ['clan' => $clan])
     @if($territories)
         <h1 class="text-portal-red my-8 text-center text-3xl">Territory Information of {{ $clan->name }} - In Total Member of {{ $territories->count() > 1 ? $territories->count(). 'Territories' : '1 Territory' }} </h1>
         <div class="w-3/4 grid grid-cols-3 gap-8 mx-auto">

@@ -60,10 +60,11 @@
             <p class="text-2xl">[{{ $territory->position_x }},{{ $territory->position_y }},{{ $territory->position_z }}]</p>
         </div>
         <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
-            <p class="text-lg">Created</p>
-            <p class="text-2xl">{{ \Illuminate\Support\Carbon::make($territory->created_at)->diffForHumans() }}</p>
+            <p class="text-lg">Protection due</p>
+            <p class="text-2xl">{{ \Illuminate\Support\Carbon::make($territory->last_paid_at)->addDays(8)->diffForHumans() }}</p>
         </div>
     </div>
-    <h1 class="text-portal-red my-8 text-center text-5xl">Container Contents - Currently {{$territory->containerContent->sum('count')}}</h1>
+    @livewire('territory-members', ['territory' => $territory])
+    <h1 class="text-portal-red my-8 text-center text-3xl">Container Contents - Currently {{$territory->containerContent->sum('count')}}</h1>
     @livewire('container-content', ['territory' => $territory])
 @endsection
