@@ -41,8 +41,11 @@ class ListClans extends Component
 
     public function render(): Factory|View|Application
     {
+        $clans = \Cache::remember('clansWhereName'.$this->name.'PageSize'.$this->items.'Page'.$this->page, 15, function () {
+            return Clan::where('name', 'LIKE', '%'.$this->name.'%')->paginate($this->items);
+        });
         return view('livewire.list-clans', [
-            'clans' => Clan::where('name', 'LIKE', '%'.$this->name.'%')->paginate($this->items),
+            'clans' => $clans,
             'amounts' => self::AMOUNTS
         ]);
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Clan;
+use Cache;
 use Livewire\Component;
 
 class ClanMembers extends Component
@@ -40,10 +41,12 @@ class ClanMembers extends Component
 
     private function buildQuery()
     {
-        return $this->clan->accounts()->where('name', 'LIKE', '%'.$this->name.'%')->orderBy(strtolower($this->sorting), $this->sortType)->paginate($this->items);
+        return Cache::remember('clanMembersWhereName'.$this->name.'orderedBy'.$this->sortType.'With'.$this->sortType.'PageSize'.$this->items.'Page'.$this->page, 15, function () {
+            return $this->clan->accounts()->where('name', 'LIKE', '%'.$this->name.'%')->orderBy(strtolower($this->sorting), $this->sortType)->paginate($this->items);
+        });
     }
 
-    public function render()
+    public function render(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('livewire.clan-members', [
         'amounts' => self::AMOUNTS,

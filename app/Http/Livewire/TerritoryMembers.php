@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Territory;
+use Cache;
 use Livewire\Component;
 
 class TerritoryMembers extends Component
@@ -40,7 +41,9 @@ class TerritoryMembers extends Component
 
     private function buildQuery()
     {
-        return $this->territory->members()->where('name', 'LIKE', '%'.$this->name.'%')->orderBy(strtolower($this->sorting), $this->sortType)->paginate($this->items);
+        return Cache::remember('territoryMembersWhereName'.$this->name.'orderedBy'.$this->sortType.'With'.$this->sortType.'PageSize'.$this->items.'Page'.$this->page, 15, function () {
+            return $this->territory->members()->where('name', 'LIKE', '%' . $this->name . '%')->orderBy(strtolower($this->sorting), $this->sortType)->paginate($this->items);
+        });
     }
 
     public function render()

@@ -6,6 +6,7 @@ use App\Models\Container;
 use App\Models\PortalInstance;
 use App\Models\Territory;
 use App\Models\TerritoryContainerContent;
+use Cache;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -40,9 +41,17 @@ class ParseAllContainersJob implements ShouldQueue
     {
 
         /** @var int $currentInstance Needed for inserting */
-        $currentInstance = PortalInstance::whereName(config('portal.instanceName'))->first()->id;
+        $currentInstance = Cache::rememberForever('portalInstanceId', function () {
+            return PortalInstance::whereName(config('portal.instanceName'))->first()->id;
+        });
+
         TerritoryContainerContent::wherePortalInstanceId($currentInstance)->delete();
-        foreach (Territory::all() as $territory) {
+
+        $allTerritories = Cache::remember('allTerritoriesWithContainers', 5, function () {
+            return Territory::with('containers')->get();
+        });
+
+        foreach ($allTerritories::all() as $territory) {
             foreach ($territory->containers as $container) {
                 $cargoItems = json_decode($container->cargo_items);
                 array_walk_recursive($cargoItems, array($this, 'countCargoItems'));

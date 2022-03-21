@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\InfistarLog;
 use App\Models\ParsedDailyRewardLog;
 use App\Models\PortalInstance;
+use Cache;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -39,7 +40,9 @@ class ParseDailyRewardLogs implements ShouldQueue
     public function handle()
     {
         /** @var int $currentInstance Needed for inserting */
-        $currentInstance = PortalInstance::whereName(config('portal.instanceName'))->first()->id;
+        $currentInstance = Cache::rememberForever('portalInstanceId', function () {
+            return PortalInstance::whereName(config('portal.instanceName'))->first()->id;
+        });
 
         foreach (InfistarLog::whereLogname(self::LOG_SUBTYPE)->get(['logentry', 'time']) as $infiStarLog) {
             preg_match(self::REGEX, $infiStarLog->logentry, $matches);

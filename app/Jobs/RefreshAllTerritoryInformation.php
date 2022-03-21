@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\PortalInstance;
 use App\Models\Territory;
 use App\Models\TerritoryMember;
+use Cache;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -34,7 +35,10 @@ class RefreshAllTerritoryInformation implements ShouldQueue
     public function handle()
     {
         TerritoryMember::truncate();
-        $territories = Territory::get();
+
+        $territories = Cache::remember('allTerritories', 15, function () {
+            return Territory::get();
+        });
 
         foreach ($territories as $territory) {
             $moderators = json_decode($territory->moderators);

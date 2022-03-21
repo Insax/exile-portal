@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Account;
 use App\Models\Territory;
 use App\Models\TerritoryMember;
+use Cache;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -61,20 +62,22 @@ class ListTerritories extends Component
         $this->resetPage();
     }
 
-    private function queryBuilder(): \Illuminate\Contracts\Pagination\LengthAwarePaginator
+    private function queryBuilder()
     {
-        $territory = match ($this->type) {
-            'Deleted' => Territory::whereNotNull('deleted_at'),
-            'Active' => Territory::whereNull('deleted_at'),
-            'Stolen' => Territory::whereNotNull('flag_stolen_at'),
-            default => Territory::query(),
-        };
+        return Cache::remember('listTerritories'.$this->type.'PageSize'.$this->items.'Page'.$this->page.'Name'.$this->name.'sorted'.$this->sorting.'Type'.$this->sortType, 15, function () {
+            $territory = match ($this->type) {
+                'Deleted' => Territory::whereNotNull('deleted_at'),
+                'Active' => Territory::whereNull('deleted_at'),
+                'Stolen' => Territory::whereNotNull('flag_stolen_at'),
+                default => Territory::query(),
+            };
 
-        $territory->where('name', 'LIKE', '%'.$this->name.'%')
-            ->orderBy(strtolower($this->sorting), $this->sortType)
-            ->with(['ownerAccount', 'members']);
+            $territory->where('name', 'LIKE', '%'.$this->name.'%')
+                ->orderBy(strtolower($this->sorting), $this->sortType)
+                ->with(['ownerAccount', 'members']);
 
-        return $territory->paginate($this->items);
+            return $territory->paginate($this->items);
+        });
     }
 
     public function render(): Factory|View|Application
