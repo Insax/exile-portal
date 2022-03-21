@@ -15,7 +15,7 @@
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div id="app" class="bg-arma3 bg-fixed bg-no-repeat bg-blend-darken bg-portal-gray/75 antialiased leading-none font-sans min-h-screen">
+        <div id="app" class="bg-arma3 bg-fixed bg-cover bg-no-repeat bg-blend-darken bg-portal-gray/75 antialiased leading-none font-sans min-h-screen">
             <nav class="relative w-full flex flex-wrap items-center justify-between py-4 shadow-lg navbar navbar-expand-lg nav-portal">
                 <div class="container-fluid w-full flex flex-wrap items-center justify-between px-6">
                     <button
