@@ -29,8 +29,8 @@ class SetupParses extends Command
      */
     public function handle()
     {
-        dispatch(new ParseAllContainersJob());
-        dispatch(new RefreshAllTerritoryInformation());
+        dispatch(new ParseAllContainersJob())->onQueue(config('portal.instanceName'));
+        dispatch(new RefreshAllTerritoryInformation())->onQueue(config('portal.instanceName'));
         return 0;
     }
 }
