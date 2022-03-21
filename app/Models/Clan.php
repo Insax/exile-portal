@@ -51,7 +51,7 @@ class Clan extends Model
      */
     public function leaderAccount(): BelongsTo
     {
-        return $this->belongsTo(Account::class, 'leader_uid');
+        return $this->belongsTo(Account::class, 'leader_uid', 'uid');
     }
 
     /**
