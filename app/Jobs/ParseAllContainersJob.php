@@ -47,7 +47,7 @@ class ParseAllContainersJob implements ShouldQueue
 
         TerritoryContainerContent::wherePortalInstanceId($currentInstance)->delete();
 
-        $allTerritories = Cache::remember('allTerritoriesWithContainers', 5, function () {
+        $allTerritories = Cache::remember('allTerritoriesWithContainers', 5*60, function () {
             return Territory::with('containers')->get();
         });
 

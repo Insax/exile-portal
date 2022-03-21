@@ -41,7 +41,7 @@ class ClanMembers extends Component
 
     private function buildQuery()
     {
-        return Cache::remember('clanMembersWhereName'.$this->name.'orderedBy'.$this->sortType.'With'.$this->sortType.'PageSize'.$this->items.'Page'.$this->page, 15, function () {
+        return Cache::remember('clanMembersWhereName'.$this->name.'orderedBy'.$this->sortType.'With'.$this->sortType.'PageSize'.$this->items.'Page'.$this->page, 15*60, function () {
             return $this->clan->accounts()->where('name', 'LIKE', '%'.$this->name.'%')->orderBy(strtolower($this->sorting), $this->sortType)->paginate($this->items);
         });
     }

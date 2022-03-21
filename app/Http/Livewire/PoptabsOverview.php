@@ -44,7 +44,7 @@ class PoptabsOverview extends Component
 
     private function buildQuery()
     {
-        return Cache::remember('poptabsOverviewName'.$this->name.'Items'.$this->items.'Page'.$this->page.'sorting'.$this->sorting.'Type'.$this->sortType, 30, function () {
+        return Cache::remember('poptabsOverviewName'.$this->name.'Items'.$this->items.'Page'.$this->page.'sorting'.$this->sorting.'Type'.$this->sortType, 30*60, function () {
             return DB::connection('gameserver')->table('account')->select('account.*', DB::raw('(select  COALESCE(SUM(`container`.`money`), 0) + `account`.`locker` + `account`.`marxet_locker` from `container` where `account`.`uid` = `container`.`account_uid`) as container_sum_money'))
                 ->where('name', 'LIKE', '%'.$this->name.'%')
                 ->orderBy($this->sorting == 'MONEY' ? 'container_sum_money' : $this->sorting, $this->sortType)->paginate($this->items);

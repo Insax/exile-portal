@@ -64,7 +64,7 @@ class ListTerritories extends Component
 
     private function queryBuilder()
     {
-        return Cache::remember('listTerritories'.$this->type.'PageSize'.$this->items.'Page'.$this->page.'Name'.$this->name.'sorted'.$this->sorting.'Type'.$this->sortType, 15, function () {
+        return Cache::remember('listTerritories'.$this->type.'PageSize'.$this->items.'Page'.$this->page.'Name'.$this->name.'sorted'.$this->sorting.'Type'.$this->sortType, 15*60, function () {
             $territory = match ($this->type) {
                 'Deleted' => Territory::whereNotNull('deleted_at'),
                 'Active' => Territory::whereNull('deleted_at'),

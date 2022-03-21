@@ -36,7 +36,7 @@ class RefreshAllTerritoryInformation implements ShouldQueue
     {
         TerritoryMember::truncate();
 
-        $territories = Cache::remember('allTerritories', 15, function () {
+        $territories = Cache::remember('allTerritories', 15*60, function () {
             return Territory::get();
         });
 
