@@ -42,10 +42,10 @@
                             <li class="nav-item p-2">
                                 <a class="nav-link p-0 link link-underline" href="{{ route('clan.list') }}">Clans</a>
                             </li>
-                        @endauth
                             <li class="nav-item p-2">
                                 <a class="nav-link p-0 link link-underline" href="{{ route('poptabs.list') }}">Forbes Magazine</a>
                             </li>
+                        @endauth
                         </ul>
                         <!-- Left links -->
                     </div>
@@ -57,7 +57,7 @@
                         @guest
                             <ul class="navbar-nav flex flex-col pl-0 list-style-none mr-auto">
                                 <li class="nav-item p-2">
-                                    <a class="nav-link hover:underline mr-4" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link link link-underline mr-4" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             </ul>
                         @else
