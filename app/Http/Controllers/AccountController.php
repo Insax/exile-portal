@@ -18,7 +18,7 @@ class AccountController extends Controller
         //$this->dispatch(new RefreshAllTerritoryInformation());
 
         $territories = Cache::remember('territoresWhereMembersAccountId'.$account->uid, 15*60, function () use ($account) {
-            Territory::whereRelation('members', 'uid', $account->uid)->get();
+            return Territory::whereRelation('members', 'uid', $account->uid)->get();
         });
 
         return view('account.view', ['account' => $account, 'territories' => $territories]);
