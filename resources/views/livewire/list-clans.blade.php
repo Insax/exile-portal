@@ -64,7 +64,7 @@
                                     <a class="whitespace-no-wrap underline" href="{{ route('account.view', ['account' => $clan->leader_uid]) }}">{{ $clan->leaderAccount->name }} </a>
                                 </td>
                                 <td class="px-5 py-5 text-center text-sm">
-                                    <p class="whitespace-no-wrap">{{ $clan->accounts->count() }}</p>
+                                    <p class="whitespace-no-wrap">{{ $clan->accounts_count }}</p>
                                 </td>
                             </tr>
                         @endforeach
