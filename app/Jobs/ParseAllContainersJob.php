@@ -51,7 +51,7 @@ class ParseAllContainersJob implements ShouldQueue
             return Territory::with('containers')->get();
         });
 
-        foreach ($allTerritories::all() as $territory) {
+        foreach ($allTerritories as $territory) {
             foreach ($territory->containers as $container) {
                 $cargoItems = json_decode($container->cargo_items);
                 array_walk_recursive($cargoItems, array($this, 'countCargoItems'));
