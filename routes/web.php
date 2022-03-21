@@ -54,3 +54,7 @@ Route::prefix('clans')->middleware(['auth', 'verified', 'twoFactor'])->controlle
 Route::prefix('users')->middleware(['auth', 'verified', 'twoFactor', 'can:Create new User'])->controller(UserController::class)->group(function () {
     Route::get('/manage', 'manageUsers')->name('users.manage');
 });
+
+Route::prefix('poptabs')->middleware(['auth', 'verified', 'twoFactor'])->controller(\App\Http\Controllers\PoptabsOverviewController::class)->group(function () {
+    Route::get('/', 'listPoptabs')->name('poptabs.list');
+});
