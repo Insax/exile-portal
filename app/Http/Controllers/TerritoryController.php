@@ -16,7 +16,7 @@ class TerritoryController extends Controller
     }
 
     public function viewTerritory(Territory $territory) {
-        $activities = Activity::forSubject($territory)->get();
+        $activities = Activity::forSubject($territory)->orderBy('created_at', 'ASC')->get();
         return view('territory.view', [
             'territory' => $territory,
             'activities' => $activities
