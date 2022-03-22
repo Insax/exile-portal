@@ -107,7 +107,7 @@
                                         <p class="whitespace-no-wrap">{{ $activity->causer->name }}</p>
                                     </td>
                                     <td class="px-5 py-5 text-center text-sm">
-                                        <p class="whitespace-no-wrap uppercase">{{ $activity->getExtraProperty('activity') }}</p>
+                                        <p class="whitespace-no-wrap uppercase">{{ $activity->getExtraProperty('action') }}</p>
                                     </td>
                                     <td class="px-5 py-5 text-center text-sm">
                                         <p class="whitespace-no-wrap uppercase">{{ $activity->getExtraProperty('advance') ? $activity->getExtraProperty('advance') : 'N/A' }}</p>
