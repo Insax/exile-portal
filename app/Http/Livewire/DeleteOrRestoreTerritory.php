@@ -3,17 +3,37 @@
 namespace App\Http\Livewire;
 
 use App\Models\Territory;
+use Auth;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class DeleteOrRestoreTerritory extends ModalComponent
 {
     public int $territoryId;
+    public int $advancePayment = 8;
+    public string $reason = '';
+    public bool $needsPayment = false;
+
+    public function rules(): array
+    {
+        if($this->needsPayment)
+            return [
+                'reason' => ['required', 'min:8'],
+                'advancePayment' => ['required', 'number', 'gt:0']
+            ];
+        return [
+            'reason' => ['required']
+        ];
+    }
 
     public function mount(Territory $territory)
     {
         $this->territoryId = $territory->id;
+        if($territory->deleted_at) {
+            $this->needsPayment = true;
+        }
     }
 
     public function deleteOrRestore()
@@ -22,8 +42,19 @@ class DeleteOrRestoreTerritory extends ModalComponent
         if($territory->deleted_at) {
             $territory->deleted_at = null;
             $territory->last_paid_at = Carbon::now();
+            activity()->by(Auth::user())
+                ->on($territory)
+                ->withProperties([
+                    'action' => 'restored',
+                    'advance' => $this->advancePayment
+                ])
+                ->log($this->reason);
         } else {
             $territory->deleted_at = Carbon::now();
+            activity()->by(Auth::user())
+                ->on($territory)
+                ->withProperty('action', 'deleted')
+                ->log($this->reason);
         }
 
         $territory->save();

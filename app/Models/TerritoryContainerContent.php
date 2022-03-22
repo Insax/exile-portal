@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,15 +15,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $territory_id
  * @property string $item
  * @property int $count
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerContent newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerContent newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerContent query()
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerContent whereCount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerContent whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerContent whereItem($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerContent wherePortalInstanceId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerContent whereTerritoryId($value)
- * @mixin \Eloquent
+ * @method static Builder|TerritoryContainerContent newModelQuery()
+ * @method static Builder|TerritoryContainerContent newQuery()
+ * @method static Builder|TerritoryContainerContent query()
+ * @method static Builder|TerritoryContainerContent whereCount($value)
+ * @method static Builder|TerritoryContainerContent whereId($value)
+ * @method static Builder|TerritoryContainerContent whereItem($value)
+ * @method static Builder|TerritoryContainerContent wherePortalInstanceId($value)
+ * @method static Builder|TerritoryContainerContent whereTerritoryId($value)
+ * @mixin Eloquent
  */
 class TerritoryContainerContent extends Model
 {

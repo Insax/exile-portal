@@ -7,6 +7,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -18,16 +20,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $poptabs
  * @property string|null $respect
  * @property \Illuminate\Support\Carbon $time_sold
- * @method static \Illuminate\Database\Eloquent\Builder|TraderLog newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|TraderLog newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|TraderLog query()
- * @method static \Illuminate\Database\Eloquent\Builder|TraderLog whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderLog whereItemSold($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderLog wherePlayerid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderLog wherePoptabs($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderLog whereRespect($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderLog whereTimeSold($value)
- * @mixin \Eloquent
+ * @method static Builder|TraderLog newModelQuery()
+ * @method static Builder|TraderLog newQuery()
+ * @method static Builder|TraderLog query()
+ * @method static Builder|TraderLog whereId($value)
+ * @method static Builder|TraderLog whereItemSold($value)
+ * @method static Builder|TraderLog wherePlayerid($value)
+ * @method static Builder|TraderLog wherePoptabs($value)
+ * @method static Builder|TraderLog whereRespect($value)
+ * @method static Builder|TraderLog whereTimeSold($value)
+ * @mixin Eloquent
  */
 class TraderLog extends Model
 {

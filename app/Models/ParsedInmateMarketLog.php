@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,17 +17,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $item
  * @property int $price
  * @property string $time
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedInmateMarketLog newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedInmateMarketLog newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedInmateMarketLog query()
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedInmateMarketLog whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedInmateMarketLog whereItem($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedInmateMarketLog wherePortalInstanceId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedInmateMarketLog wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedInmateMarketLog whereReceiverAccountUid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedInmateMarketLog whereSourceAccountUid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedInmateMarketLog whereTime($value)
- * @mixin \Eloquent
+ * @method static Builder|ParsedInmateMarketLog newModelQuery()
+ * @method static Builder|ParsedInmateMarketLog newQuery()
+ * @method static Builder|ParsedInmateMarketLog query()
+ * @method static Builder|ParsedInmateMarketLog whereId($value)
+ * @method static Builder|ParsedInmateMarketLog whereItem($value)
+ * @method static Builder|ParsedInmateMarketLog wherePortalInstanceId($value)
+ * @method static Builder|ParsedInmateMarketLog wherePrice($value)
+ * @method static Builder|ParsedInmateMarketLog whereReceiverAccountUid($value)
+ * @method static Builder|ParsedInmateMarketLog whereSourceAccountUid($value)
+ * @method static Builder|ParsedInmateMarketLog whereTime($value)
+ * @mixin Eloquent
  */
 class ParsedInmateMarketLog extends Model
 {

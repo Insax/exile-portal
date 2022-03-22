@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,20 +18,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $leader_uid
  * @property string $created_at
  * @property string $moderators
- * @property-read Collection|\App\Models\Account[] $accounts
+ * @property-read Collection|Account[] $accounts
  * @property-read int|null $accounts_count
- * @property-read Collection|\App\Models\ClanMapMarker[] $clan_map_markers
+ * @property-read Collection|ClanMapMarker[] $clan_map_markers
  * @property-read int|null $clan_map_markers_count
- * @property-read \App\Models\Account $leaderAccount
- * @method static \Illuminate\Database\Eloquent\Builder|Clan newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Clan newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Clan query()
- * @method static \Illuminate\Database\Eloquent\Builder|Clan whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Clan whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Clan whereLeaderUid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Clan whereModerators($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Clan whereName($value)
- * @mixin \Eloquent
+ * @property-read Account $leaderAccount
+ * @method static Builder|Clan newModelQuery()
+ * @method static Builder|Clan newQuery()
+ * @method static Builder|Clan query()
+ * @method static Builder|Clan whereCreatedAt($value)
+ * @method static Builder|Clan whereId($value)
+ * @method static Builder|Clan whereLeaderUid($value)
+ * @method static Builder|Clan whereModerators($value)
+ * @method static Builder|Clan whereName($value)
+ * @mixin Eloquent
  */
 class Clan extends Model
 {

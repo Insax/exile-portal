@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -17,18 +19,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $position_x
  * @property float $position_y
  * @property float $position_z
- * @property-read \App\Models\Account $account
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory query()
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory whereAccountUid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory whereDiedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory wherePositionX($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory wherePositionY($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory wherePositionZ($value)
- * @mixin \Eloquent
+ * @property-read Account $account
+ * @method static Builder|PlayerHistory newModelQuery()
+ * @method static Builder|PlayerHistory newQuery()
+ * @method static Builder|PlayerHistory query()
+ * @method static Builder|PlayerHistory whereAccountUid($value)
+ * @method static Builder|PlayerHistory whereDiedAt($value)
+ * @method static Builder|PlayerHistory whereId($value)
+ * @method static Builder|PlayerHistory whereName($value)
+ * @method static Builder|PlayerHistory wherePositionX($value)
+ * @method static Builder|PlayerHistory wherePositionY($value)
+ * @method static Builder|PlayerHistory wherePositionZ($value)
+ * @mixin Eloquent
  */
 class PlayerHistory extends Model
 {

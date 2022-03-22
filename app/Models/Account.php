@@ -41,25 +41,25 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property string $enemy_territory_logout
  * @property \Illuminate\Support\Carbon|null $esm_reward
  * @property int $marxet_locker
- * @property-read \App\Models\Clan|null $clan
- * @property-read \App\Models\Clan|null $clanLeader
- * @property-read Collection|\App\Models\Construction[] $constructions
+ * @property-read Clan|null $clan
+ * @property-read Clan|null $clanLeader
+ * @property-read Collection|Construction[] $constructions
  * @property-read int|null $constructions_count
- * @property-read Collection|\App\Models\Container[] $containers
+ * @property-read Collection|Container[] $containers
  * @property-read int|null $containers_count
- * @property-read Collection|\App\Models\ParsedDailyRewardLog[] $dailyRewardLog
+ * @property-read Collection|ParsedDailyRewardLog[] $dailyRewardLog
  * @property-read int|null $daily_reward_log_count
- * @property-read Collection|\App\Models\ParsedInmateMarketLog[] $inmateMarketLogBuyer
+ * @property-read Collection|ParsedInmateMarketLog[] $inmateMarketLogBuyer
  * @property-read int|null $inmate_market_log_buyer_count
- * @property-read Collection|\App\Models\ParsedInmateMarketLog[] $inmateMarketLogSeller
+ * @property-read Collection|ParsedInmateMarketLog[] $inmateMarketLogSeller
  * @property-read int|null $inmate_market_log_seller_count
- * @property-read Collection|\App\Models\PlayerHistory[] $playerHistory
+ * @property-read Collection|PlayerHistory[] $playerHistory
  * @property-read int|null $player_history_count
- * @property-read \App\Models\Player|null $players
- * @property-read Collection|\App\Models\Territory[] $territories
+ * @property-read Player|null $players
+ * @property-read Collection|Territory[] $territories
  * @property-read int|null $territories_count
- * @property-read \App\Models\Territory|null $territory
- * @property-read Collection|\App\Models\Vehicle[] $vehicles
+ * @property-read Territory|null $territory
+ * @property-read Collection|Vehicle[] $vehicles
  * @property-read int|null $vehicles_count
  * @method static Builder|Account filter(\App\Filters\QueryFilters $filters)
  * @method static Builder|Account newModelQuery()

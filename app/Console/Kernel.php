@@ -3,8 +3,10 @@
 namespace App\Console;
 
 use App\Jobs\ParseAllContainersJob;
+use App\Jobs\ParsePlayerMoneyJob;
 use App\Jobs\RefreshAllTerritoryInformation;
 use App\Models\ParsedInmateMarketLog;
+use App\Models\ParsedPlayerMoney;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -20,6 +22,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->job(new RefreshAllTerritoryInformation(), config('portal.instanceName'))->everyFifteenMinutes();
         $schedule->job(new ParseAllContainersJob(), config('portal.instanceName'))->everyFiveMinutes();
+        $schedule->job(new ParsePlayerMoneyJob(), config('portal.instanceName'))->everyMinute();
     }
 
     /**

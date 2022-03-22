@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -13,15 +15,15 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $logname
  * @property string|null $logentry
  * @property \Illuminate\Support\Carbon $time
- * @method static \Illuminate\Database\Eloquent\Builder|InfistarLog newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|InfistarLog newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|InfistarLog query()
- * @method static \Illuminate\Database\Eloquent\Builder|InfistarLog whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|InfistarLog whereLogentry($value)
- * @method static \Illuminate\Database\Eloquent\Builder|InfistarLog whereLogname($value)
- * @method static \Illuminate\Database\Eloquent\Builder|InfistarLog whereServername($value)
- * @method static \Illuminate\Database\Eloquent\Builder|InfistarLog whereTime($value)
- * @mixin \Eloquent
+ * @method static Builder|InfistarLog newModelQuery()
+ * @method static Builder|InfistarLog newQuery()
+ * @method static Builder|InfistarLog query()
+ * @method static Builder|InfistarLog whereId($value)
+ * @method static Builder|InfistarLog whereLogentry($value)
+ * @method static Builder|InfistarLog whereLogname($value)
+ * @method static Builder|InfistarLog whereServername($value)
+ * @method static Builder|InfistarLog whereTime($value)
+ * @mixin Eloquent
  */
 class InfistarLog extends Model
 {

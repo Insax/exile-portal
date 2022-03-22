@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -14,16 +16,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $account_uid
  * @property string $reward
  * @property string $time
- * @property-read \App\Models\Account $account
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedDailyRewardLog newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedDailyRewardLog newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedDailyRewardLog query()
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedDailyRewardLog whereAccountUid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedDailyRewardLog whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedDailyRewardLog wherePortalInstanceId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedDailyRewardLog whereReward($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ParsedDailyRewardLog whereTime($value)
- * @mixin \Eloquent
+ * @property-read Account $account
+ * @method static Builder|ParsedDailyRewardLog newModelQuery()
+ * @method static Builder|ParsedDailyRewardLog newQuery()
+ * @method static Builder|ParsedDailyRewardLog query()
+ * @method static Builder|ParsedDailyRewardLog whereAccountUid($value)
+ * @method static Builder|ParsedDailyRewardLog whereId($value)
+ * @method static Builder|ParsedDailyRewardLog wherePortalInstanceId($value)
+ * @method static Builder|ParsedDailyRewardLog whereReward($value)
+ * @method static Builder|ParsedDailyRewardLog whereTime($value)
+ * @mixin Eloquent
  */
 class ParsedDailyRewardLog extends Model
 {

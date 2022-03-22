@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -35,36 +37,36 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $money
  * @property \Illuminate\Support\Carbon|null $abandoned
  * @property string $inventory
- * @property-read \App\Models\Account|null $account
- * @method static \Illuminate\Database\Eloquent\Builder|Container newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Container newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Container query()
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereAbandoned($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereAccountUid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereCargoContainer($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereCargoItems($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereCargoMagazines($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereCargoWeapons($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereClass($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereDirectionX($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereDirectionY($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereDirectionZ($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereInventory($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereIsLocked($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereLastUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereMoney($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container wherePinCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container wherePositionX($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container wherePositionY($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container wherePositionZ($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereSpawnedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereTerritoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereUpX($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereUpY($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Container whereUpZ($value)
- * @mixin \Eloquent
+ * @property-read Account|null $account
+ * @method static Builder|Container newModelQuery()
+ * @method static Builder|Container newQuery()
+ * @method static Builder|Container query()
+ * @method static Builder|Container whereAbandoned($value)
+ * @method static Builder|Container whereAccountUid($value)
+ * @method static Builder|Container whereCargoContainer($value)
+ * @method static Builder|Container whereCargoItems($value)
+ * @method static Builder|Container whereCargoMagazines($value)
+ * @method static Builder|Container whereCargoWeapons($value)
+ * @method static Builder|Container whereClass($value)
+ * @method static Builder|Container whereDeletedAt($value)
+ * @method static Builder|Container whereDirectionX($value)
+ * @method static Builder|Container whereDirectionY($value)
+ * @method static Builder|Container whereDirectionZ($value)
+ * @method static Builder|Container whereId($value)
+ * @method static Builder|Container whereInventory($value)
+ * @method static Builder|Container whereIsLocked($value)
+ * @method static Builder|Container whereLastUpdatedAt($value)
+ * @method static Builder|Container whereMoney($value)
+ * @method static Builder|Container wherePinCode($value)
+ * @method static Builder|Container wherePositionX($value)
+ * @method static Builder|Container wherePositionY($value)
+ * @method static Builder|Container wherePositionZ($value)
+ * @method static Builder|Container whereSpawnedAt($value)
+ * @method static Builder|Container whereTerritoryId($value)
+ * @method static Builder|Container whereUpX($value)
+ * @method static Builder|Container whereUpY($value)
+ * @method static Builder|Container whereUpZ($value)
+ * @mixin Eloquent
  */
 class Container extends Model
 {

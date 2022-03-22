@@ -12,6 +12,7 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
+        "spatie/laravel-activitylog": "^4.4",
         "spatie/laravel-permission": "^5.5",
         "wire-elements/modal": "^1.0",
         "zacksmash/fortify-ui": "^1.4"

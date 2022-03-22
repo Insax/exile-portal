@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\PortalInstance
@@ -13,20 +17,20 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $name
  * @property string $url
  * @property bool $active
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ParsedInmateMarketLog[] $inmateMarketLogs
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection|ParsedInmateMarketLog[] $inmateMarketLogs
  * @property-read int|null $inmate_market_logs_count
- * @method static \Illuminate\Database\Eloquent\Builder|PortalInstance newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PortalInstance newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PortalInstance query()
- * @method static \Illuminate\Database\Eloquent\Builder|PortalInstance whereActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PortalInstance whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PortalInstance whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PortalInstance whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PortalInstance whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PortalInstance whereUrl($value)
- * @mixin \Eloquent
+ * @method static Builder|PortalInstance newModelQuery()
+ * @method static Builder|PortalInstance newQuery()
+ * @method static Builder|PortalInstance query()
+ * @method static Builder|PortalInstance whereActive($value)
+ * @method static Builder|PortalInstance whereCreatedAt($value)
+ * @method static Builder|PortalInstance whereId($value)
+ * @method static Builder|PortalInstance whereName($value)
+ * @method static Builder|PortalInstance whereUpdatedAt($value)
+ * @method static Builder|PortalInstance whereUrl($value)
+ * @mixin Eloquent
  */
 class PortalInstance extends Model
 {

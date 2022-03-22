@@ -41,14 +41,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $esm_payment_counter
  * @property string|null $deleted_at
  * @property string $territory_permissions
- * @property-read Collection|\App\Models\TerritoryContainerContent[] $containerContent
+ * @property-read Collection|TerritoryContainerContent[] $containerContent
  * @property-read int|null $container_content_count
- * @property-read Collection|\App\Models\Container[] $containers
+ * @property-read Collection|Container[] $containers
  * @property-read int|null $containers_count
- * @property-read Collection|\App\Models\Account[] $members
+ * @property-read Collection|Account[] $members
  * @property-read int|null $members_count
- * @property-read \App\Models\Account $ownerAccount
- * @property-read \App\Models\Account|null $territoryFlagStealer
+ * @property-read Account $ownerAccount
+ * @property-read Account|null $territoryFlagStealer
  * @method static Builder|Territory newModelQuery()
  * @method static Builder|Territory newQuery()
  * @method static Builder|Territory query()

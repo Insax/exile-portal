@@ -45,7 +45,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $exile_loading
  * @property string $inventory
  * @property string|null $marxet_id
- * @property-read \App\Models\Account|null $account
+ * @property-read Account|null $account
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle newQuery()
  * @method static \Illuminate\Database\Query\Builder|Vehicle onlyTrashed()

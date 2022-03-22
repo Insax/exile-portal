@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,24 +23,24 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $magazines
  * @property string $weapons
  * @property string $cargo
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage query()
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage whereCargo($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage whereClass($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage whereDamage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage whereFuel($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage whereHitpoints($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage whereItems($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage whereMagazines($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage whereOwnerUid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage wherePincode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage wherePoptabs($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage wherePuid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage whereTextures($value)
- * @method static \Illuminate\Database\Eloquent\Builder|SmVirtualgarage whereWeapons($value)
- * @mixin \Eloquent
+ * @method static Builder|SmVirtualgarage newModelQuery()
+ * @method static Builder|SmVirtualgarage newQuery()
+ * @method static Builder|SmVirtualgarage query()
+ * @method static Builder|SmVirtualgarage whereCargo($value)
+ * @method static Builder|SmVirtualgarage whereClass($value)
+ * @method static Builder|SmVirtualgarage whereDamage($value)
+ * @method static Builder|SmVirtualgarage whereFuel($value)
+ * @method static Builder|SmVirtualgarage whereHitpoints($value)
+ * @method static Builder|SmVirtualgarage whereId($value)
+ * @method static Builder|SmVirtualgarage whereItems($value)
+ * @method static Builder|SmVirtualgarage whereMagazines($value)
+ * @method static Builder|SmVirtualgarage whereOwnerUid($value)
+ * @method static Builder|SmVirtualgarage wherePincode($value)
+ * @method static Builder|SmVirtualgarage wherePoptabs($value)
+ * @method static Builder|SmVirtualgarage wherePuid($value)
+ * @method static Builder|SmVirtualgarage whereTextures($value)
+ * @method static Builder|SmVirtualgarage whereWeapons($value)
+ * @mixin Eloquent
  */
 class SmVirtualgarage extends Model
 {

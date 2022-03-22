@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -17,20 +19,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $iconSize
  * @property string $label
  * @property float $labelSize
- * @property-read \App\Models\Clan $clan
- * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker query()
- * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereClanId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereColor($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereIcon($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereIconSize($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereLabel($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereLabelSize($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereMarkerType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker wherePositionArr($value)
- * @mixin \Eloquent
+ * @property-read Clan $clan
+ * @method static Builder|ClanMapMarker newModelQuery()
+ * @method static Builder|ClanMapMarker newQuery()
+ * @method static Builder|ClanMapMarker query()
+ * @method static Builder|ClanMapMarker whereClanId($value)
+ * @method static Builder|ClanMapMarker whereColor($value)
+ * @method static Builder|ClanMapMarker whereIcon($value)
+ * @method static Builder|ClanMapMarker whereIconSize($value)
+ * @method static Builder|ClanMapMarker whereId($value)
+ * @method static Builder|ClanMapMarker whereLabel($value)
+ * @method static Builder|ClanMapMarker whereLabelSize($value)
+ * @method static Builder|ClanMapMarker whereMarkerType($value)
+ * @method static Builder|ClanMapMarker wherePositionArr($value)
+ * @mixin Eloquent
  */
 class ClanMapMarker extends Model
 {

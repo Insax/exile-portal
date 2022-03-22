@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -10,8 +12,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * App\Models\PlayerStat
  *
  * @property int $id
- * @property \App\Models\Account|null $killer
- * @property \App\Models\Account|null $victim
+ * @property Account|null $killer
+ * @property Account|null $victim
  * @property string|null $weaponused
  * @property int|null $distance
  * @property int|null $bambikill
@@ -20,21 +22,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $killer_position
  * @property string $victim_position
  * @property \Illuminate\Support\Carbon|null $time
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat query()
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat whereBambikill($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat whereDistance($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat whereKiller($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat whereKillerPosition($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat whereRaidkill($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat whereTerritorykill($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat whereTime($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat whereVictim($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat whereVictimPosition($value)
- * @method static \Illuminate\Database\Eloquent\Builder|PlayerStat whereWeaponused($value)
- * @mixin \Eloquent
+ * @method static Builder|PlayerStat newModelQuery()
+ * @method static Builder|PlayerStat newQuery()
+ * @method static Builder|PlayerStat query()
+ * @method static Builder|PlayerStat whereBambikill($value)
+ * @method static Builder|PlayerStat whereDistance($value)
+ * @method static Builder|PlayerStat whereId($value)
+ * @method static Builder|PlayerStat whereKiller($value)
+ * @method static Builder|PlayerStat whereKillerPosition($value)
+ * @method static Builder|PlayerStat whereRaidkill($value)
+ * @method static Builder|PlayerStat whereTerritorykill($value)
+ * @method static Builder|PlayerStat whereTime($value)
+ * @method static Builder|PlayerStat whereVictim($value)
+ * @method static Builder|PlayerStat whereVictimPosition($value)
+ * @method static Builder|PlayerStat whereWeaponused($value)
+ * @mixin Eloquent
  */
 class PlayerStat extends Model
 {

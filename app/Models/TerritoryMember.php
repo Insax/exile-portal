@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,12 +12,12 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $territory_id
  * @property string $account_uid
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryMember newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryMember newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryMember query()
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryMember whereAccountUid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TerritoryMember whereTerritoryId($value)
- * @mixin \Eloquent
+ * @method static Builder|TerritoryMember newModelQuery()
+ * @method static Builder|TerritoryMember newQuery()
+ * @method static Builder|TerritoryMember query()
+ * @method static Builder|TerritoryMember whereAccountUid($value)
+ * @method static Builder|TerritoryMember whereTerritoryId($value)
+ * @mixin Eloquent
  */
 class TerritoryMember extends Model
 {

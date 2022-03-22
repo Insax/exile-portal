@@ -7,6 +7,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,19 +23,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $vehicleclass
  * @property string|null $soldvehicle
  * @property \Illuminate\Support\Carbon $time_sold
- * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog query()
- * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog whereItemSold($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog wherePlayerid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog wherePoptabs($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog whereRespect($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog whereSoldvehicle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog whereTimeSold($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog whereTransactionid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog whereVehicleclass($value)
- * @mixin \Eloquent
+ * @method static Builder|TraderRecycleLog newModelQuery()
+ * @method static Builder|TraderRecycleLog newQuery()
+ * @method static Builder|TraderRecycleLog query()
+ * @method static Builder|TraderRecycleLog whereId($value)
+ * @method static Builder|TraderRecycleLog whereItemSold($value)
+ * @method static Builder|TraderRecycleLog wherePlayerid($value)
+ * @method static Builder|TraderRecycleLog wherePoptabs($value)
+ * @method static Builder|TraderRecycleLog whereRespect($value)
+ * @method static Builder|TraderRecycleLog whereSoldvehicle($value)
+ * @method static Builder|TraderRecycleLog whereTimeSold($value)
+ * @method static Builder|TraderRecycleLog whereTransactionid($value)
+ * @method static Builder|TraderRecycleLog whereVehicleclass($value)
+ * @mixin Eloquent
  */
 class TraderRecycleLog extends Model
 {

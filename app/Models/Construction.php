@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -31,32 +33,32 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $deleted_at
  * @property string|null $construction_texture
  * @property string $construction_name
- * @property-read \App\Models\Account $account
- * @method static \Illuminate\Database\Eloquent\Builder|Construction newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Construction newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Construction query()
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereAccountUid($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereClass($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereConstructionName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereConstructionTexture($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereDamage($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereDirectionX($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereDirectionY($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereDirectionZ($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereIsLocked($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereLastUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction wherePinCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction wherePositionX($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction wherePositionY($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction wherePositionZ($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereSpawnedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereTerritoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereUpX($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereUpY($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Construction whereUpZ($value)
- * @mixin \Eloquent
+ * @property-read Account $account
+ * @method static Builder|Construction newModelQuery()
+ * @method static Builder|Construction newQuery()
+ * @method static Builder|Construction query()
+ * @method static Builder|Construction whereAccountUid($value)
+ * @method static Builder|Construction whereClass($value)
+ * @method static Builder|Construction whereConstructionName($value)
+ * @method static Builder|Construction whereConstructionTexture($value)
+ * @method static Builder|Construction whereDamage($value)
+ * @method static Builder|Construction whereDeletedAt($value)
+ * @method static Builder|Construction whereDirectionX($value)
+ * @method static Builder|Construction whereDirectionY($value)
+ * @method static Builder|Construction whereDirectionZ($value)
+ * @method static Builder|Construction whereId($value)
+ * @method static Builder|Construction whereIsLocked($value)
+ * @method static Builder|Construction whereLastUpdatedAt($value)
+ * @method static Builder|Construction wherePinCode($value)
+ * @method static Builder|Construction wherePositionX($value)
+ * @method static Builder|Construction wherePositionY($value)
+ * @method static Builder|Construction wherePositionZ($value)
+ * @method static Builder|Construction whereSpawnedAt($value)
+ * @method static Builder|Construction whereTerritoryId($value)
+ * @method static Builder|Construction whereUpX($value)
+ * @method static Builder|Construction whereUpY($value)
+ * @method static Builder|Construction whereUpZ($value)
+ * @mixin Eloquent
  */
 class Construction extends Model
 {

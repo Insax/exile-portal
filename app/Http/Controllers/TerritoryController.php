@@ -6,6 +6,7 @@ use App\Jobs\ParseAllContainersJob;
 use App\Jobs\RefreshAllTerritoryInformation;
 use App\Models\Container;
 use App\Models\Territory;
+use Spatie\Activitylog\Models\Activity;
 
 class TerritoryController extends Controller
 {
@@ -15,7 +16,11 @@ class TerritoryController extends Controller
     }
 
     public function viewTerritory(Territory $territory) {
-        return view('territory.view', ['territory' => $territory]);
+        $activities = Activity::forSubject($territory)->get();
+        return view('territory.view', [
+            'territory' => $territory,
+            'activities' => $activities
+        ]);
     }
 }
 
