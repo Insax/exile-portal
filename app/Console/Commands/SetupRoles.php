@@ -78,6 +78,7 @@ class SetupRoles extends Command
 
         User::find(1)->assignRole($superAdmin);
 
+        $this->call('permission:cache-reset');
 
         return 0;
     }
