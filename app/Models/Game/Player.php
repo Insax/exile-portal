@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Game;
 
-use Carbon\Carbon;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Player
@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property float $position_x
  * @property float $position_y
  * @property float $position_z
- * @property \Illuminate\Support\Carbon $spawned_at
+ * @property Carbon $spawned_at
  * @property string $assigned_items
  * @property string $backpack
  * @property string $backpack_items
@@ -53,7 +53,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $vest_items
  * @property string $vest_magazines
  * @property string $vest_weapons
- * @property \Illuminate\Support\Carbon $last_updated_at
+ * @property Carbon $last_updated_at
  * @property string $loadout
  * @property-read Account $account
  * @method static Builder|Player newModelQuery()

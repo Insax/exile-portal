@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Game;
 
-use Carbon\Carbon;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\InfistarLog
@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $servername
  * @property string|null $logname
  * @property string|null $logentry
- * @property \Illuminate\Support\Carbon $time
+ * @property Carbon $time
  * @method static Builder|InfistarLog newModelQuery()
  * @method static Builder|InfistarLog newQuery()
  * @method static Builder|InfistarLog query()

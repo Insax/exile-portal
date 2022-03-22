@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Game;
 
-use Carbon\Carbon;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

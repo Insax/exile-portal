@@ -4,12 +4,12 @@
  * Created by Reliese Model.
  */
 
-namespace App\Models;
+namespace App\Models\Game;
 
-use Carbon\Carbon;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\TraderLog
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $item_sold
  * @property int|null $poptabs
  * @property string|null $respect
- * @property \Illuminate\Support\Carbon $time_sold
+ * @property Carbon $time_sold
  * @method static Builder|TraderLog newModelQuery()
  * @method static Builder|TraderLog newQuery()
  * @method static Builder|TraderLog query()

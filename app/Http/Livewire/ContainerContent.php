@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\PortalInstance;
-use App\Models\TerritoryContainerContent;
+use App\Models\ParsedGameInformation\TerritoryContainerContent;
 use Cache;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -12,13 +12,20 @@ class ContainerContent extends Component
 {
     use WithPagination;
 
-    public $territory;
-
-    /** @var int[]  */
+    /** @var int[] */
     const AMOUNTS = [
         'default' => 20,
         'more' => 50,
         'most' => 100
+    ];
+    public $territory;
+    public int $items = 20;
+    public string $name = '';
+    public $page = 1;
+    protected $queryString = [
+        'items' => ['except' => 20],
+        'name' => ['except' => ''],
+        'page' => ['except' => 1]
     ];
 
     public function updatingName()
@@ -31,15 +38,13 @@ class ContainerContent extends Component
         $this->resetPage();
     }
 
-    protected $queryString = [
-        'items' => ['except' => 20],
-        'name' => ['except' => ''],
-        'page' => ['except' => 1]
-    ];
-
-    public int $items = 20;
-    public string $name = '';
-    public $page = 1;
+    public function render()
+    {
+        return view('livewire.container-content', [
+            'territoryContainerContent' => $this->queryBuilder(),
+            'amounts' => self::AMOUNTS
+        ]);
+    }
 
     private function queryBuilder()
     {
@@ -48,16 +53,8 @@ class ContainerContent extends Component
         });
         $territoryContainerContent = TerritoryContainerContent::wherePortalInstanceId($currentInstance)->whereTerritoryId($this->territory->id);
         if ($this->name)
-            $territoryContainerContent->where('item', 'LIKE', '%'.$this->name.'%');
+            $territoryContainerContent->where('item', 'LIKE', '%' . $this->name . '%');
 
         return $territoryContainerContent->orderBy('count', 'DESC')->paginate($this->items);
-    }
-
-    public function render()
-    {
-        return view('livewire.container-content', [
-            'territoryContainerContent' => $this->queryBuilder(),
-            'amounts' => self::AMOUNTS
-        ]);
     }
 }

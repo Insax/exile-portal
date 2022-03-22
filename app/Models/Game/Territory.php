@@ -4,9 +4,9 @@
  * Created by Reliese Model.
  */
 
-namespace App\Models;
+namespace App\Models\Game;
 
-use Carbon\Carbon;
+use App\Models\ParsedGameInformation\TerritoryContainerContent;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Territory
@@ -32,9 +32,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $flag_texture
  * @property bool $flag_stolen
  * @property string|null $flag_stolen_by_uid
- * @property \Illuminate\Support\Carbon|null $flag_stolen_at
+ * @property Carbon|null $flag_stolen_at
  * @property string $created_at
- * @property \Illuminate\Support\Carbon|null $last_paid_at
+ * @property Carbon|null $last_paid_at
  * @property bool $xm8_protectionmoney_notified
  * @property string $build_rights
  * @property string $moderators
@@ -89,13 +89,9 @@ class Territory extends Model
         'level' => 'int',
         'flag_stolen' => 'bool',
         'xm8_protectionmoney_notified' => 'bool',
-        'esm_payment_counter' => 'int'
-    ];
-
-    /** @var string[]  */
-    protected $dates = [
-        'flag_stolen_at',
-        'last_paid_at'
+        'esm_payment_counter' => 'int',
+        'flag_stolen_at' => 'datetime',
+        'last_paid_at' => 'datetime'
     ];
 
     protected $fillable = [

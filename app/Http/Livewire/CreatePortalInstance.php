@@ -6,7 +6,6 @@ use App\Models\PortalInstance;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 use JetBrains\PhpStorm\ArrayShape;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class CreatePortalInstance extends ModalComponent

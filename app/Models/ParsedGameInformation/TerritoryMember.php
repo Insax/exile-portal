@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\ParsedGameInformation;
 
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -23,12 +23,10 @@ class TerritoryMember extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
     protected $connection = 'gameserver';
-
     protected $fillable = [
         'account_uid',
         'territory_id'
     ];
-
-    public $timestamps = false;
 }

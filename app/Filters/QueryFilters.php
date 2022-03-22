@@ -34,7 +34,7 @@ abstract class QueryFilters
     /**
      * Apply the filters to the builder.
      *
-     * @param  Builder $builder
+     * @param Builder $builder
      * @return Builder
      */
     public function apply(Builder $builder): Builder
@@ -42,7 +42,7 @@ abstract class QueryFilters
         $this->builder = $builder;
 
         foreach ($this->filters() as $name => $value) {
-            if (! method_exists($this, $name)) {
+            if (!method_exists($this, $name)) {
                 continue;
             }
 

@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Account;
 use Cache;
 use DB;
 use Illuminate\Contracts\Foundation\Application;
@@ -26,7 +25,11 @@ class PoptabsOverview extends Component
         'accountId' => 'UID',
         'name' => 'NAME'
     ];
-
+    public string $name = '';
+    public int $items = 20;
+    public string $sorting = 'MONEY';
+    public string $sortType = 'DESC';
+    public $page = 1;
     protected $queryString = [
         'items' => ['except' => 20],
         'name' => ['except' => ''],
@@ -35,21 +38,6 @@ class PoptabsOverview extends Component
         'page' => ['except' => 1]
     ];
 
-    public string $name = '';
-    public int $items = 20;
-    public string $sorting = 'MONEY';
-    public string $sortType = 'DESC';
-    public $page = 1;
-
-
-    private function buildQuery()
-    {
-        return Cache::remember('poptabsOverviewName'.$this->name.'Items'.$this->items.'Page'.$this->page.'sorting'.$this->sorting.'Type'.$this->sortType, 30*60, function () {
-            return DB::connection('gameserver')->table('account')->select('account.*', DB::raw('(select  COALESCE(SUM(`container`.`money`), 0) + `account`.`locker` + `account`.`marxet_locker` from `container` where `account`.`uid` = `container`.`account_uid`) as container_sum_money'))
-                ->where('name', 'LIKE', '%'.$this->name.'%')
-                ->orderBy($this->sorting == 'MONEY' ? 'container_sum_money' : $this->sorting, $this->sortType)->paginate($this->items);
-        });
-    }
     public function render(): Factory|View|Application
     {
         return view('livewire.poptabs-overview', [
@@ -57,5 +45,14 @@ class PoptabsOverview extends Component
             'types' => self::TYPES,
             'accounts' => $this->buildQuery()
         ]);
+    }
+
+    private function buildQuery()
+    {
+        return Cache::remember('poptabsOverviewName' . $this->name . 'Items' . $this->items . 'Page' . $this->page . 'sorting' . $this->sorting . 'Type' . $this->sortType, 30 * 60, function () {
+            return DB::connection('gameserver')->table('account')->select('account.*', DB::raw('(select  COALESCE(SUM(`container`.`money`), 0) + `account`.`locker` + `account`.`marxet_locker` from `container` where `account`.`uid` = `container`.`account_uid`) as container_sum_money'))
+                ->where('name', 'LIKE', '%' . $this->name . '%')
+                ->orderBy($this->sorting == 'MONEY' ? 'container_sum_money' : $this->sorting, $this->sortType)->paginate($this->items);
+        });
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Account;
+use App\Models\Game\Account;
 use Cache;
 use Livewire\Component;
 
@@ -23,9 +23,9 @@ class PlayerSearch extends Component
 
     public function updated($propertyName)
     {
-        $this->accounts = Cache::remember('accountsWhereUidOrName'.$this->search, 30*60, function() use ($propertyName) {
+        $this->accounts = Cache::remember('accountsWhereUidOrName' . $this->search, 30 * 60, function () use ($propertyName) {
             $validated = $this->validateOnly($propertyName);
-            return Account::whereUid($validated['search'])->orWhere('name', 'LIKE', '%'.$validated['search'].'%')->get();
+            return Account::whereUid($validated['search'])->orWhere('name', 'LIKE', '%' . $validated['search'] . '%')->get();
         });
     }
 }

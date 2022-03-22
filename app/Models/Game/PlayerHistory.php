@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Game;
 
-use Carbon\Carbon;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 
 /**
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $id
  * @property string $account_uid
  * @property string $name
- * @property \Illuminate\Support\Carbon $died_at
+ * @property Carbon $died_at
  * @property float $position_x
  * @property float $position_y
  * @property float $position_z

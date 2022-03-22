@@ -3,11 +3,11 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Hash;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Validation\ValidationException;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateUser extends ModalComponent
@@ -36,7 +36,7 @@ class CreateUser extends ModalComponent
         $user = User::create([
             'name' => $this->name,
             'email' => $this->email,
-            'password' => \Hash::make($this->password)
+            'password' => Hash::make($this->password)
         ]);
 
         $user->assignRole($this->role);

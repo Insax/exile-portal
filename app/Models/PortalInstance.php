@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\ParsedInfistarLogs\ParsedInmateMarketLog;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;

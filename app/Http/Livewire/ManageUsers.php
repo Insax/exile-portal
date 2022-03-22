@@ -17,7 +17,7 @@ class ManageUsers extends Component
 
     public function render(): Factory|View|Application
     {
-        $this->users = User::where('name', 'LIKE', '%'.$this->name.'%')->get();
+        $this->users = User::where('name', 'LIKE', '%' . $this->name . '%')->get();
         return view('livewire.manage-users');
     }
 

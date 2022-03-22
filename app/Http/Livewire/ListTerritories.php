@@ -2,15 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Account;
-use App\Models\Territory;
-use App\Models\TerritoryMember;
+use App\Models\Game\Territory;
 use Cache;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -62,24 +58,6 @@ class ListTerritories extends Component
         $this->resetPage();
     }
 
-    private function queryBuilder()
-    {
-        return Cache::remember('listTerritories'.$this->type.'PageSize'.$this->items.'Page'.$this->page.'Name'.$this->name.'sorted'.$this->sorting.'Type'.$this->sortType, 15*60, function () {
-            $territory = match ($this->type) {
-                'Deleted' => Territory::whereNotNull('deleted_at'),
-                'Active' => Territory::whereNull('deleted_at'),
-                'Stolen' => Territory::whereNotNull('flag_stolen_at'),
-                default => Territory::query(),
-            };
-
-            $territory->where('name', 'LIKE', '%'.$this->name.'%')
-                ->orderBy(strtolower($this->sorting), $this->sortType)
-                ->with(['ownerAccount', 'members']);
-
-            return $territory->paginate($this->items);
-        });
-    }
-
     public function render(): Factory|View|Application
     {
         return view('livewire.list-territories', [
@@ -88,5 +66,23 @@ class ListTerritories extends Component
             'amounts' => self::AMOUNTS,
             'sorts' => self::SORT_VALUES
         ]);
+    }
+
+    private function queryBuilder()
+    {
+        return Cache::remember('listTerritories' . $this->type . 'PageSize' . $this->items . 'Page' . $this->page . 'Name' . $this->name . 'sorted' . $this->sorting . 'Type' . $this->sortType, 15 * 60, function () {
+            $territory = match ($this->type) {
+                'Deleted' => Territory::whereNotNull('deleted_at'),
+                'Active' => Territory::whereNull('deleted_at'),
+                'Stolen' => Territory::whereNotNull('flag_stolen_at'),
+                default => Territory::query(),
+            };
+
+            $territory->where('name', 'LIKE', '%' . $this->name . '%')
+                ->orderBy(strtolower($this->sorting), $this->sortType)
+                ->with(['ownerAccount', 'members']);
+
+            return $territory->paginate($this->items);
+        });
     }
 }

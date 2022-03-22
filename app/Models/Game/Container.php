@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Game;
 
-use Carbon\Carbon;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Container
  *
  * @property int $id
  * @property string $class
- * @property \Illuminate\Support\Carbon $spawned_at
+ * @property Carbon $spawned_at
  * @property string|null $account_uid
  * @property bool $is_locked
  * @property float $position_x
@@ -30,12 +29,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $cargo_magazines
  * @property string $cargo_weapons
  * @property string $cargo_container
- * @property \Illuminate\Support\Carbon $last_updated_at
+ * @property Carbon $last_updated_at
  * @property string $pin_code
  * @property int|null $territory_id
  * @property string|null $deleted_at
  * @property int $money
- * @property \Illuminate\Support\Carbon|null $abandoned
+ * @property Carbon|null $abandoned
  * @property string $inventory
  * @property-read Account|null $account
  * @method static Builder|Container newModelQuery()

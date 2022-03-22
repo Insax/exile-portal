@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Territory;
+use App\Models\Game\Territory;
 use Cache;
 use Livewire\Component;
+use LivewireUI\Modal\ModalComponent;
 
-class TerritoryMembers extends Component
+class TerritoryMembers extends ModalComponent
 {
     const AMOUNTS = [
         'default' => 20,
@@ -18,7 +19,12 @@ class TerritoryMembers extends Component
         'default' => 'NAME',
         'accountId' => 'UID'
     ];
-
+    public string $name = '';
+    public int $items = 20;
+    public string $sorting = 'NAME';
+    public string $sortType = 'ASC';
+    public $page = 1;
+    public Territory $territory;
     protected $queryString = [
         'items' => ['except' => 20],
         'name' => ['except' => ''],
@@ -27,23 +33,9 @@ class TerritoryMembers extends Component
         'page' => ['except' => 1]
     ];
 
-    public string $name = '';
-    public int $items = 20;
-    public string $sorting = 'NAME';
-    public string $sortType = 'ASC';
-    public $page = 1;
-    public Territory $territory;
-
     public function mount(Territory $territory)
     {
         $this->territory = $territory;
-    }
-
-    private function buildQuery()
-    {
-        return Cache::remember('territory'.$this->territory->id.'MembersWhereName'.$this->name.'orderedBy'.$this->sortType.'With'.$this->sortType.'PageSize'.$this->items.'Page'.$this->page, 15*60, function () {
-            return $this->territory->members()->where('name', 'LIKE', '%' . $this->name . '%')->orderBy(strtolower($this->sorting), $this->sortType)->paginate($this->items);
-        });
     }
 
     public function render()
@@ -53,5 +45,12 @@ class TerritoryMembers extends Component
             'types' => self::TYPES,
             'members' => $this->buildQuery()
         ]);
+    }
+
+    private function buildQuery()
+    {
+        return Cache::remember('territory' . $this->territory->id . 'MembersWhereName' . $this->name . 'orderedBy' . $this->sortType . 'With' . $this->sortType . 'PageSize' . $this->items . 'Page' . $this->page, 15 * 60, function () {
+            return $this->territory->members()->where('name', 'LIKE', '%' . $this->name . '%')->orderBy(strtolower($this->sorting), $this->sortType)->paginate($this->items);
+        });
     }
 }

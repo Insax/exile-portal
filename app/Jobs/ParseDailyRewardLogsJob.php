@@ -2,18 +2,17 @@
 
 namespace App\Jobs;
 
-use App\Models\InfistarLog;
-use App\Models\ParsedDailyRewardLog;
+use App\Models\Game\InfistarLog;
+use App\Models\ParsedInfistarLogs\ParsedPlayerMoney;
 use App\Models\PortalInstance;
 use Cache;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class ParseDailyRewardLogs implements ShouldQueue
+class ParseDailyRewardLogsJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -46,7 +45,7 @@ class ParseDailyRewardLogs implements ShouldQueue
 
         foreach (InfistarLog::whereLogname(self::LOG_SUBTYPE)->get(['logentry', 'time']) as $infiStarLog) {
             preg_match(self::REGEX, $infiStarLog->logentry, $matches);
-            if(isset($matches[2]))
+            if (isset($matches[2]))
                 ParsedDailyRewardLog::create([
                     'portal_instance_id' => $currentInstance,
                     'account_uid' => $matches[1],

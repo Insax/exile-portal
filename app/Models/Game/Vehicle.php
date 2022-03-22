@@ -4,18 +4,20 @@
  * Created by Reliese Model.
  */
 
-namespace App\Models;
+namespace App\Models\Game;
 
-use Carbon\Carbon;
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Vehicle
  *
  * @property int $id
  * @property string $class
- * @property \Illuminate\Support\Carbon $spawned_at
+ * @property Carbon $spawned_at
  * @property string|null $account_uid
  * @property bool $is_locked
  * @property float $fuel
@@ -34,9 +36,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string|null $cargo_magazines
  * @property string|null $cargo_weapons
  * @property string|null $cargo_container
- * @property \Illuminate\Support\Carbon $last_updated_at
+ * @property Carbon $last_updated_at
  * @property string $pin_code
- * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property Carbon|null $deleted_at
  * @property int $money
  * @property string|null $vehicle_texture
  * @property int|null $territory_id
@@ -48,7 +50,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read Account|null $account
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle newQuery()
- * @method static \Illuminate\Database\Query\Builder|Vehicle onlyTrashed()
+ * @method static Builder|Vehicle onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle query()
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereAccountUid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereCargoContainer($value)
@@ -82,9 +84,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereUpY($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereUpZ($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereVehicleTexture($value)
- * @method static \Illuminate\Database\Query\Builder|Vehicle withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Vehicle withoutTrashed()
- * @mixin \Eloquent
+ * @method static Builder|Vehicle withTrashed()
+ * @method static Builder|Vehicle withoutTrashed()
+ * @mixin Eloquent
  */
 class Vehicle extends Model
 {

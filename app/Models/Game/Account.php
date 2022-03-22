@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Game;
 
 use App\Filters\QueryFilters;
 use App\Traits\Filterable;
-use Carbon\Carbon;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -13,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Account
@@ -24,22 +24,22 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property int $kills
  * @property int $deaths
  * @property int $locker
- * @property \Illuminate\Support\Carbon $first_connect_at
- * @property \Illuminate\Support\Carbon $last_connect_at
- * @property \Illuminate\Support\Carbon|null $last_disconnect_at
+ * @property Carbon $first_connect_at
+ * @property Carbon $last_connect_at
+ * @property Carbon|null $last_disconnect_at
  * @property int $total_connections
  * @property int $whitelisted
- * @property \Illuminate\Support\Carbon|null $last_reward_at
+ * @property Carbon|null $last_reward_at
  * @property int $exp_level
  * @property int $exp_total
  * @property int $exp_perkPoints
  * @property string|null $exp_perks
  * @property string $loadouts
  * @property int $forum_reward
- * @property \Illuminate\Support\Carbon|null $last_abandoned_at
+ * @property Carbon|null $last_abandoned_at
  * @property string $owns_virtualgarage
  * @property string $enemy_territory_logout
- * @property \Illuminate\Support\Carbon|null $esm_reward
+ * @property Carbon|null $esm_reward
  * @property int $marxet_locker
  * @property-read Clan|null $clan
  * @property-read Clan|null $clanLeader
@@ -61,7 +61,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property-read Territory|null $territory
  * @property-read Collection|Vehicle[] $vehicles
  * @property-read int|null $vehicles_count
- * @method static Builder|Account filter(\App\Filters\QueryFilters $filters)
+ * @method static Builder|Account filter(QueryFilters $filters)
  * @method static Builder|Account newModelQuery()
  * @method static Builder|Account newQuery()
  * @method static Builder|Account query()

@@ -2,18 +2,16 @@
 
 namespace App\Jobs;
 
-use App\Models\PortalInstance;
-use App\Models\Territory;
-use App\Models\TerritoryMember;
+use App\Models\Game\Territory;
+use App\Models\ParsedGameInformation\TerritoryMember;
 use Cache;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class RefreshAllTerritoryInformation implements ShouldQueue
+class ParseTerritoryMembersJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -36,7 +34,7 @@ class RefreshAllTerritoryInformation implements ShouldQueue
     {
         TerritoryMember::truncate();
 
-        $territories = Cache::remember('allTerritories', 15*60, function () {
+        $territories = Cache::remember('allTerritories', 15 * 60, function () {
             return Territory::get();
         });
 
@@ -47,12 +45,12 @@ class RefreshAllTerritoryInformation implements ShouldQueue
             $members = array_unique(array_merge($moderators, $builders));
 
             foreach ($members as $member)
-            if($member) {
-                TerritoryMember::create([
-                    'territory_id' => $territory->id,
-                    'account_uid' => $member
-                ]);
-            }
+                if ($member) {
+                    TerritoryMember::create([
+                        'territory_id' => $territory->id,
+                        'account_uid' => $member
+                    ]);
+                }
         }
     }
 }

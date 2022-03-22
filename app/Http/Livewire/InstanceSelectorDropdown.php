@@ -6,8 +6,8 @@ use App\Models\PortalInstance;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Livewire\Component;
 use Illuminate\Database\Eloquent\Collection;
+use Livewire\Component;
 
 class InstanceSelectorDropdown extends Component
 {
@@ -18,7 +18,7 @@ class InstanceSelectorDropdown extends Component
     {
         $this->instances = PortalInstance::all();
         foreach ($this->instances as $instance) {
-            if(config('portal.instanceName') === $instance->name)
+            if (config('portal.instanceName') === $instance->name)
                 $this->own = $instance;
         }
 

@@ -2,13 +2,11 @@
 
 namespace App\Jobs;
 
-use App\Models\Container;
 use App\Models\PortalInstance;
-use App\Models\Territory;
-use App\Models\TerritoryContainerContent;
+use App\Models\Game\Territory;
+use App\Models\ParsedGameInformation\TerritoryContainerContent;
 use Cache;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -47,7 +45,7 @@ class ParseAllContainersJob implements ShouldQueue
 
         TerritoryContainerContent::wherePortalInstanceId($currentInstance)->delete();
 
-        $allTerritories = Cache::remember('allTerritoriesWithContainers', 5*60, function () {
+        $allTerritories = Cache::remember('allTerritoriesWithContainers', 5 * 60, function () {
             return Territory::with('containers')->get();
         });
 
@@ -81,8 +79,8 @@ class ParseAllContainersJob implements ShouldQueue
 
     public function countCargoContainers($item)
     {
-        if(is_string($item) && !empty($item)) {
-            if(key_exists($item, $this->itemArray))
+        if (is_string($item) && !empty($item)) {
+            if (key_exists($item, $this->itemArray))
                 $this->itemArray[$item]++;
             else
                 $this->itemArray[$item] = 1;
@@ -91,8 +89,8 @@ class ParseAllContainersJob implements ShouldQueue
 
     public function countCargoWeapons($item)
     {
-        if(is_string($item) && !empty($item)) {
-            if(key_exists($item, $this->itemArray))
+        if (is_string($item) && !empty($item)) {
+            if (key_exists($item, $this->itemArray))
                 $this->itemArray[$item]++;
             else
                 $this->itemArray[$item] = 1;
@@ -101,8 +99,8 @@ class ParseAllContainersJob implements ShouldQueue
 
     public function countCargoMagazines($item)
     {
-        if(is_string($item)) {
-            if(key_exists($item, $this->itemArray))
+        if (is_string($item)) {
+            if (key_exists($item, $this->itemArray))
                 $this->itemArray[$item]++;
             else
                 $this->itemArray[$item] = 1;
@@ -111,7 +109,7 @@ class ParseAllContainersJob implements ShouldQueue
 
     public function countCargoItems($item, $key)
     {
-        if(is_string($item)) {
+        if (is_string($item)) {
             $this->itemCount++;
             $this->tmpArray[$key] = [
                 'item' => $item,
@@ -119,14 +117,14 @@ class ParseAllContainersJob implements ShouldQueue
             ];
         }
 
-        if(is_int($item)) {
+        if (is_int($item)) {
             $this->itemCount--;
             $this->tmpArray[$key]['count'] = $item;
         }
 
-        if(!$this->itemCount) {
+        if (!$this->itemCount) {
             foreach ($this->tmpArray as $entries) {
-                if(key_exists($entries['item'], $this->itemArray)) {
+                if (key_exists($entries['item'], $this->itemArray)) {
                     $this->itemArray[$entries['item']] += $entries['count'];
                 } else {
                     $this->itemArray[$entries['item']] = $entries['count'];

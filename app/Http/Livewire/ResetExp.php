@@ -2,8 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Account;
-use Livewire\Component;
+use App\Models\Game\Account;
 use LivewireUI\Modal\ModalComponent;
 
 class ResetExp extends ModalComponent

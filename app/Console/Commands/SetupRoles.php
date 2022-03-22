@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Account;
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -31,11 +31,11 @@ class SetupRoles extends Command
      */
     public function handle(): int
     {
-        if(!User::find(1)) {
+        if (!User::find(1)) {
             $superAdminUser = User::create([
                 'name' => config('portal.saName'),
                 'email' => config('portal.saMail'),
-                'password' => \Illuminate\Support\Facades\Hash::make(config('portal.saPass'))
+                'password' => Hash::make(config('portal.saPass'))
             ]);
         }
 

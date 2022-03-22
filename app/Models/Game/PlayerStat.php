@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Game;
 
-use Carbon\Carbon;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\PlayerStat
@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int|null $territorykill
  * @property string $killer_position
  * @property string $victim_position
- * @property \Illuminate\Support\Carbon|null $time
+ * @property Carbon|null $time
  * @method static Builder|PlayerStat newModelQuery()
  * @method static Builder|PlayerStat newQuery()
  * @method static Builder|PlayerStat query()

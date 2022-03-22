@@ -2,9 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Territory;
+use App\Models\Game\Territory;
 use Carbon\Carbon;
-use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
 
 class UnstealTerritory extends ModalComponent

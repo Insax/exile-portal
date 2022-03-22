@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Jobs\ParseAllContainersJob;
-use App\Jobs\RefreshAllTerritoryInformation;
+use App\Jobs\ParseTerritoryMembersJob;
 use Illuminate\Console\Command;
 
 class SetupParses extends Command
@@ -30,7 +30,7 @@ class SetupParses extends Command
     public function handle()
     {
         dispatch(new ParseAllContainersJob())->onQueue(config('portal.instanceName'));
-        dispatch(new RefreshAllTerritoryInformation())->onQueue(config('portal.instanceName'));
+        dispatch(new ParseTerritoryMembersJob())->onQueue(config('portal.instanceName'));
         return 0;
     }
 }

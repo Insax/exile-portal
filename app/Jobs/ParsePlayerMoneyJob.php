@@ -2,12 +2,11 @@
 
 namespace App\Jobs;
 
-use App\Models\Account;
-use App\Models\ParsedPlayerMoney;
+use App\Models\Game\Account;
+use App\Models\ParsedGameInformation\PlayerMoney;
 use App\Models\PortalInstance;
 use Cache;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -40,7 +39,7 @@ class ParsePlayerMoneyJob implements ShouldQueue
         });
 
         foreach (Account::withSum('containers', 'money')->get() as $account) {
-            ParsedPlayerMoney::create([
+            PlayerMoney::create([
                 'portal_instance_id' => $currentInstance,
                 'account_uid' => $account->id,
                 'locker_money' => $account->locker,

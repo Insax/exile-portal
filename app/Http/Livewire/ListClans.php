@@ -2,7 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Clan;
+use App\Models\Game\Clan;
+use Cache;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -13,7 +14,7 @@ class ListClans extends Component
 {
     use WithPagination;
 
-    /** @var int[]  */
+    /** @var int[] */
     const AMOUNTS = [
         'default' => 20,
         'more' => 50,
@@ -33,7 +34,6 @@ class ListClans extends Component
     ];
 
 
-
     public function updatingName()
     {
         $this->resetPage();
@@ -41,8 +41,8 @@ class ListClans extends Component
 
     public function render(): Factory|View|Application
     {
-        $clans = \Cache::remember('clansWhereName'.$this->name.'PageSize'.$this->items.'Page'.$this->page, 15*60, function () {
-            return Clan::where('name', 'LIKE', '%'.$this->name.'%')->withCount('accounts')->with('leaderAccount')->paginate($this->items);
+        $clans = Cache::remember('clansWhereName' . $this->name . 'PageSize' . $this->items . 'Page' . $this->page, 15 * 60, function () {
+            return Clan::where('name', 'LIKE', '%' . $this->name . '%')->withCount('accounts')->with('leaderAccount')->paginate($this->items);
         });
         return view('livewire.list-clans', [
             'clans' => $clans,

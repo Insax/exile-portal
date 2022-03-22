@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\ParseAllContainersJob;
-use App\Jobs\RefreshAllTerritoryInformation;
-use App\Models\Container;
-use App\Models\Territory;
+use App\Models\Game\Territory;
 use Spatie\Activitylog\Models\Activity;
 
 class TerritoryController extends Controller
@@ -15,7 +12,8 @@ class TerritoryController extends Controller
         return view('territory.list');
     }
 
-    public function viewTerritory(Territory $territory) {
+    public function viewTerritory(Territory $territory)
+    {
         $activities = Activity::forSubject($territory)->orderBy('created_at', 'ASC')->get();
         return view('territory.view', [
             'territory' => $territory,

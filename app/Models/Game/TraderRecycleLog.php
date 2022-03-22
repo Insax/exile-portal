@@ -4,12 +4,12 @@
  * Created by Reliese Model.
  */
 
-namespace App\Models;
+namespace App\Models\Game;
 
-use Carbon\Carbon;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\TraderRecycleLog
@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $transactionid
  * @property string|null $vehicleclass
  * @property string|null $soldvehicle
- * @property \Illuminate\Support\Carbon $time_sold
+ * @property Carbon $time_sold
  * @method static Builder|TraderRecycleLog newModelQuery()
  * @method static Builder|TraderRecycleLog newQuery()
  * @method static Builder|TraderRecycleLog query()

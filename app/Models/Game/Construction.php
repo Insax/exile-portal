@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Game;
 
-use Carbon\Carbon;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Construction
@@ -15,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $id
  * @property string $class
  * @property string $account_uid
- * @property \Illuminate\Support\Carbon $spawned_at
+ * @property Carbon $spawned_at
  * @property float $position_x
  * @property float $position_y
  * @property float $position_z
@@ -29,7 +28,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $pin_code
  * @property int|null $damage
  * @property int|null $territory_id
- * @property \Illuminate\Support\Carbon $last_updated_at
+ * @property Carbon $last_updated_at
  * @property string|null $deleted_at
  * @property string|null $construction_texture
  * @property string $construction_name
