@@ -76,7 +76,7 @@ class SetupRoles extends Command
         $admin->givePermissionTo($manageTerritory);
         $admin->givePermissionTo($resetExp);
 
-        Account::find(1)->assignRole($superAdmin);
+        User::find(1)->assignRole($superAdmin);
 
 
         return 0;
