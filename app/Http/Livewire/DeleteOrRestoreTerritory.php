@@ -41,7 +41,8 @@ class DeleteOrRestoreTerritory extends ModalComponent
         $territory = Territory::find($this->territoryId);
         if($territory->deleted_at) {
             $territory->deleted_at = null;
-            $territory->last_paid_at = Carbon::now();
+            if($this->advancePayment)
+                $territory->last_paid_at = Carbon::now()->subDays(8)->addDays($this->advancePayment);
             activity()->by(Auth::user())
                 ->on($territory)
                 ->withProperties([
