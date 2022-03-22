@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Territory
+ * App\Models\Territory
  *
  * @property int $id
  * @property string|null $esm_custom_id
@@ -32,24 +32,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $flag_texture
  * @property bool $flag_stolen
  * @property string|null $flag_stolen_by_uid
- * @property Carbon|null $flag_stolen_at
- * @property Carbon $created_at
- * @property Carbon|null $last_paid_at
+ * @property \Illuminate\Support\Carbon|null $flag_stolen_at
+ * @property string $created_at
+ * @property \Illuminate\Support\Carbon|null $last_paid_at
  * @property bool $xm8_protectionmoney_notified
  * @property string $build_rights
  * @property string $moderators
  * @property int $esm_payment_counter
  * @property string|null $deleted_at
  * @property string $territory_permissions
- * @property Account $account
- * @package App\Models
+ * @property-read Collection|\App\Models\TerritoryContainerContent[] $containerContent
+ * @property-read int|null $container_content_count
+ * @property-read Collection|\App\Models\Container[] $containers
+ * @property-read int|null $containers_count
+ * @property-read Collection|\App\Models\Account[] $members
+ * @property-read int|null $members_count
+ * @property-read \App\Models\Account $ownerAccount
+ * @property-read \App\Models\Account|null $territoryFlagStealer
  * @method static Builder|Territory newModelQuery()
  * @method static Builder|Territory newQuery()
- * @method static \Illuminate\Database\Query\Builder|Territory onlyTrashed()
  * @method static Builder|Territory query()
- * @method static \Illuminate\Database\Query\Builder|Territory withTrashed()
- * @method static \Illuminate\Database\Query\Builder|Territory withoutTrashed()
- * @mixin Eloquent
  * @method static Builder|Territory whereBuildRights($value)
  * @method static Builder|Territory whereCreatedAt($value)
  * @method static Builder|Territory whereDeletedAt($value)
@@ -71,8 +73,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static Builder|Territory whereRadius($value)
  * @method static Builder|Territory whereTerritoryPermissions($value)
  * @method static Builder|Territory whereXm8ProtectionmoneyNotified($value)
- * @property-read int|null $territory_builders_count
- * @property-read int|null $territory_moderators_count
+ * @mixin Eloquent
  */
 class Territory extends Model
 {

@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class TraderRecycleLog
+ * App\Models\TraderRecycleLog
  *
  * @property int $id
  * @property string|null $playerid
@@ -20,12 +20,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $transactionid
  * @property string|null $vehicleclass
  * @property string|null $soldvehicle
- * @property Carbon $time_sold
- * @package App\Models
+ * @property \Illuminate\Support\Carbon $time_sold
  * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog query()
- * @mixin \Eloquent
  * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog whereItemSold($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog wherePlayerid($value)
@@ -35,6 +33,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog whereTimeSold($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog whereTransactionid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TraderRecycleLog whereVehicleclass($value)
+ * @mixin \Eloquent
  */
 class TraderRecycleLog extends Model
 {

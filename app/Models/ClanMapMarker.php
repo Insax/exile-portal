@@ -5,6 +5,33 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * App\Models\ClanMapMarker
+ *
+ * @property int $id
+ * @property int $clan_id
+ * @property int $markerType
+ * @property string $positionArr
+ * @property string $color
+ * @property string $icon
+ * @property float $iconSize
+ * @property string $label
+ * @property float $labelSize
+ * @property-read \App\Models\Clan $clan
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereColor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereIcon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereIconSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereLabel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereLabelSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker whereMarkerType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMapMarker wherePositionArr($value)
+ * @mixin \Eloquent
+ */
 class ClanMapMarker extends Model
 {
     /**

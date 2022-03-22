@@ -7,6 +7,57 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * App\Models\Construction
+ *
+ * @property int $id
+ * @property string $class
+ * @property string $account_uid
+ * @property \Illuminate\Support\Carbon $spawned_at
+ * @property float $position_x
+ * @property float $position_y
+ * @property float $position_z
+ * @property float $direction_x
+ * @property float $direction_y
+ * @property float $direction_z
+ * @property float $up_x
+ * @property float $up_y
+ * @property float $up_z
+ * @property bool $is_locked
+ * @property string $pin_code
+ * @property int|null $damage
+ * @property int|null $territory_id
+ * @property \Illuminate\Support\Carbon $last_updated_at
+ * @property string|null $deleted_at
+ * @property string|null $construction_texture
+ * @property string $construction_name
+ * @property-read \App\Models\Account $account
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereAccountUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereConstructionName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereConstructionTexture($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereDamage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereDirectionX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereDirectionY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereDirectionZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereIsLocked($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereLastUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction wherePinCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction wherePositionX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction wherePositionY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction wherePositionZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereSpawnedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereUpX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereUpY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Construction whereUpZ($value)
+ * @mixin \Eloquent
+ */
 class Construction extends Model
 {
     /**

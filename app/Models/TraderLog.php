@@ -10,25 +10,24 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class TraderLog
+ * App\Models\TraderLog
  *
  * @property int $id
  * @property string|null $playerid
  * @property string|null $item_sold
  * @property int|null $poptabs
  * @property string|null $respect
- * @property Carbon $time_sold
- * @package App\Models
+ * @property \Illuminate\Support\Carbon $time_sold
  * @method static \Illuminate\Database\Eloquent\Builder|TraderLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TraderLog newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|TraderLog query()
- * @mixin \Eloquent
  * @method static \Illuminate\Database\Eloquent\Builder|TraderLog whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TraderLog whereItemSold($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TraderLog wherePlayerid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TraderLog wherePoptabs($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TraderLog whereRespect($value)
  * @method static \Illuminate\Database\Eloquent\Builder|TraderLog whereTimeSold($value)
+ * @mixin \Eloquent
  */
 class TraderLog extends Model
 {

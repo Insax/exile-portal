@@ -14,6 +14,83 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * App\Models\Account
+ *
+ * @property string $uid
+ * @property int|null $clan_id
+ * @property string $name
+ * @property int $score
+ * @property int $kills
+ * @property int $deaths
+ * @property int $locker
+ * @property \Illuminate\Support\Carbon $first_connect_at
+ * @property \Illuminate\Support\Carbon $last_connect_at
+ * @property \Illuminate\Support\Carbon|null $last_disconnect_at
+ * @property int $total_connections
+ * @property int $whitelisted
+ * @property \Illuminate\Support\Carbon|null $last_reward_at
+ * @property int $exp_level
+ * @property int $exp_total
+ * @property int $exp_perkPoints
+ * @property string|null $exp_perks
+ * @property string $loadouts
+ * @property int $forum_reward
+ * @property \Illuminate\Support\Carbon|null $last_abandoned_at
+ * @property string $owns_virtualgarage
+ * @property string $enemy_territory_logout
+ * @property \Illuminate\Support\Carbon|null $esm_reward
+ * @property int $marxet_locker
+ * @property-read \App\Models\Clan|null $clan
+ * @property-read \App\Models\Clan|null $clanLeader
+ * @property-read Collection|\App\Models\Construction[] $constructions
+ * @property-read int|null $constructions_count
+ * @property-read Collection|\App\Models\Container[] $containers
+ * @property-read int|null $containers_count
+ * @property-read Collection|\App\Models\ParsedDailyRewardLog[] $dailyRewardLog
+ * @property-read int|null $daily_reward_log_count
+ * @property-read Collection|\App\Models\ParsedInmateMarketLog[] $inmateMarketLogBuyer
+ * @property-read int|null $inmate_market_log_buyer_count
+ * @property-read Collection|\App\Models\ParsedInmateMarketLog[] $inmateMarketLogSeller
+ * @property-read int|null $inmate_market_log_seller_count
+ * @property-read Collection|\App\Models\PlayerHistory[] $playerHistory
+ * @property-read int|null $player_history_count
+ * @property-read \App\Models\Player|null $players
+ * @property-read Collection|\App\Models\Territory[] $territories
+ * @property-read int|null $territories_count
+ * @property-read \App\Models\Territory|null $territory
+ * @property-read Collection|\App\Models\Vehicle[] $vehicles
+ * @property-read int|null $vehicles_count
+ * @method static Builder|Account filter(\App\Filters\QueryFilters $filters)
+ * @method static Builder|Account newModelQuery()
+ * @method static Builder|Account newQuery()
+ * @method static Builder|Account query()
+ * @method static Builder|Account whereClanId($value)
+ * @method static Builder|Account whereDeaths($value)
+ * @method static Builder|Account whereEnemyTerritoryLogout($value)
+ * @method static Builder|Account whereEsmReward($value)
+ * @method static Builder|Account whereExpLevel($value)
+ * @method static Builder|Account whereExpPerkPoints($value)
+ * @method static Builder|Account whereExpPerks($value)
+ * @method static Builder|Account whereExpTotal($value)
+ * @method static Builder|Account whereFirstConnectAt($value)
+ * @method static Builder|Account whereForumReward($value)
+ * @method static Builder|Account whereKills($value)
+ * @method static Builder|Account whereLastAbandonedAt($value)
+ * @method static Builder|Account whereLastConnectAt($value)
+ * @method static Builder|Account whereLastDisconnectAt($value)
+ * @method static Builder|Account whereLastRewardAt($value)
+ * @method static Builder|Account whereLoadouts($value)
+ * @method static Builder|Account whereLocker($value)
+ * @method static Builder|Account whereMarxetLocker($value)
+ * @method static Builder|Account whereName($value)
+ * @method static Builder|Account whereOwnsVirtualgarage($value)
+ * @method static Builder|Account whereScore($value)
+ * @method static Builder|Account whereTotalConnections($value)
+ * @method static Builder|Account whereUid($value)
+ * @method static Builder|Account whereWhitelisted($value)
+ * @mixin Eloquent
+ */
 class Account extends Model
 {
     use Filterable;
@@ -226,5 +303,33 @@ class Account extends Model
     public function playerHistory(): HasMany
     {
         return $this->hasMany(PlayerHistory::class, 'account_uid');
+    }
+
+    /**
+     * Relationship - Account and DailyRewardLog
+     *
+     * 1 Account can have n DailyRewardLog
+     *
+     * @return HasMany
+     */
+    public function dailyRewardLog(): HasMany
+    {
+        return $this->hasMany(ParsedDailyRewardLog::class, 'account_uid');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function inmateMarketLogSeller(): HasMany
+    {
+        return $this->hasMany(ParsedInmateMarketLog::class, 'source_account_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function inmateMarketLogBuyer(): HasMany
+    {
+        return $this->hasMany(ParsedInmateMarketLog::class, 'receiver_account_id');
     }
 }

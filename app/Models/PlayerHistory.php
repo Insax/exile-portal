@@ -7,6 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
+/**
+ * App\Models\PlayerHistory
+ *
+ * @property int $id
+ * @property string $account_uid
+ * @property string $name
+ * @property \Illuminate\Support\Carbon $died_at
+ * @property float $position_x
+ * @property float $position_y
+ * @property float $position_z
+ * @property-read \App\Models\Account $account
+ * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory query()
+ * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory whereAccountUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory whereDiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory wherePositionX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory wherePositionY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|PlayerHistory wherePositionZ($value)
+ * @mixin \Eloquent
+ */
 class PlayerHistory extends Model
 {
     /**
