@@ -5,10 +5,13 @@ namespace App\Http\Livewire;
 use App\Models\Game\Territory;
 use Cache;
 use Livewire\Component;
+use Livewire\WithPagination;
 use LivewireUI\Modal\ModalComponent;
 
-class TerritoryMembers extends ModalComponent
+class TerritoryMembers extends Component
 {
+    use WithPagination;
+
     const AMOUNTS = [
         'default' => 20,
         'more' => 50,
