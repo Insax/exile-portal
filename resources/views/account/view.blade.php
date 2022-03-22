@@ -48,7 +48,7 @@
                     @else
                         <button onclick='Livewire.emit("openModal", "reset-exp", {{ json_encode(["account" => $account->uid]) }})' class="btn-portal mb-6 w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline btn-portal sm:py-4">Reset Exp</button>
                     @endif
-            @elsecan
+            @else
                 <p class="text-lg">Total EXP</p>
                 <p class="text-2xl">{{ $account->exp_total }}</p>
             @endcan

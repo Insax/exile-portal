@@ -1,57 +1,45 @@
-<section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
+@extends('layouts.app')
 
-    <header class="font-semibold bg-gray-200 text-gray-700 py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
-        Update Profile information
-    </header>
+@section('content')
+    <main class="sm:container sm:mx-auto sm:max-w-lg sm:mt-10">
+        <div class="flex">
+            <div class="w-full">
+                <section class="flex flex-col break-words card-portal sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg">
 
-    <div class="w-full p-6">
-        @if ($errors->any())
-            <div>
-                <div>{{ __('Whoops! Something went wrong.') }}</div>
+                    <header class="font-semibold card-header-portal py-5 px-6 sm:py-6 sm:px-8 sm:rounded-t-md">
+                        {{ __('2 Factor Authentication') }}
+                    </header>
 
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+                    <form class="w-full card-portal px-6 space-y-6 sm:px-10 sm:space-y-8" method="POST" action="{{ url('/two-factor-challenge') }}">
+                        @csrf
+
+                        <div class="flex flex-wrap">
+                            <label for="code" class="block text-sm font-bold mb-2 sm:mb-4">
+                                {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.')  }}
+                            </label>
+
+                            <input id="code" type="text"
+                                   class="form-input w-full @error('code') border-red-500 @enderror" name="code"
+                                   required autocomplete="name" autofocus>
+
+                            @error('code')
+                            <p class="text-red-500 text-xs italic mt-4">
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </div>
+
+
+                        <div class="flex flex-wrap">
+                            <button type="submit"
+                                    class="mb-6 w-full select-none font-bold whitespace-no-wrap p-3 rounded-lg text-base leading-normal no-underline btn-portal sm:py-4">
+                                {{ __('Login') }}
+                            </button>
+                        </div>
+                    </form>
+
+                </section>
             </div>
-        @endif
-
-        <form method="POST" action="{{ url('/two-factor-challenge') }}">
-            @csrf
-
-            {{--
-                Do not show both of these fields, together. It's recommended
-                that you only show one field at a time and use some logic
-                to toggle the visibility of each field
-            --}}
-
-            <div>
-                {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
-            </div>
-
-            <div>
-                <label>{{ __('Code') }}</label>
-                <input type="text" name="code" autofocus autocomplete="one-time-code" />
-            </div>
-
-            {{-- ** OR ** --}}
-
-            <div>
-                {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
-            </div>
-
-            <div>
-                <label>{{ __('Recovery Code') }}</label>
-                <input type="text" name="recovery_code" autocomplete="one-time-code" />
-            </div>
-
-            <div>
-                <button type="submit">
-                    {{ __('Login') }}
-                </button>
-            </div>
-        </form>
-        
-</div>
-</section>
+        </div>
+    </main>
+@endsection
