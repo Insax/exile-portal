@@ -64,7 +64,7 @@
             <p class="text-2xl">{{ \Illuminate\Support\Carbon::make($territory->last_paid_at)->addDays(8)->diffForHumans() }}</p>
         </div>
     </div>
-    @if($activities)
+    @if(count($activities))
         <div class="container mx-auto px-4 sm:px-8 container-portal mt-10">
             <div class="py-8">
                 <div>
@@ -123,7 +123,7 @@
                 </div>
             </div>
         </div>
-
+    @endif
     @livewire('territory-members', ['territory' => $territory])
     @can('territory.inventory')
         <h1 class="text-portal-red my-8 text-center text-3xl">Container Contents - Currently {{$territory->containerContent->sum('count')}}</h1>
