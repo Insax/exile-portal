@@ -5,7 +5,7 @@
         <h1 class="block mx-auto text-5xl">{{$territory->name}}</h1>
         <p class="block mx-auto text-2xl">ID: {{$territory->id}}</p>
         <p class="block mx-auto text-3xl">{{config('portal.instanceName')}}</p>
-        @can('Delete Territory')
+        @can('territory.manage')
             <p class="block mx-auto">
                 <button type="button"
                         class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
@@ -45,7 +45,7 @@
             <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
                 <p class="text-lg">Stolen by</p>
                 @if($territory->flag_stolen)
-                    <p class="text-2xl">{{ $territory->territoryFlagStealer->name }}</p>
+                    <a class="text-2xl" href="{{ route('account.view', ['account' => $territory->flag_stolen_by_uid]) }}">{{ $territory->territoryFlagStealer->name }}</a>
                 @else
                     <p class="text-2xl">No one</p>
                 @endif
@@ -65,6 +65,8 @@
         </div>
     </div>
     @livewire('territory-members', ['territory' => $territory])
-    <h1 class="text-portal-red my-8 text-center text-3xl">Container Contents - Currently {{$territory->containerContent->sum('count')}}</h1>
-    @livewire('container-content', ['territory' => $territory])
+    @can('territory.inventory')
+        <h1 class="text-portal-red my-8 text-center text-3xl">Container Contents - Currently {{$territory->containerContent->sum('count')}}</h1>
+        @livewire('container-content', ['territory' => $territory])
+    @endcan
 @endsection

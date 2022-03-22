@@ -9,14 +9,14 @@
                 {{__('Account Settings')}}
             </a>
         </li>
-        @can('Modify portal instances')
+        @can('portal.manage')
         <li>
             <a class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap link-underline" href="{{ route('portal.home')}}">
-                {{__('portal.manage')}}
+                {{__('Edit Portal')}}
             </a>
         </li>
         @endcan
-        @can('Create new User')
+        @can('users.manage')
             <li>
                 <a class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap link-underline" href="{{ route('users.manage')}}">
                     {{__('Manage Users')}}

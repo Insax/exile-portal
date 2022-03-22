@@ -49,7 +49,7 @@
                 <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
                     <p class="text-lg">Stolen by</p>
                     @if($territory->flag_stolen)
-                        <p class="text-2xl">{{ $territory->territoryFlagStealer->name }}</p>
+                        <a class="text-2xl" href="{{ route('account.view', ['account' => $territory->flag_stolen_by_uid]) }}">{{ $territory->territoryFlagStealer->name }}</a>
                     @else
                         <p class="text-2xl">No one</p>
                     @endif

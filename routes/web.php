@@ -28,7 +28,7 @@ Route::view('dashboard', 'dashboard')
 	->name('dashboard')
 	->middleware(['auth', 'verified', 'twoFactor']);
 
-Route::prefix('portal')->middleware(['auth', 'verified', 'twoFactor', 'can: Modify portal instances'])->controller(ManagePortalController::class)->group(function () {
+Route::prefix('portal')->middleware(['auth', 'verified', 'twoFactor', 'can: portal.manage'])->controller(ManagePortalController::class)->group(function () {
     Route::get('/', 'home')->name('portal.home');
 });
 
@@ -51,7 +51,7 @@ Route::prefix('clans')->middleware(['auth', 'verified', 'twoFactor'])->controlle
     Route::get('/view/{clan}', 'viewClan')->name('clan.view');
 });
 
-Route::prefix('users')->middleware(['auth', 'verified', 'twoFactor', 'can:Create new User'])->controller(UserController::class)->group(function () {
+Route::prefix('users')->middleware(['auth', 'verified', 'twoFactor', 'can:users.manage'])->controller(UserController::class)->group(function () {
     Route::get('/manage', 'manageUsers')->name('users.manage');
 });
 

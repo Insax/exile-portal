@@ -66,11 +66,11 @@
                             </th>
                             <th
                                 class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
-                                Leader
+                                {{ __('Owner Name') }}
                             </th>
                             <th
                                 class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
-                                Leader ID
+                                {{ __('Owner ID') }}
                             </th>
                             @if($this->type == 'Stolen')
                                     <th class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
@@ -82,7 +82,7 @@
                                     <th class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
                                         Stolen at
                                     </th>
-                                @can('Delete Territory')
+                                @can('territory.manage')
                                     <th
                                         class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
                                         Restore Flag
@@ -120,7 +120,7 @@
                                     <td class="px-5 py-5 text-center text-sm">
                                         <p class="whitespace-no-wrap">{{ \Carbon\Carbon::make($territory->flag_stolen_at)->diffForHumans() }} ({{ $territory->flag_stolen_at }})</p>
                                     </td>
-                                @can('Delete Territory')
+                                @can('territory.manage')
                                     <td class="px-5 py-5 text-center text-sm">
                                         <button type="button"
                                                 class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"

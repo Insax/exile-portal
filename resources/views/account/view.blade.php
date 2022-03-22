@@ -41,7 +41,7 @@
             <p class="text-2xl">{{ $account->kills }}</p>
         </div>
         <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
-            @can('Reset XP')
+            @can('exp.reset')
                 <p class="text-lg">Reset EXP</p>
                     @if($account->last_connect_at > $account->last_disconnect_at)
                         <p class="text-2xl"> Player is online! Can't do it!</p>
