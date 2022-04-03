@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ClanController;
+use App\Http\Controllers\LogsController;
 use App\Http\Controllers\ManagePortalController;
+use App\Http\Controllers\PoptabsOverviewController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TerritoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserSettingsController;
@@ -55,6 +58,14 @@ Route::prefix('users')->middleware(['auth', 'verified', 'twoFactor', 'can:users.
     Route::get('/manage', 'manageUsers')->name('users.manage');
 });
 
-Route::prefix('poptabs')->middleware(['auth', 'verified', 'twoFactor'])->controller(\App\Http\Controllers\PoptabsOverviewController::class)->group(function () {
+Route::prefix('poptabs')->middleware(['auth', 'verified', 'twoFactor'])->controller(PoptabsOverviewController::class)->group(function () {
     Route::get('/', 'listPoptabs')->name('poptabs.list');
+});
+
+Route::prefix('logs')->middleware(['auth', 'verified', 'twoFactor'])->controller(LogsController::class)->group(function () {
+    Route::get('/', 'listLogs')->name('logs.list');
+});
+
+Route::prefix('roles')->middleware(['auth', 'verified', 'twoFactor'])->controller(RoleController::class)->group(function () {
+    Route::get('/', 'listRoles')->name('roles.list');
 });

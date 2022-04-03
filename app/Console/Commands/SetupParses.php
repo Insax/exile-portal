@@ -3,7 +3,11 @@
 namespace App\Console\Commands;
 
 use App\Jobs\ParseAllContainersJob;
+use App\Jobs\ParseDailyRewardLogsJob;
+use App\Jobs\ParseInmateMarketLogsJob;
 use App\Jobs\ParseTerritoryMembersJob;
+use App\Models\InfistarLog;
+use App\Models\PortalInstance;
 use Illuminate\Console\Command;
 
 class SetupParses extends Command

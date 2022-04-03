@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('player_money', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('portal_instance_id')->constrained('portal_instances')->onDelete('cascade');
-            $table->string('account_uid');
+            $table->string('account_uid')->index();
             $table->integer('locker_money');
             $table->integer('marxet_money');
             $table->integer('container_money');

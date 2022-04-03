@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Models\Game\Account;
-use App\Models\ParsedGameInformation\PlayerMoney;
+use App\Models\Account;
+use App\Models\PlayerMoney;
 use App\Models\PortalInstance;
 use Cache;
 use Illuminate\Bus\Queueable;

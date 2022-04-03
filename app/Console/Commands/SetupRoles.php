@@ -39,47 +39,34 @@ class SetupRoles extends Command
             ]);
         }
 
-        foreach (Permission::all() as $permission)
-            $permission->delete();
+        $superAdmin = $this->call('permission:create-role', [
+            'name' => 'Super Admin'
+        ]);
 
-        foreach (Role::all() as $role)
-            $role->delete();
-
-
-        $superAdmin = Role::create(['name' => 'Super Admin']);
-        $higherAdmin = Role::create(['name' => 'Head Admin']);
-        $seniorAdmin = Role::create(['name' => 'Senior Admin']);
-        $admin = Role::create(['name' => 'Admin']);
-        $moderator = Role::create(['name' => 'Moderator']);
-        $trial = Role::create(['name' => 'Trial']);
-
-
-        $territoryInventory = Permission::create(['name' => 'territory.inventory']);
-        $manageTerritory = Permission::create(['name' => 'territory.manage']);
-        $resetExp = Permission::create(['name' => 'exp.reset']);
-        $manageUsers = Permission::create(['name' => 'users.manage']);
-        $modifyPortal = Permission::create(['name' => 'portal.manage']);
-        $modifyRoles = Permission::create(['name' => 'roles.mange']);
-
-        $higherAdmin->givePermissionTo($territoryInventory);
-        $higherAdmin->givePermissionTo($manageTerritory);
-        $higherAdmin->givePermissionTo($resetExp);
-        $higherAdmin->givePermissionTo($manageUsers);
-        $higherAdmin->givePermissionTo($modifyPortal);
-        $higherAdmin->givePermissionTo($modifyRoles);
-
-        $seniorAdmin->givePermissionTo($territoryInventory);
-        $seniorAdmin->givePermissionTo($manageTerritory);
-        $seniorAdmin->givePermissionTo($resetExp);
-
-        $admin->givePermissionTo($territoryInventory);
-        $admin->givePermissionTo($manageTerritory);
-        $admin->givePermissionTo($resetExp);
+        $this->call('permission:create-permission', [
+            'name' => 'territory.inventory'
+        ]);
+        $this->call('permission:create-permission', [
+            'name' => 'territory.manage'
+        ]);
+        $this->call('permission:create-permission', [
+            'name' => 'exp.reset'
+        ]);
+        $this->call('permission:create-permission', [
+            'name' => 'users.manage'
+        ]);
+        $this->call('permission:create-permission', [
+            'name' => 'portal.manage'
+        ]);
+        $this->call('permission:create-permission', [
+            'name' => 'roles.manage'
+        ]);
+        $this->call('permission:create-permission', [
+            'name' => 'clans.manage'
+        ]);
 
         User::find(1)->assignRole($superAdmin);
-
         $this->call('permission:cache-reset');
-
         return 0;
     }
 }

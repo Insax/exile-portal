@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Game\Account;
+use App\Models\Account;
 use Cache;
 use Livewire\Component;
 

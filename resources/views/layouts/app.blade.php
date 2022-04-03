@@ -45,6 +45,9 @@
                             <li class="nav-item p-2">
                                 <a class="nav-link p-0 link link-underline" href="{{ route('poptabs.list') }}">Forbes Magazine</a>
                             </li>
+                            <li class="nav-item p-2">
+                                <a class="nav-link p-0 link link-underline" href="{{ route('logs.list') }}">Logs</a>
+                            </li>
                         @endauth
                         </ul>
                         <!-- Left links -->

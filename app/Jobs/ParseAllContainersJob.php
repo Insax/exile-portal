@@ -2,9 +2,9 @@
 
 namespace App\Jobs;
 
+use App\Models\Territory;
 use App\Models\PortalInstance;
-use App\Models\Game\Territory;
-use App\Models\ParsedGameInformation\TerritoryContainerContent;
+use App\Models\TerritoryContainerContent;
 use Cache;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -17,8 +17,8 @@ class ParseAllContainersJob implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     private int $itemCount = 0;
-    private $tmpArray = array();
-    private $itemArray = array();
+    private array $tmpArray = array();
+    private array $itemArray = array();
 
     /**
      * Create a new job instance.

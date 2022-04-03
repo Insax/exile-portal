@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Game\Territory;
+use App\Models\Territory;
 use Cache;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;

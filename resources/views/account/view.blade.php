@@ -59,7 +59,7 @@
             <p class="text-2xl">{{ $account->deaths }}</p>
         </div>
     </div>
-    @if($territories)
+    @if($territories->count())
         <h1 class="text-portal-red my-8 text-center text-3xl">Territory Information - Member of {{ $territories->count() > 1 ? $territories->count(). 'Territories' : '1 Territory' }} </h1>
         <div class="w-3/4 grid grid-cols-3 gap-8 mx-auto">
             @foreach($territories as $territory)

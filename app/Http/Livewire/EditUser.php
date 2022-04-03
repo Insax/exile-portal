@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Illuminate\Validation\Rule;
+use JetBrains\PhpStorm\ArrayShape;
 use LivewireUI\Modal\ModalComponent;
 
 class EditUser extends ModalComponent
@@ -13,10 +15,14 @@ class EditUser extends ModalComponent
     public string $email;
     public string $role;
 
-    protected $rules = [
-        'name' => 'required|unique:users,name',
-        'email' => 'required|unique:users,email'
-    ];
+    #[ArrayShape(['name' => "array", 'email' => "array"])]
+    public function rules(): array
+    {
+        return [
+            'name' => ['required', Rule::unique('users')->ignore($this->userId)],
+            'email' => ['required', Rule::unique('users')->ignore($this->userId)],
+        ];
+    }
 
     public function updated($propertyName)
     {

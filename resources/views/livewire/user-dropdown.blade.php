@@ -23,6 +23,13 @@
                 </a>
             </li>
         @endcan
+        @can('roles.manage')
+            <li>
+                <a class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap link-underline" href="{{ route('roles.list')}}">
+                    {{__('Mange Roles')}}
+                </a>
+            </li>
+        @endcan
         <li>
             <a class="dropdown-item text-sm py-2 px-4 font-normal block w-full whitespace-nowrap link-underline" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}

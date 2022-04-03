@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Game\Clan;
-use App\Models\Game\Territory;
+use App\Models\Clan;
+use App\Models\Territory;
 use Cache;
 
 class ClanController extends Controller

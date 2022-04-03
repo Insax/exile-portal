@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Models\Game\Territory;
-use App\Models\ParsedGameInformation\TerritoryMember;
+use App\Models\Territory;
+use App\Models\TerritoryMember;
 use Cache;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

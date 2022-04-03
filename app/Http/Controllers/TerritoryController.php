@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Game\Territory;
+use App\Models\Territory;
 use Spatie\Activitylog\Models\Activity;
 
 class TerritoryController extends Controller

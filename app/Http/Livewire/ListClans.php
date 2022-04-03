@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Game\Clan;
+use App\Models\Clan;
 use Cache;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Game\Territory;
+use App\Models\Territory;
 use Cache;
 use Livewire\Component;
 use Livewire\WithPagination;

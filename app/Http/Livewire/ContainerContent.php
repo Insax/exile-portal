@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\PortalInstance;
-use App\Models\ParsedGameInformation\TerritoryContainerContent;
+use App\Models\TerritoryContainerContent;
 use Cache;
 use Livewire\Component;
 use Livewire\WithPagination;

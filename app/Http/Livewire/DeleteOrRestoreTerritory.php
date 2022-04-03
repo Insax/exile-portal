@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Game\Territory;
+use App\Models\Territory;
 use Auth;
 use Carbon\Carbon;
 use LivewireUI\Modal\ModalComponent;

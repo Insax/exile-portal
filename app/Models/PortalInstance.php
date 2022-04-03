@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\ParsedInfistarLogs\ParsedInmateMarketLog;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -11,28 +10,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
-/**
- * App\Models\PortalInstance
- *
- * @property int $id
- * @property string $name
- * @property string $url
- * @property bool $active
- * @property Carbon|null $created_at
- * @property Carbon|null $updated_at
- * @property-read Collection|ParsedInmateMarketLog[] $inmateMarketLogs
- * @property-read int|null $inmate_market_logs_count
- * @method static Builder|PortalInstance newModelQuery()
- * @method static Builder|PortalInstance newQuery()
- * @method static Builder|PortalInstance query()
- * @method static Builder|PortalInstance whereActive($value)
- * @method static Builder|PortalInstance whereCreatedAt($value)
- * @method static Builder|PortalInstance whereId($value)
- * @method static Builder|PortalInstance whereName($value)
- * @method static Builder|PortalInstance whereUpdatedAt($value)
- * @method static Builder|PortalInstance whereUrl($value)
- * @mixin Eloquent
- */
 class PortalInstance extends Model
 {
     use HasFactory;
@@ -71,15 +48,40 @@ class PortalInstance extends Model
         'url'
     ];
 
+    public function adminLog(): HasMany
+    {
+        return $this->hasMany(AdminLog::class, 'portal_instance_id');
+    }
+
     /**
-     * Relationship - PortalInstance and ParsedInmateMarketLog
-     *
-     * 1 PortalInstance can have n ParsedInmateMarketLog
-     *
      * @return HasMany
      */
-    public function inmateMarketLogs(): HasMany
+    public function antiTpLog(): HasMany
     {
-        return $this->hasMany(ParsedInmateMarketLog::class, 'portal_instance_id', 'id');
+        return $this->hasMany(AntiTPLog::class, 'portal_instance_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function banLog(): HasMany
+    {
+        return $this->hasMany(BanLog::class, 'portal_instance_id');
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function breachingLog(): HasMany
+    {
+        return $this->hasMany(BreachingLog::class, 'portal_instance_id');
+    }
+
+    /**
+     * @return PortalInstance|null
+     */
+    public static function getCurrentPortalInstance(): self|null
+    {
+        return self::whereName(config('portal.instanceName'))->whereActive(true)->first();
     }
 }
