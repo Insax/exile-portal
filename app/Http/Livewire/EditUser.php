@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use JetBrains\PhpStorm\ArrayShape;
 use LivewireUI\Modal\ModalComponent;
+use Spatie\Permission\Models\Role;
 
 class EditUser extends ModalComponent
 {
@@ -49,7 +50,7 @@ class EditUser extends ModalComponent
         $this->userId = $user->id;
         $this->name = $user->name;
         $this->email = $user->email;
-        $this->role = $user->getRoleNames()->first() ?? 'Moderator';
+        $this->role = $user->getRoleNames()->first() ?? Role::where('name', '!=', 'Super Admin')->first()->name;
     }
 
     public function render()
