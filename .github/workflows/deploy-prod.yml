@@ -1,0 +1,40 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - production
+  pull_request:
+    branches:
+      - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_CHERNO }}
+          username: ${{ secrets.USERNAME_CHERNO }}
+          port: ${{ secrets.PORT_CHERNO }}
+          key: ${{ secrets.SSHKEY_CHERNO }}
+          script: |
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            cd /var/www/sg-portal
+            ./.scripts/deploy-prod.sh
+      - uses: actions/checkout@v2
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_ALTIS }}
+          username: ${{ secrets.USERNAME_ALTIS }}
+          port: ${{ secrets.PORT_ALTIS }}
+          key: ${{ secrets.SSHKEY_ALTIS }}
+          script: |
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
+            cd /var/www/sg-portal
+            ./.scripts/deploy-prod.sh
