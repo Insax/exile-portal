@@ -9,13 +9,14 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Validation\ValidationException;
 use LivewireUI\Modal\ModalComponent;
+use Spatie\Permission\Models\Role;
 
 class CreateUser extends ModalComponent
 {
     public string $name = '';
     public string $email = '';
     public string $password = '';
-    public string $role = 'Moderator';
+    public string $role = '';
 
     protected array $rules = [
         'name' => ['required', 'string', 'max:255', 'unique:users,name'],
@@ -56,6 +57,7 @@ class CreateUser extends ModalComponent
 
     public function render(): Factory|View|Application
     {
+        $this->role = Role::where('name', '!=', 'Super Admin')->first()->name;
         return view('livewire.create-user');
     }
 }
