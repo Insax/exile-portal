@@ -5,7 +5,7 @@ echo "Deployment Started"
 
 (php artisan down) || true
 
-sudo supervisorctl stop laravel-worker:*
+sudo supervisorctl stop laravel-worker:
 
 git pull origin main
 
@@ -21,6 +21,6 @@ npm run prod
 
 php artisan migrate --force
 
-sudo supervisorctl start laravel-worker:*
+sudo supervisorctl start laravel-worker:
 
 php artisan up
