@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\ParseAdminLogJob;
 use App\Jobs\ParseAllContainersJob;
 use App\Jobs\ParseDailyRewardLogsJob;
 use App\Jobs\ParseInmateMarketLogsJob;
@@ -35,6 +36,7 @@ class SetupParses extends Command
     {
         dispatch(new ParseAllContainersJob())->onQueue(config('portal.instanceName'));
         dispatch(new ParseTerritoryMembersJob())->onQueue(config('portal.instanceName'));
+        dispatch(new ParseAdminLogJob())->onQueue(config('portal.instanceName'));
         return 0;
     }
 }
