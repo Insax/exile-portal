@@ -51,7 +51,7 @@ trait ParseByType {
             $this->logParser = $this->logParser->createLogEntry($validated);
             $logTemplate = LogTemplate::whereLogName($this->logParser->getLogName())->whereArgumentCount(count($validated))->first();
             $this->logParser->logForHumans($logTemplate);
-            $log->update(['parsed' => true]);
+            $log->update(['parsed' => true])->save();
         }
     }
 
