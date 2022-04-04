@@ -40,8 +40,9 @@ trait ParseByType {
         foreach ($this->logs as $log) {
             $matches = array();
             $regexp = preg_match($this->getRegex(), $log->logentry, $matches);
-            if(!$regexp)
-                return;
+            if(!$regexp) {
+                continue;
+            }
 
             $this->logParser->mapAttributes($matches);
             $validated = $this->logParser->validate();
