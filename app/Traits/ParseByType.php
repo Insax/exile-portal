@@ -39,7 +39,7 @@ trait ParseByType {
         /** @var InfistarLog $log */
         foreach ($this->logs as $log) {
             $matches = array();
-            $regexp = preg_match($this->getRegex(), $log->$this->getLogEntryColumn(), $matches);
+            $regexp = preg_match($this->getRegex(), $log->logentry, $matches);
             if(!$regexp)
                 return;
 
