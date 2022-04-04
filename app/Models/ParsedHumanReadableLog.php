@@ -35,9 +35,10 @@ class ParsedHumanReadableLog extends Model
      * @param $logEntry
      * @return static
      */
-    public static function createLogEntry(int $logId, string $logType, $logEntry): static
+    public static function createLogEntry(int $portalInstanceId, int $logId, string $logType, $logEntry): static
     {
         return self::create([
+            'portal_instance_id' => $portalInstanceId,
             'loggable_id' => $logId,
             'loggable_type' => $logType,
             'log_entry' => $logEntry

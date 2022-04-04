@@ -84,7 +84,9 @@ class AdminLog extends Model implements LogParser
             $this->account->name,
             $this->log);
 
-        return ParsedHumanReadableLog::createLogEntry($this->attributes['id'], self::class, $logEntry);
+        $portalInstanceId = PortalInstance::getCurrentPortalInstance()->id;
+
+        return ParsedHumanReadableLog::createLogEntry($portalInstanceId, $this->attributes['id'], self::class, $logEntry);
     }
 
     /**
