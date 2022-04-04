@@ -6,6 +6,7 @@ use App\Interfaces\LogParser;
 use App\Models\InfistarLog;
 use App\Models\LogTemplate;
 use Illuminate\Database\Eloquent\Collection;
+use Log;
 
 trait ParseByType {
 
@@ -41,6 +42,8 @@ trait ParseByType {
             $matches = array();
             $regexp = preg_match($this->getRegex(), $log->logentry, $matches);
             if(!$regexp) {
+                Log::channel('parser')->debug('Could not parse log:'. $log->logentry);
+                $log->update(['parsed' => true])->save();
                 continue;
             }
 
