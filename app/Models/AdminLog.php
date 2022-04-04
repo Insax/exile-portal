@@ -79,8 +79,10 @@ class AdminLog extends Model implements LogParser
     public function logForHumans(LogTemplate $template): ParsedHumanReadableLog
     {
         $logEntry = sprintf($template->templateString,
-            $this->attributes['account_uid'],
-            $this->attributes['log']);
+            $this->time,
+            $this->account_uid,
+            $this->account->name,
+            $this->log);
 
         return ParsedHumanReadableLog::createLogEntry($this->attributes['id'], self::class, $logEntry);
     }

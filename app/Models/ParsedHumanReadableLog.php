@@ -8,8 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class ParsedHumanReadableLog extends Model
 {
-    use HasFactory;
+    public $incrementing = true;
+    public $timestamps = true;
 
+    protected $connection = 'portal';
+    protected $table = 'parsed_human_readable_logs';
+    protected $primaryKey = 'id';
+
+    protected $casts = [
+        'id' => 'int',
+        'portal_instance_id' => 'int',
+        'loggable_id' => 'int',
+        'loggable_type' => 'string',
+        'log_entry' => 'string'
+    ];
+
+    protected $fillable = [
+        'portal_instance_id',
+        'loggable_id',
+        'loggable_type',
+        'log_entry'
+    ];
     /**
      * @param int $logId
      * @param string $logType

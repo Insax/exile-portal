@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('log_templates', function (Blueprint $table) {
             $table->id();
+            $table->string('log_name');
+            $table->integer('argument_count');
+            $table->longText('template');
+            $table->unique(['log_name', 'argument_count']);
             $table->timestamps();
         });
     }

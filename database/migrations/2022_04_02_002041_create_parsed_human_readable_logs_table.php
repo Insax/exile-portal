@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('parsed_human_readable_logs', function (Blueprint $table) {
             $table->id();
+            $table->portalId();
+            $table->morphs('loggable');
+            $table->longText('log_entry');
             $table->timestamps();
         });
     }
