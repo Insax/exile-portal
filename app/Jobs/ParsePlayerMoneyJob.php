@@ -41,7 +41,7 @@ class ParsePlayerMoneyJob implements ShouldQueue
                 'account_uid' => $account->uid,
                 'locker_money' => $account->locker,
                 'marxet_money' => $account->marxet_locker,
-                'container_money' => $account->containers_sum_money
+                'container_money' => $account->containers_sum_money ?? 0
             ]);
         }
     }
