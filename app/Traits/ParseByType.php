@@ -52,8 +52,13 @@ trait ParseByType {
             $validated['time'] = $log->time;
 
             $this->logParser = $this->logParser->createLogEntry($validated);
+            Log::channel('parser')->debug('Argument Count ['. count($validated) .']');
+            Log::channel('parser')->debug('Log Name ['. $this->logParser->getLogName() .']');
             $logTemplate = LogTemplate::whereLogName($this->logParser->getLogName())->whereArgumentCount(count($validated))->first();
-            $this->logParser->logForHumans($logTemplate);
+            $humanReadableLog = $this->logParser->logForHumans($logTemplate);
+            if(empty($humanReadableLog->log_entry)) {
+                Log::channel('parser')->debug('LogEntry is Empty, Template:'. json_encode($logTemplate). 'Data:'. json_encode($validated));
+            }
             $log->update(['parsed' => true])->save();
         }
     }

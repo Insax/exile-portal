@@ -9,6 +9,9 @@ class LogsController extends Controller
 {
     public function listLogs()
     {
-        return view('logs.list', ['logs' => ParsedHumanReadableLog::all()]);
+        foreach (ParsedHumanReadableLog::all() as $log) {
+            var_dump($log);
+        }
+        die();
     }
 }
