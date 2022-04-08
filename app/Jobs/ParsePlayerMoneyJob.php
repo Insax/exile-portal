@@ -38,7 +38,7 @@ class ParsePlayerMoneyJob implements ShouldQueue
         foreach (Account::withSum('containers', 'money')->get() as $account) {
             PlayerMoney::create([
                 'portal_instance_id' => $currentInstance,
-                'account_uid' => $account->id,
+                'account_uid' => $account->uid,
                 'locker_money' => $account->locker,
                 'marxet_money' => $account->marxet_locker,
                 'container_money' => $account->containers_sum_money
