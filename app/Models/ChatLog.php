@@ -84,7 +84,7 @@ class ChatLog extends Model implements LogParser
         $logEntry = sprintf($template->templateString,
             $this->attributes['test']);
 
-        return ParsedHumanReadableLog::createLogEntry($this->attributes['id'], self::class, $logEntry);
+        return ParsedHumanReadableLog::createLogEntry($this->portal_instance_id, $this->id, self::class, $logEntry);
     }
 
     /**

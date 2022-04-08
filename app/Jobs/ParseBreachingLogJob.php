@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\BreachingLog;
 use App\Models\InfistarLog;
 use App\Models\PortalInstance;
+use App\Traits\ParseModel;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -14,10 +15,7 @@ use Illuminate\Queue\SerializesModels;
 
 class ParseBreachingLogJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
-    const LOG_NAME = 'BREACHING_LOG';
-    const REGEX='/(\S+)\s(\d+)\s(\d{17})\s(\S+)\s(\d+)\s(\[\S+])\s(\S+)/';
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, ParseModel;
 
     /**
      * Create a new job instance.
@@ -40,8 +38,14 @@ class ParseBreachingLogJob implements ShouldQueue
         if($portalInstance == null)
             return;
 
-        $log = new InfistarLog();
-        $log->attachLogParser(BreachingLog::class);
-        $log->parseLog();
+        $this->parse();
+    }
+
+    /**
+     * @return string
+     */
+    public function getLoggerClass(): string
+    {
+        return BreachingLog::class;
     }
 }

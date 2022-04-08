@@ -80,13 +80,12 @@ class AdminLog extends Model implements LogParser
     {
         $logEntry = sprintf($template->templateString,
             $this->time,
-            $this->account_uid,
+            url()->route('account.view', ['account' => $this->account_uid]),
             $this->account->name,
-            $this->log);
+            $this->log
+        );
 
-        $portalInstanceId = PortalInstance::getCurrentPortalInstance()->id;
-
-        return ParsedHumanReadableLog::createLogEntry($portalInstanceId, $this->attributes['id'], self::class, $logEntry);
+        return ParsedHumanReadableLog::createLogEntry($this->portal_instance_id, $this->id, self::class, $logEntry);
     }
 
     /**

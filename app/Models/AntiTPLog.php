@@ -95,9 +95,19 @@ class AntiTPLog extends Model implements LogParser
     public function logForHumans(LogTemplate $template): ParsedHumanReadableLog
     {
         $logEntry = sprintf($template->templateString,
-            $this->attributes['test']);
+            $this->time,
+            url()->route('account.view', ['account' => $this->account_uid]),
+            $this->account->name,
+            $this->distance,
+            $this->movement_time,
+            $this->position_before,
+            $this->position_after,
+            $this->speed_horizontal,
+            $this->speed_vertical,
+            $this->tp_count
+        );
 
-        return ParsedHumanReadableLog::createLogEntry($this->attributes['id'], self::class, $logEntry);
+        return ParsedHumanReadableLog::createLogEntry($this->portal_instance_id, $this->id, self::class, $logEntry);
     }
 
     /**

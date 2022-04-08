@@ -80,9 +80,13 @@ class BanLog extends Model implements LogParser
     public function logForHumans(LogTemplate $template): ParsedHumanReadableLog
     {
         $logEntry = sprintf($template->templateString,
-            $this->attributes['test']);
+            $this->time,
+            url()->route('account.view', ['account' => $this->account_uid]),
+            $this->account->name,
+            $this->banned
+        );
 
-        return ParsedHumanReadableLog::createLogEntry($this->attributes['id'], self::class, $logEntry);
+        return ParsedHumanReadableLog::createLogEntry($this->portal_instance_id, $this->id, self::class, $logEntry);
     }
 
     /**

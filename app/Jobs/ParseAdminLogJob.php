@@ -17,11 +17,6 @@ class ParseAdminLogJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, ParseModel;
 
-    const LOG_NAME = 'ADMINLOG';
-    const REGEX = '/(\d{17}) \| (.*)/';
-
-    private array $matches = array();
-
     /**
      * Create a new job instance.
      *
