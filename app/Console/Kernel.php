@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Jobs\ParseAllContainersJob;
+use App\Jobs\ParseBreachingLogJob;
 use App\Jobs\ParsePlayerMoneyJob;
 use App\Jobs\ParseTerritoryMembersJob;
 use Illuminate\Console\Scheduling\Schedule;
@@ -21,6 +22,7 @@ class Kernel extends ConsoleKernel
         $schedule->job(new ParseTerritoryMembersJob(), config('portal.instanceName'))->everyFifteenMinutes();
         $schedule->job(new ParseAllContainersJob(), config('portal.instanceName'))->everyFiveMinutes();
         $schedule->job(new ParsePlayerMoneyJob(), config('portal.instanceName'))->everyMinute();
+        $schedule->job(new ParseBreachingLogJob(), config('portal.instanceName'))->everyMinute();
     }
 
     /**
