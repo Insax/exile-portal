@@ -43,7 +43,7 @@ trait ParseByType {
             $regexp = preg_match($this->getRegex(), $log->logentry, $matches);
             if(!$regexp) {
                 Log::channel('parser')->debug('Could not parse log:'. $log->logentry);
-                $log->update(['parsed' => true])->save();
+                $log->update(['parsed' => true]);
                 continue;
             }
 
@@ -59,7 +59,7 @@ trait ParseByType {
             if(empty($humanReadableLog->log_entry)) {
                 Log::channel('parser')->debug('LogEntry is Empty, Template:'. json_encode($logTemplate). 'Data:'. json_encode($validated));
             }
-            $log->update(['parsed' => true])->save();
+            $log->update(['parsed' => true]);
         }
     }
 
