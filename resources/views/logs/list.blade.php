@@ -2,7 +2,6 @@
 
 @section('content')
     @foreach($logs as $log)
-        <p class="text-center">{!! $log->log_entry !!}</p>
-
+        <p class="text-center">{{var_dump($log)}}</p>
     @endforeach
 @endsection
