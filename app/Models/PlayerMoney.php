@@ -62,6 +62,7 @@ class PlayerMoney extends Model
     protected $casts = [
         'id' => 'int',
         'portal_instance_id' => 'int',
+        'account_uid' => 'string',
         'locker_money' => 'int',
         'marxet_money' => 'int',
         'container_money' => 'int'
@@ -74,6 +75,7 @@ class PlayerMoney extends Model
      */
     protected $fillable = [
         'portal_instance_id',
+        'account_uid',
         'locker_money',
         'marxet_money',
         'container_money'
