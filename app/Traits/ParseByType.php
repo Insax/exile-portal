@@ -44,7 +44,7 @@ trait ParseByType {
             $regexp = preg_match($this->getRegex(), $log->logentry, $matches);
             if(!$regexp) {
                 Log::channel('parser')->debug('Could not parse log:'. $log->logentry);
-                $log->update(['parsed' => true])->save();
+                $log->update(['parsed' => true]);
                 continue;
             }
 
@@ -53,8 +53,19 @@ trait ParseByType {
             $validated['time'] = $log->time;
 
             $this->logParser = $this->logParser->createLogEntry($validated);
+<<<<<<< HEAD
             $this->logForHumans('logs.entries.'.strtolower($this->logParser->getLogName()));
             $log->update(['parsed' => true])->save();
+=======
+            Log::channel('parser')->debug('Argument Count ['. count($validated) .']');
+            Log::channel('parser')->debug('Log Name ['. $this->logParser->getLogName() .']');
+            $logTemplate = LogTemplate::whereLogName($this->logParser->getLogName())->whereArgumentCount(count($validated))->first();
+            $humanReadableLog = $this->logParser->logForHumans($logTemplate);
+            if(empty($humanReadableLog->log_entry)) {
+                Log::channel('parser')->debug('LogEntry is Empty, Template:'. json_encode($logTemplate). 'Data:'. json_encode($validated));
+            }
+            $log->update(['parsed' => true]);
+>>>>>>> 2e148fe2072972b2817f97425092c45a8c0b71a4
         }
     }
 

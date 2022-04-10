@@ -33,18 +33,15 @@ class ParsePlayerMoneyJob implements ShouldQueue
      */
     public function handle()
     {
-        /** @var int $currentInstance Needed for inserting */
-        $currentInstance = Cache::rememberForever('portalInstanceId', function () {
-            return PortalInstance::whereName(config('portal.instanceName'))->first()->id;
-        });
+        $currentInstance =  PortalInstance::getCurrentPortalInstance()->id;
 
         foreach (Account::withSum('containers', 'money')->get() as $account) {
             PlayerMoney::create([
                 'portal_instance_id' => $currentInstance,
-                'account_uid' => $account->id,
+                'account_uid' => $account->uid,
                 'locker_money' => $account->locker,
                 'marxet_money' => $account->marxet_locker,
-                'container_money' => $account->containers_sum_money
+                'container_money' => $account->containers_sum_money ?? 0
             ]);
         }
     }

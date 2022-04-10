@@ -62,6 +62,7 @@ class PlayerMoney extends Model
     protected $casts = [
         'id' => 'int',
         'portal_instance_id' => 'int',
+        'account_uid' => 'string',
         'locker_money' => 'int',
         'marxet_money' => 'int',
         'container_money' => 'int'
@@ -73,28 +74,10 @@ class PlayerMoney extends Model
      * @var string[]
      */
     protected $fillable = [
-        'clan_id',
-        'name',
-        'score',
-        'kills',
-        'deaths',
-        'locker',
-        'first_connect_at',
-        'last_connect_at',
-        'last_disconnect_at',
-        'total_connections',
-        'whitelisted',
-        'last_reward_at',
-        'exp_level',
-        'exp_total',
-        'exp_perkPoints',
-        'exp_perks',
-        'loadouts',
-        'forum_reward',
-        'last_abandoned_at',
-        'owns_virtualgarage',
-        'enemy_territory_logout',
-        'esm_reward',
-        'marxet_locker'
+        'portal_instance_id',
+        'account_uid',
+        'locker_money',
+        'marxet_money',
+        'container_money'
     ];
 }
