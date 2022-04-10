@@ -21,8 +21,6 @@ npm run prod
 
 php artisan migrate --force
 
-php artisan setup:templates
-
 sudo supervisorctl start laravel-worker:
 
 php artisan up

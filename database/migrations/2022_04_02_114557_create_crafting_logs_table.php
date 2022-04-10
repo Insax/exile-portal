@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('crafting_logs', function (Blueprint $table) {
             $table->id();
+            $table->portalId();
+            $table->integer('clan_id')->nullable();
+            $table->uid();
+            $table->integer('amount');
+            $table->string('recipe_class');
+            $table->dateTime('time');
             $table->timestamps();
         });
     }

@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('family_logs', function (Blueprint $table) {
             $table->id();
+            $table->portalId();
+            $table->string('action');
+            $table->uid();
+            $table->integer('clan_id')->nullable();
+            $table->boolean('accepted');
+            $table->uid('inviter');
+            $table->integer('inviter_clan_id');
             $table->timestamps();
         });
     }

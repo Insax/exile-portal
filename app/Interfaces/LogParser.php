@@ -5,6 +5,11 @@ namespace App\Interfaces;
 use App\Models\LogTemplate;
 use App\Models\ParsedHumanReadableLog;
 
+/**
+ * @property int id
+ * @property int portal_instance_id
+ * @property int
+ */
 interface LogParser {
 
     /**
@@ -22,12 +27,6 @@ interface LogParser {
      * @return $this
      */
     public function createLogEntry(array $validated): self;
-
-    /**
-     * @param LogTemplate $template
-     * @return ParsedHumanReadableLog
-     */
-    public function logForHumans(LogTemplate $template): ParsedHumanReadableLog;
 
     /**
      * @return array

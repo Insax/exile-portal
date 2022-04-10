@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('dupe_logs', function (Blueprint $table) {
             $table->id();
+            $table->portalId();
+            $table->uid();
+            $table->string('item');
+            $table->dateTime('time');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Interfaces\LogParser;
 use App\Models\InfistarLog;
 use App\Models\LogTemplate;
+use App\Models\ParsedHumanReadableLog;
 use Illuminate\Database\Eloquent\Collection;
 use Log;
 
@@ -52,13 +53,7 @@ trait ParseByType {
             $validated['time'] = $log->time;
 
             $this->logParser = $this->logParser->createLogEntry($validated);
-            Log::channel('parser')->debug('Argument Count ['. count($validated) .']');
-            Log::channel('parser')->debug('Log Name ['. $this->logParser->getLogName() .']');
-            $logTemplate = LogTemplate::whereLogName($this->logParser->getLogName())->whereArgumentCount(count($validated))->first();
-            $humanReadableLog = $this->logParser->logForHumans($logTemplate);
-            if(empty($humanReadableLog->log_entry)) {
-                Log::channel('parser')->debug('LogEntry is Empty, Template:'. json_encode($logTemplate). 'Data:'. json_encode($validated));
-            }
+            $this->logForHumans('logs.entries.'.strtolower($this->logParser->getLogName()));
             $log->update(['parsed' => true])->save();
         }
     }
@@ -69,5 +64,15 @@ trait ParseByType {
     private function getRegex(): string
     {
         return $this->logParser->getRegex();
+    }
+
+    /**
+     * @param string $viewPath
+     * @return ParsedHumanReadableLog
+     */
+    private function logForHumans(string $viewPath): ParsedHumanReadableLog
+    {
+        $logEntry = view($viewPath, ['log' => $this->logParser])->render();
+        return ParsedHumanReadableLog::createLogEntry($this->logParser->portal_instance_id, $this->logParser->id, $this->logParser::class, $logEntry);
     }
 }

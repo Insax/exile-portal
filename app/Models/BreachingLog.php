@@ -101,43 +101,6 @@ class BreachingLog extends Model implements LogParser
     }
 
     /**
-     * @param LogTemplate $template
-     * @return ParsedHumanReadableLog
-     */
-    public function logForHumans(LogTemplate $template): ParsedHumanReadableLog
-    {
-        if($this->clan_id) {
-            $logEntry = sprintf($template->templateString,
-                $this->time,
-                url()->route('account.view', ['account' => $this->account_uid]),
-                $this->account->name,
-                url()->route('clan.view', ['clan' => $this->clan_id]) ?? '#',
-                $this->clan ? $this->clan->name : 'NaN',
-                $this->action == 'PLANTED' ? 'finished' : 'started',
-                $this->charge_used,
-                url()->route('territory.view', ['territory' => $this->territory_id]) ?? '#',
-                $this->territory ? $this->territory->name : 'NaN',
-                $this->object_class,
-                $this->position
-            );
-        } else {
-            $logEntry = sprintf($template->templateString,
-                $this->time,
-                url()->route('account.view', ['account' => $this->account_uid]),
-                $this->account->name,
-                $this->action == 'PLANTED' ? 'finished' : 'started',
-                $this->charge_used,
-                url()->route('territory.view', ['territory' => $this->territory_id]) ?? '#',
-                $this->territory ? $this->territory->name : 'NaN',
-                $this->object_class,
-                $this->position
-            );
-        }
-
-        return ParsedHumanReadableLog::createLogEntry($this->portal_instance_id, $this->id, self::class, $logEntry);
-    }
-
-    /**
      * @return array
      */
     public function validate(): array

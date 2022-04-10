@@ -73,22 +73,6 @@ class AdminLog extends Model implements LogParser
     }
 
     /**
-     * @param LogTemplate $template
-     * @return ParsedHumanReadableLog
-     */
-    public function logForHumans(LogTemplate $template): ParsedHumanReadableLog
-    {
-        $logEntry = sprintf($template->templateString,
-            $this->time,
-            url()->route('account.view', ['account' => $this->account_uid]),
-            $this->account->name,
-            $this->log
-        );
-
-        return ParsedHumanReadableLog::createLogEntry($this->portal_instance_id, $this->id, self::class, $logEntry);
-    }
-
-    /**
      * @return array
      */
     public function validate(): array

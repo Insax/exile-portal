@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('daily_reward_logs', function (Blueprint $table) {
             $table->id();
+            $table->portalId();
+            $table->uid();
+            $table->string('reward');
+            $table->dateTime('time');
             $table->timestamps();
         });
     }

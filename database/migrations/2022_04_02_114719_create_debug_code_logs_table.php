@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('debug_code_logs', function (Blueprint $table) {
             $table->id();
+            $table->portalId();
+            $table->uid();
+            $table->longText('debug_code');
             $table->timestamps();
         });
     }

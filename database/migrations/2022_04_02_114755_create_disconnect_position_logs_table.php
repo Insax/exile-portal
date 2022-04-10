@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('disconnect_position_logs', function (Blueprint $table) {
             $table->id();
+            $table->portalId();
+            $table->uid();
+            $table->string('position');
+            $table->boolean('alive');
+            $table->integer('territory_id')->nullable();
+            $table->boolean('build_rights')->nullable();
             $table->timestamps();
         });
     }

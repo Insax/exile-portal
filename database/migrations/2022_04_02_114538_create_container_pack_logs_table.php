@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('container_pack_logs', function (Blueprint $table) {
             $table->id();
+            $table->portalId();
+            $table->integer('clan_id')->nullable();
+            $table->uid();
+            $table->string('object_class');
+            $table->string('position');
+            $table->integer('territory_id');
+            $table->boolean('build_rights');
             $table->timestamps();
         });
     }
