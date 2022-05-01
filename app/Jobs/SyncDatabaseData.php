@@ -94,7 +94,8 @@ class SyncDatabaseData implements ShouldQueue
                 'id' => $clan->id,
                 'name' => $clan->name,
                 'leader_uid' => $clan->leader_uid,
-                'created_at' => $clan->created_at
+                'created_at' => $clan->created_at,
+                'last_updated_at' => $clan->last_updated_at
             ]);
 
             /* Renew Clan Moderators */
@@ -143,7 +144,8 @@ class SyncDatabaseData implements ShouldQueue
                 'xm8_protectionmoney_notified' => $territory->xm8_protectionmoney_notified,
                 'esm_payment_counter' => $territory->esm_payment_counter,
                 'deleted_at' => $territory->deleted_at,
-                'territory_permissions' => $territory->territory_permissions
+                'territory_permissions' => $territory->territory_permissions,
+                'last_updated_at' => $territory->last_updated_at
             ]);
 
             $territoryMembers = array();
