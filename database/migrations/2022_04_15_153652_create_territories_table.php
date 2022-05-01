@@ -31,7 +31,7 @@ return new class extends Migration
             $table->dateTime('flag_stolen_at')->nullable();
             $table->dateTime('last_paid_at');
             $table->boolean('xm8_protectionmoney_notified');
-            $table->unsignedInteger('esm_payment_counter');
+            $table->unsignedInteger('esm_payment_counter')->nullable();
             $table->dateTime('deleted_at')->nullable();
             $table->string('territory_permissions', 300);
             $table->dateTime('last_updated_at');
