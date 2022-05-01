@@ -52,8 +52,6 @@ class TerritoryMembers extends Component
 
     private function buildQuery()
     {
-        return Cache::remember('territory' . $this->territory->id . 'MembersWhereName' . $this->name . 'orderedBy' . $this->sortType . 'With' . $this->sortType . 'PageSize' . $this->items . 'Page' . $this->page, 15 * 60, function () {
-            return $this->territory->members()->where('name', 'LIKE', '%' . $this->name . '%')->orderBy(strtolower($this->sorting), $this->sortType)->paginate($this->items);
-        });
+        return $this->territory->territoryMembers()->where('name', 'LIKE', '%' . $this->name . '%')->orderBy(strtolower($this->sorting), $this->sortType)->paginate($this->items);
     }
 }

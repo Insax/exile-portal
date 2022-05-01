@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SafeHackingLog extends Model
+class SafeHackingLog extends Logging
 {
-    use HasFactory;
+    function toString(): string
+    {
+        // TODO: Implement toString() method.
+    }
 }

@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InmateMarketLog extends Model
+class InmateMarketLog extends Logging
 {
-    use HasFactory;
+    function toString(): string
+    {
+        // TODO: Implement toString() method.
+    }
 }

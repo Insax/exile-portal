@@ -48,10 +48,7 @@ class ContainerContent extends Component
 
     private function queryBuilder()
     {
-        $currentInstance = Cache::rememberForever('portalInstanceId', function () {
-            return PortalInstance::whereName(config('portal.instanceName'))->first()->id;
-        });
-        $territoryContainerContent = TerritoryContainerContent::wherePortalInstanceId($currentInstance)->whereTerritoryId($this->territory->id);
+        $territoryContainerContent = TerritoryContainerContent::whereTerritoryId($this->territory->id);
         if ($this->name)
             $territoryContainerContent->where('item', 'LIKE', '%' . $this->name . '%');
 

@@ -1,32 +1,49 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * App\Models\TerritoryMember
- *
+ * Class TerritoryMember
+ * 
  * @property int $territory_id
  * @property string $account_uid
- * @method static Builder|TerritoryMember newModelQuery()
- * @method static Builder|TerritoryMember newQuery()
- * @method static Builder|TerritoryMember query()
- * @method static Builder|TerritoryMember whereAccountUid($value)
- * @method static Builder|TerritoryMember whereTerritoryId($value)
- * @mixin Eloquent
+ * 
+ * @property Account $account
+ * @property Territory $territory
+ *
+ * @package App\Models
  */
 class TerritoryMember extends Model
 {
-    use HasFactory;
+	protected $connection = 'portal';
+	protected $table = 'territory_members';
+	public $incrementing = false;
+	public $timestamps = false;
+	public static $snakeAttributes = false;
 
-    public $timestamps = false;
-    protected $connection = 'gameserver';
-    protected $fillable = [
-        'account_uid',
-        'territory_id'
-    ];
+	protected $casts = [
+		'territory_id' => 'int'
+	];
+
+	protected $fillable = [
+		'territory_id',
+		'account_uid'
+	];
+
+	public function account(): BelongsTo
+	{
+		return $this->belongsTo(Account::class, 'account_uid');
+	}
+
+	public function territory(): BelongsTo
+	{
+		return $this->belongsTo(Territory::class);
+	}
 }

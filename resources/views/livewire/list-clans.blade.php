@@ -61,7 +61,7 @@
                                     <a class="whitespace-no-wrap underline" href="{{ route('clan.view', ['clan' => $clan->id]) }}">{{ $clan->name }}</a>
                                 </td>
                                 <td class="px-5 py-5 text-center text-sm">
-                                    <a class="whitespace-no-wrap underline" href="{{ route('account.view', ['account' => $clan->leader_uid]) }}">{{ $clan->leaderAccount->name }} </a>
+                                    <a class="whitespace-no-wrap underline" href="{{ route('account.view', ['account' => $clan->leader_uid]) }}">{{ $clan->account->name }} </a>
                                 </td>
                                 <td class="px-5 py-5 text-center text-sm">
                                     <p class="whitespace-no-wrap">{{ $clan->accounts_count }}</p>

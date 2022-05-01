@@ -1,15 +1,17 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Carbon;
 
 /**
- * App\Models\Container
+ * Class Container
  *
  * @property int $id
  * @property string $class
@@ -36,133 +38,49 @@ use Illuminate\Support\Carbon;
  * @property int $money
  * @property Carbon|null $abandoned
  * @property string $inventory
- * @property-read Account|null $account
- * @method static Builder|Container newModelQuery()
- * @method static Builder|Container newQuery()
- * @method static Builder|Container query()
- * @method static Builder|Container whereAbandoned($value)
- * @method static Builder|Container whereAccountUid($value)
- * @method static Builder|Container whereCargoContainer($value)
- * @method static Builder|Container whereCargoItems($value)
- * @method static Builder|Container whereCargoMagazines($value)
- * @method static Builder|Container whereCargoWeapons($value)
- * @method static Builder|Container whereClass($value)
- * @method static Builder|Container whereDeletedAt($value)
- * @method static Builder|Container whereDirectionX($value)
- * @method static Builder|Container whereDirectionY($value)
- * @method static Builder|Container whereDirectionZ($value)
- * @method static Builder|Container whereId($value)
- * @method static Builder|Container whereInventory($value)
- * @method static Builder|Container whereIsLocked($value)
- * @method static Builder|Container whereLastUpdatedAt($value)
- * @method static Builder|Container whereMoney($value)
- * @method static Builder|Container wherePinCode($value)
- * @method static Builder|Container wherePositionX($value)
- * @method static Builder|Container wherePositionY($value)
- * @method static Builder|Container wherePositionZ($value)
- * @method static Builder|Container whereSpawnedAt($value)
- * @method static Builder|Container whereTerritoryId($value)
- * @method static Builder|Container whereUpX($value)
- * @method static Builder|Container whereUpY($value)
- * @method static Builder|Container whereUpZ($value)
- * @mixin Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $trashed_at
+ *
+ * @property Account|null $account
+ *
+ * @package App\Models
  */
 class Container extends Model
 {
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
+	protected $connection = 'portal';
+	protected $table = 'containers';
+	public $incrementing = false;
+	public $timestamps = false;
+	public static $snakeAttributes = false;
 
-    /**
-     * The connection name for the model.
-     *
-     * @var string|null
-     */
-    protected $connection = 'gameserver';
+	protected $casts = [
+		'id' => 'int',
+		'is_locked' => 'bool',
+		'position_x' => 'float',
+		'position_y' => 'float',
+		'position_z' => 'float',
+		'direction_x' => 'float',
+		'direction_y' => 'float',
+		'direction_z' => 'float',
+		'up_x' => 'float',
+		'up_y' => 'float',
+		'up_z' => 'float',
+		'territory_id' => 'int',
+		'money' => 'int'
+	];
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'container';
+	protected $dates = [
+		'spawned_at',
+		'last_updated_at',
+		'abandoned',
+		'trashed_at'
+	];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'is_locked' => 'bool',
-        'position_x' => 'float',
-        'position_y' => 'float',
-        'position_z' => 'float',
-        'direction_x' => 'float',
-        'direction_y' => 'float',
-        'direction_z' => 'float',
-        'up_x' => 'float',
-        'up_y' => 'float',
-        'up_z' => 'float',
-        'territory_id' => 'int',
-        'money' => 'int'
-    ];
+    protected $guarded = [];
 
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @deprecated Use the "casts" property
-     *
-     * @var array
-     */
-    protected $dates = [
-        'spawned_at',
-        'last_updated_at',
-        'abandoned'
-    ];
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
-    protected $fillable = [
-        'class',
-        'spawned_at',
-        'account_uid',
-        'is_locked',
-        'position_x',
-        'position_y',
-        'position_z',
-        'direction_x',
-        'direction_y',
-        'direction_z',
-        'up_x',
-        'up_y',
-        'up_z',
-        'cargo_items',
-        'cargo_magazines',
-        'cargo_weapons',
-        'cargo_container',
-        'last_updated_at',
-        'pin_code',
-        'territory_id',
-        'money',
-        'abandoned',
-        'inventory'
-    ];
-
-    /**
-     * Relationship - Container and Account
-     *
-     * N Container belong to 1 Account.
-     *
-     * @return BelongsTo
-     */
-    public function account()
-    {
-        return $this->belongsTo(Account::class, 'account_uid');
-    }
+	public function account(): BelongsTo
+	{
+		return $this->belongsTo(Account::class, 'account_uid');
+	}
 }

@@ -1,95 +1,143 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use App\Models\TerritoryContainerContent;
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Support\Carbon;
 
-
+/**
+ * Class Territory
+ *
+ * @property int $id
+ * @property string|null $esm_custom_id
+ * @property string $owner_uid
+ * @property string $name
+ * @property float $position_x
+ * @property float $position_y
+ * @property float $position_z
+ * @property float $radius
+ * @property int $level
+ * @property string $flag_texture
+ * @property bool $flag_stolen
+ * @property string|null $flag_stolen_by_uid
+ * @property Carbon|null $flag_stolen_at
+ * @property Carbon $last_paid_at
+ * @property bool $xm8_protectionmoney_notified
+ * @property int $esm_payment_counter
+ * @property string|null $deleted_at
+ * @property string $territory_permissions
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property Carbon|null $trashed_at
+ *
+ * @property Account $account
+ * @property TerritoryBuilder $territoryBuilder
+ * @property Collection|TerritoryConstructionCountTime[] $territoryConstructionCountTimes
+ * @property Collection|TerritoryContainerContent[] $territoryContainerContents
+ * @property Collection|TerritoryContainerCountTime[] $territoryContainerCountTimes
+ * @property Collection|TerritoryItemCountTime[] $territoryItemCountTimes
+ * @property TerritoryMember $territoryMember
+ * @property TerritoryModerator $territoryModerator
+ * @property Collection|TerritoryMoney[] $territoryMoneys
+ * @property Collection|TerritoryOnlineTime[] $territoryOnlineTimes
+ * @property Collection|TerritoryRaidTime[] $territoryRaidTimes
+ *
+ * @package App\Models
+ */
 class Territory extends Model
 {
-    public $timestamps = false;
+	protected $connection = 'portal';
+	protected $table = 'territories';
+	public $incrementing = false;
+	public $timestamps = false;
+	public static $snakeAttributes = false;
 
-    protected $connection = 'gameserver';
-    protected $table = 'territory';
-    protected $casts = [
-        'position_x' => 'float',
-        'position_y' => 'float',
-        'position_z' => 'float',
-        'radius' => 'float',
-        'level' => 'int',
-        'flag_stolen' => 'bool',
-        'xm8_protectionmoney_notified' => 'bool',
-        'esm_payment_counter' => 'int',
-        'flag_stolen_at' => 'datetime',
-        'last_paid_at' => 'datetime'
-    ];
+	protected $casts = [
+		'id' => 'int',
+		'position_x' => 'float',
+		'position_y' => 'float',
+		'position_z' => 'float',
+		'radius' => 'float',
+		'level' => 'int',
+		'flag_stolen' => 'bool',
+		'xm8_protectionmoney_notified' => 'bool',
+		'esm_payment_counter' => 'int'
+	];
 
-    protected $fillable = [
-        'esm_custom_id',
-        'owner_uid',
-        'name',
-        'position_x',
-        'position_y',
-        'position_z',
-        'radius',
-        'level',
-        'flag_texture',
-        'flag_stolen',
-        'flag_stolen_by_uid',
-        'flag_stolen_at',
-        'last_paid_at',
-        'xm8_protectionmoney_notified',
-        'build_rights',
-        'moderators',
-        'esm_payment_counter',
-        'territory_permissions'
-    ];
+	protected $dates = [
+		'flag_stolen_at',
+		'last_paid_at',
+		'trashed_at'
+	];
 
-    /**
-     * @return BelongsTo
-     */
-    public function ownerAccount(): BelongsTo
-    {
-        return $this->belongsTo(Account::class, 'owner_uid');
-    }
+    protected $guarded = [];
 
-    /**
-     * @return BelongsToMany
-     */
-    public function members(): BelongsToMany
+	public function account(): BelongsTo
+	{
+		return $this->belongsTo(Account::class, 'owner_uid');
+	}
+
+	public function territoryBuilder(): HasOne
+	{
+		return $this->hasOne(TerritoryBuilder::class);
+	}
+
+	public function territoryConstructionCountTimes(): HasMany
+	{
+		return $this->hasMany(TerritoryConstructionCountTime::class);
+	}
+
+	public function territoryContainerContents(): HasMany
+	{
+		return $this->hasMany(TerritoryContainerContent::class);
+	}
+
+	public function territoryContainerCountTimes(): HasMany
+	{
+		return $this->hasMany(TerritoryContainerCountTime::class);
+	}
+
+	public function territoryItemCountTimes(): HasMany
+	{
+		return $this->hasMany(TerritoryItemCountTime::class);
+	}
+
+	public function territoryMember(): HasMany
+	{
+		return $this->hasMany(TerritoryMember::class);
+	}
+
+    public function territoryMembers(): BelongsToMany
     {
         return $this->belongsToMany(Account::class, 'territory_members', 'territory_id', 'account_uid');
     }
 
-    /**
-     * @return HasOne
-     */
-    public function territoryFlagStealer(): HasOne
-    {
-        return $this->hasOne(Account::class, 'uid', 'flag_stolen_by_uid');
-    }
+	public function territoryModerator(): HasOne
+	{
+		return $this->hasOne(TerritoryModerator::class);
+	}
 
-    public function containers(): HasMany
-    {
-        return $this->hasMany(Container::class, 'territory_id', 'id');
-    }
+	public function territoryMoneys(): HasMany
+	{
+		return $this->hasMany(TerritoryMoney::class);
+	}
 
-    public function containerContent(): HasMany
-    {
-        return $this->hasMany(TerritoryContainerContent::class, 'territory_id', 'id');
-    }
+	public function territoryOnlineTimes(): HasMany
+	{
+		return $this->hasMany(TerritoryOnlineTime::class);
+	}
 
-    public function breachingLog(): HasMany
-    {
-        return $this->hasMany(BreachingLog::class);
-    }
+	public function territoryRaidTimes(): HasMany
+	{
+		return $this->hasMany(TerritoryRaidTime::class);
+	}
 }

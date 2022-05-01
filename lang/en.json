@@ -3,12 +3,5 @@
     "The :attribute must contain at least one number.": "The :attribute must contain at least one number.",
     "The :attribute must contain at least one symbol.": "The :attribute must contain at least one symbol.",
     "The :attribute must contain at least one uppercase and one lowercase letter.": "The :attribute must contain at least one uppercase and one lowercase letter.",
-    "The given :attribute has appeared in a data leak. Please choose a different :attribute.": "The given :attribute has appeared in a data leak. Please choose a different :attribute.",
-    "territory.inventory": "See Territory Inventory",
-    "territory.manage": "Manage Territories",
-    "exp.reset": "Reset EXP",
-    "users.manage": "Manage Users",
-    "roles.manage": "Manage Roles",
-    "clans.manage": "Manage Families"
-
+    "The given :attribute has appeared in a data leak. Please choose a different :attribute.": "The given :attribute has appeared in a data leak. Please choose a different :attribute."
 }

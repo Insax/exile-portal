@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Clan;
 use App\Models\Territory;
 use Cache;
+use Spatie\Activitylog\Models\Activity;
 
 class ClanController extends Controller
 {
@@ -15,26 +16,26 @@ class ClanController extends Controller
 
     public function viewClan(Clan $clan)
     {
-        $members = Cache::remember('clanId' . $clan->id . 'Accounts', 15 * 60, function () use ($clan) {
-            return $clan->accounts;
-        });
+        $members = $clan->accounts;
 
         $territoryIds = array();
         foreach ($members as $member) {
-            $territories = Cache::remember('accountId' . $member->id . 'Territories', 15 * 60, function () use ($member) {
-                return $member->territories;
-            });
+            $territories = $member->territories;
+
             foreach ($territories as $territory) {
                 if ($territory)
                     $territoryIds[] = $territory->id;
             }
+
         }
+
         $territories = null;
-        if (count($territoryIds)) {
-            $territories = Cache::remember('whereTerritoryId' . serialize($territoryIds), 15 * 60, function () use ($territoryIds) {
-                return Territory::whereIn('id', $territoryIds)->get();
-            });
-        }
-        return view('clan.view', ['clan' => $clan, 'territories' => $territories]);
+
+        if (count($territoryIds))
+            $territories = Territory::whereIn('id', $territoryIds)->get();
+
+        $activities = Activity::forSubject($clan)->orderBy('created_at', 'ASC')->get();
+
+        return view('clan.view', ['clan' => $clan, 'territories' => $territories, 'activities' => $activities]);
     }
 }

@@ -81,7 +81,7 @@
                 </div>
                 <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
                     <p class="text-lg">Territory Leader</p>
-                    <a class="text-2xl underline" href="{{ route('account.view', ['account' => $territory->owner_uid]) }}">{{ $territory->ownerAccount->name }}</a>
+                    <a class="text-2xl underline" href="{{ route('account.view', ['account' => $territory->owner_uid]) }}">{{ $territory->account->name }}</a>
                 </div>
                 <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
                     <p class="text-lg">Stolen by</p>

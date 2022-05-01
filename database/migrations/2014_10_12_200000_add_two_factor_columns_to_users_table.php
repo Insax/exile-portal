@@ -8,6 +8,13 @@ use Laravel\Fortify\Fortify;
 return new class extends Migration
 {
     /**
+     * The name of the database connection to use.
+     *
+     * @var string|null
+     */
+    protected $connection = 'authentication';
+
+    /**
      * Run the migrations.
      *
      * @return void

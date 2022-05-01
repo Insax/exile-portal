@@ -5,8 +5,8 @@ namespace App\Console\Commands;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Models\Permission;
+use App\Models\Role;
 
 class SetupRoles extends Command
 {
@@ -65,7 +65,7 @@ class SetupRoles extends Command
             'name' => 'clans.manage'
         ]);
 
-        User::find(1)->assignRole($superAdmin);
+        User::find(1)->assignRole('Super Admin');
         $this->call('permission:cache-reset');
         return 0;
     }

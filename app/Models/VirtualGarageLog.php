@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VirtualGarageLog extends Model
+class VirtualGarageLog extends Logging
 {
-    use HasFactory;
+    function toString(): string
+    {
+        // TODO: Implement toString() method.
+    }
 }

@@ -1,14 +1,18 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * App\Models\SmVirtualgarage
- *
+ * Class SmVirtualgarage
+ * 
  * @property int $id
  * @property string $class
  * @property string $puid
@@ -23,53 +27,45 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $magazines
  * @property string $weapons
  * @property string $cargo
- * @method static Builder|SmVirtualgarage newModelQuery()
- * @method static Builder|SmVirtualgarage newQuery()
- * @method static Builder|SmVirtualgarage query()
- * @method static Builder|SmVirtualgarage whereCargo($value)
- * @method static Builder|SmVirtualgarage whereClass($value)
- * @method static Builder|SmVirtualgarage whereDamage($value)
- * @method static Builder|SmVirtualgarage whereFuel($value)
- * @method static Builder|SmVirtualgarage whereHitpoints($value)
- * @method static Builder|SmVirtualgarage whereId($value)
- * @method static Builder|SmVirtualgarage whereItems($value)
- * @method static Builder|SmVirtualgarage whereMagazines($value)
- * @method static Builder|SmVirtualgarage whereOwnerUid($value)
- * @method static Builder|SmVirtualgarage wherePincode($value)
- * @method static Builder|SmVirtualgarage wherePoptabs($value)
- * @method static Builder|SmVirtualgarage wherePuid($value)
- * @method static Builder|SmVirtualgarage whereTextures($value)
- * @method static Builder|SmVirtualgarage whereWeapons($value)
- * @mixin Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * 
+ * @property Account $account
+ *
+ * @package App\Models
  */
 class SmVirtualgarage extends Model
 {
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
+	protected $connection = 'portal';
+	protected $table = 'sm_virtualgarages';
+	public $incrementing = false;
+	public $timestamps = false;
+	public static $snakeAttributes = false;
 
-    protected $connection = 'gameserver';
-    protected $table = 'sm_virtualgarage';
-    protected $casts = [
-        'fuel' => 'float'
-    ];
+	protected $casts = [
+		'id' => 'int',
+		'fuel' => 'float'
+	];
 
-    protected $fillable = [
-        'class',
-        'puid',
-        'owner_uid',
-        'textures',
-        'poptabs',
-        'pincode',
-        'damage',
-        'hitpoints',
-        'fuel',
-        'items',
-        'magazines',
-        'weapons',
-        'cargo'
-    ];
+	protected $fillable = [
+		'class',
+		'puid',
+		'owner_uid',
+		'textures',
+		'poptabs',
+		'pincode',
+		'damage',
+		'hitpoints',
+		'fuel',
+		'items',
+		'magazines',
+		'weapons',
+		'cargo'
+	];
+
+	public function account(): BelongsTo
+	{
+		return $this->belongsTo(Account::class, 'owner_uid');
+	}
 }

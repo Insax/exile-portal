@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\GameServerTerritory;
 use App\Models\Territory;
 use Auth;
 use Carbon\Carbon;
@@ -36,7 +37,8 @@ class DeleteOrRestoreTerritory extends ModalComponent
 
     public function deleteOrRestore()
     {
-        $territory = Territory::find($this->territoryId);
+        $territory = GameServerTerritory::find($this->territoryId);
+        $localTerritory = Territory::find($this->territoryId);
         if ($territory->deleted_at) {
             $territory->deleted_at = null;
             if ($this->advancePayment)
@@ -52,7 +54,7 @@ class DeleteOrRestoreTerritory extends ModalComponent
         } else {
             $territory->deleted_at = Carbon::now();
             activity()->by(Auth::user())
-                ->on($territory)
+                ->on($localTerritory)
                 ->withProperty('action', 'deleted')
                 ->log($this->reason);
         }

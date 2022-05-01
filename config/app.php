@@ -179,7 +179,6 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\FortifyUIServiceProvider::class,
         App\Providers\BlueprintServiceProvider::class
-
     ],
 
     /*
@@ -194,7 +193,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // ...
+        // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
 ];

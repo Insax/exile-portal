@@ -70,19 +70,17 @@ class ListTerritories extends Component
 
     private function queryBuilder()
     {
-        return Cache::remember('listTerritories' . $this->type . 'PageSize' . $this->items . 'Page' . $this->page . 'Name' . $this->name . 'sorted' . $this->sorting . 'Type' . $this->sortType, 15 * 60, function () {
-            $territory = match ($this->type) {
-                'Deleted' => Territory::whereNotNull('deleted_at'),
-                'Active' => Territory::whereNull('deleted_at'),
-                'Stolen' => Territory::whereNotNull('flag_stolen_at'),
-                default => Territory::query(),
-            };
+        $territory = match ($this->type) {
+            'Deleted' => Territory::whereNotNull('deleted_at'),
+            'Active' => Territory::whereNull('deleted_at'),
+            'Stolen' => Territory::whereNotNull('flag_stolen_at'),
+            default => Territory::query(),
+        };
 
-            $territory->where('name', 'LIKE', '%' . $this->name . '%')
-                ->orderBy(strtolower($this->sorting), $this->sortType)
-                ->with(['ownerAccount', 'members']);
+        $territory->where('name', 'LIKE', '%' . $this->name . '%')
+            ->orderBy(strtolower($this->sorting), $this->sortType)
+            ->with(['account', 'territoryMember']);
 
-            return $territory->paginate($this->items);
-        });
+        return $territory->paginate($this->items);
     }
 }

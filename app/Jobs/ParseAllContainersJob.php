@@ -37,17 +37,9 @@ class ParseAllContainersJob implements ShouldQueue
      */
     public function handle()
     {
+        TerritoryContainerContent::truncate();
+        $allTerritories = Territory::with('containers')->get();
 
-        /** @var int $currentInstance Needed for inserting */
-        $currentInstance = Cache::rememberForever('portalInstanceId', function () {
-            return PortalInstance::whereName(config('portal.instanceName'))->first()->id;
-        });
-
-        TerritoryContainerContent::wherePortalInstanceId($currentInstance)->delete();
-
-        $allTerritories = Cache::remember('allTerritoriesWithContainers', 5 * 60, function () {
-            return Territory::with('containers')->get();
-        });
 
         foreach ($allTerritories as $territory) {
             foreach ($territory->containers as $container) {
@@ -66,7 +58,6 @@ class ParseAllContainersJob implements ShouldQueue
 
             foreach ($this->itemArray as $item => $count) {
                 TerritoryContainerContent::create([
-                    'portal_instance_id' => $currentInstance,
                     'territory_id' => $territory->id,
                     'item' => $item,
                     'count' => $count

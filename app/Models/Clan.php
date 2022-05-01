@@ -1,109 +1,71 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
- * App\Models\Clan
+ * Class Clan
  *
  * @property int $id
  * @property string $name
  * @property string $leader_uid
- * @property string $created_at
- * @property string $moderators
- * @property-read Collection|Account[] $accounts
- * @property-read int|null $accounts_count
- * @property-read Collection|ClanMapMarker[] $clan_map_markers
- * @property-read int|null $clan_map_markers_count
- * @property-read Account $leaderAccount
- * @method static Builder|Clan newModelQuery()
- * @method static Builder|Clan newQuery()
- * @method static Builder|Clan query()
- * @method static Builder|Clan whereCreatedAt($value)
- * @method static Builder|Clan whereId($value)
- * @method static Builder|Clan whereLeaderUid($value)
- * @method static Builder|Clan whereModerators($value)
- * @method static Builder|Clan whereName($value)
- * @mixin Eloquent
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property string|null $deleted_at
+ *
+ * @property Account $account
+ * @property ClanModerator $clanModerator
+ * @property Collection|ClanMoney[] $clanMoneys
+ * @property Collection|GroupOnlineTime[] $groupOnlineTimes
+ *
+ * @package App\Models
  */
 class Clan extends Model
 {
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
+	protected $connection = 'portal';
+	protected $table = 'clans';
+	public $incrementing = false;
+	public $timestamps = false;
+	public static $snakeAttributes = false;
 
-    /**
-     * The connection name for the model.
-     *
-     * @var string|null
-     */
-    protected $connection = 'gameserver';
+	protected $casts = [
+		'id' => 'int'
+	];
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'clan';
+    protected $guarded = [];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
-    protected $fillable = [
-        'name',
-        'leader_uid',
-        'moderators'
-    ];
+	public function account(): BelongsTo
+	{
+		return $this->belongsTo(Account::class, 'leader_uid');
+	}
 
-    /**
-     * Relationship - Clan and Account
-     *
-     * 1 Clan belongs to 1 Account.
-     *
-     * @return BelongsTo
-     */
-    public function leaderAccount(): BelongsTo
-    {
-        return $this->belongsTo(Account::class, 'leader_uid', 'uid');
-    }
-
-    /**
-     * Relationship - Clan and Account
-     *
-     * 1 Clan can have n Accounts
-     *
-     * @return HasMany
-     */
     public function accounts(): HasMany
     {
         return $this->hasMany(Account::class);
     }
 
-    /**
-     * Relationship - Clan and ClanMapMarkers
-     *
-     * 1 Clan can have n ClanMapMarkers
-     *
-     * @return HasMany
-     */
-    public function clan_map_markers(): HasMany
-    {
-        return $this->hasMany(ClanMapMarker::class);
-    }
+	public function clanModerator(): HasOne
+	{
+		return $this->hasOne(ClanModerator::class);
+	}
 
-    public function breachingLog(): HasMany
-    {
-        return $this->hasMany(BreachingLog::class);
-    }
+	public function clanMoneys(): HasMany
+	{
+		return $this->hasMany(ClanMoney::class);
+	}
+
+	public function groupOnlineTimes(): HasMany
+	{
+		return $this->hasMany(GroupOnlineTime::class);
+	}
 }

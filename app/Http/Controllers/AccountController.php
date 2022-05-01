@@ -13,10 +13,9 @@ class AccountController extends Controller
 {
     public function viewAccount(Account $account): Factory|View|Application
     {
-        $territories = Cache::remember('territoresWhereMembersAccountId' . $account->uid, 15 * 60, function () use ($account) {
-            $account->load('territories');
-            return $account->territories;
-        });
+        $account->load('territories');
+        $territories = $account->territories;
+
 
         return view('account.view', ['account' => $account, 'territories' => $territories]);
     }

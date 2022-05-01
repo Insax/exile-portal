@@ -1,3 +1,4 @@
+@php /** @var \App\Models\Territory $territory */ @endphp
 @extends('layouts.app')
 
 @section('content')
@@ -5,6 +6,12 @@
         <h1 class="block mx-auto text-5xl">{{$territory->name}}</h1>
         <p class="block mx-auto text-2xl">ID: {{$territory->id}}</p>
         <p class="block mx-auto text-3xl">{{config('portal.instanceName')}}</p>
+        @if($territory->deleted_at)
+            <p class="block mx-auto text-3xl">Deleted</p>
+        @endif
+        @if($territory->flag_stolen)
+            <p class="block mx-auto text-3xl">Stolen</p>
+        @endif
         @can('territory.manage')
             <p class="block mx-auto">
                 <button type="button"
@@ -18,6 +25,13 @@
                 </button>
             </p>
         @endcan
+        <p class="block mx-auto">
+            <button type="button"
+                    class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
+                    onclick='Livewire.emit("openModal", "set-territory-info", {{ json_encode(["territory" => $territory->id]) }})'>
+                Set Note on Territory
+            </button>
+        </p>
     </div>
     <h1 class="text-portal-red my-8 text-center text-5xl">Territory Information</h1>
     <div class="w-3/4 grid grid-cols-3 gap-8 mx-auto">
@@ -27,11 +41,11 @@
         </div>
         <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
             <p class="text-lg">Owner</p>
-            <a class="text-2xl underline" href="{{ route('account.view', ['account' => $territory->owner_uid]) }}">{{ $territory->ownerAccount->name }}</a>
+            <a class="text-2xl underline" href="{{ route('account.view', ['account' => $territory->owner_uid]) }}">{{ $territory->account->name }}</a>
         </div>
         <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
             <p class="text-lg">Members</p>
-            <p class="text-2xl">{{ $territory->members->count() }}</p>
+            <p class="text-2xl">{{ $territory->territoryMember->count() }}</p>
         </div>
         @if($territory->flag_stolen)
             <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
@@ -40,15 +54,11 @@
             </div>
             <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
                 <p class="text-lg">Stolen?</p>
-                <p class="text-2xl">{{ $territory->flag_stolen ? 'YES' : 'NO'}}</p>
+                <p class="text-2xl">YES</p>
             </div>
             <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
                 <p class="text-lg">Stolen by</p>
-                @if($territory->flag_stolen)
                     <a class="text-2xl" href="{{ route('account.view', ['account' => $territory->flag_stolen_by_uid]) }}">{{ $territory->territoryFlagStealer->name }}</a>
-                @else
-                    <p class="text-2xl">No one</p>
-                @endif
             </div>
         @endif
         <div class="card-header-portal p-6 rounded-2xl shadow-lg text-center">
@@ -126,7 +136,7 @@
     @endif
     @livewire('territory-members', ['territory' => $territory])
     @can('territory.inventory')
-        <h1 class="text-portal-red my-8 text-center text-3xl">Container Contents - Currently {{$territory->containerContent->sum('count')}}</h1>
+        <h1 class="text-portal-red my-8 text-center text-3xl">Container Contents - Currently {{$territory->territoryContainerContents->sum('count')}}</h1>
         @livewire('container-content', ['territory' => $territory])
     @endcan
 @endsection

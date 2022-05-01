@@ -1,10 +1,13 @@
+@php
+/** @var App\Models\Territory $territory */
+@endphp
 <div>
     <div class="container mx-auto px-4 sm:px-8 container-portal mt-10">
         <div class="py-8">
             <div>
                 <h2 class="text-2xl font-semibold leading-tight">Territory Overview</h2>
             </div>
-            <div class="my-2 flex sm:flex-row flex-col">
+            <div class="my-2 flex sm:flex-row flex-col items-center">
                 <div class="flex flex-row mb-1 sm:mb-0">
                     <div class="relative">
                         <select wire:model="items"
@@ -48,6 +51,9 @@
                     </span>
                     <input placeholder="Search for a Name..." wire:model="name"
                            type="text" class="rounded-l sm:rounded-l-none block pl-8 pr-6 py-2 w-full text-sm" />
+                </div>
+                <div>
+                    <h2 class="text-2xl font-semibold leading-tight ml-2">Current Selection: {{ $this->type }}</h2>
                 </div>
             </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
@@ -105,7 +111,7 @@
                                 <a class="whitespace-no-wrap underline" href="{{ route('territory.view', ['territory' => $territory->id]) }}">{{ $territory->name }}</a>
                             </td>
                             <td class="px-5 py-5 text-center text-sm">
-                                <a class="whitespace-no-wrap underline" href="{{ route('account.view', ['account' => $territory->owner_uid]) }}">{{ $territory->ownerAccount->name }} </a>
+                                <a class="whitespace-no-wrap underline" href="{{ route('account.view', ['account' => $territory->owner_uid]) }}">{{ $territory->account->name }} </a>
                             </td>
                             <td class="px-5 py-5 text-center text-sm">
                                 <a class="whitespace-no-wrap underline" href="{{ route('account.view', ['account' => $territory->owner_uid]) }}">{{ $territory->owner_uid }}</a>
@@ -131,7 +137,7 @@
                                 @endcan
                             @endif
                             <td class="px-5 py-5 text-center text-sm">
-                                <p class="whitespace-no-wrap">{{ $territory->members->count() }}</p>
+                                <p class="whitespace-no-wrap">{{ $territory->territoryMember->count() }}</p>
                             </td>
                         </tr>
                         @endforeach

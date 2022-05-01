@@ -1,190 +1,178 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use Eloquent;
-use Illuminate\Database\Eloquent\Builder;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Support\Carbon;
 
+/**
+ * Class Account
+ *
+ * @property string $uid
+ * @property int|null $clan_id
+ * @property string $name
+ * @property int $score
+ * @property int $kills
+ * @property int $deaths
+ * @property int $locker
+ * @property Carbon $first_connect_at
+ * @property Carbon $last_connect_at
+ * @property Carbon|null $last_disconnect_at
+ * @property int $total_connections
+ * @property int $whitelisted
+ * @property Carbon $last_reward_at
+ * @property int $exp_level
+ * @property int $exp_total
+ * @property int $exp_perkPoints
+ * @property string|null $exp_perks
+ * @property string $loadouts
+ * @property int $forum_reward
+ * @property Carbon $last_abandoned_at
+ * @property string $owns_virtualgarage
+ * @property string $enemy_territory_logout
+ * @property Carbon $esm_reward
+ * @property int $marxet_locker
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ *
+ * @property Collection|AccountMoney[] $accountMoneys
+ * @property Collection|AccountMoneySpent[] $accountMoneySpents
+ * @property Collection|AccountOnlineTime[] $accountOnlineTimes
+ * @property ClanModerator $clanModerator
+ * @property Collection|Clan[] $clans
+ * @property Collection|Construction[] $constructions
+ * @property Collection|Container[] $containers
+ * @property Collection|Marxet[] $marxets
+ * @property Collection|PlayerStat[] $playerStats
+ * @property Collection|Player[] $players
+ * @property Collection|SmVirtualgarage[] $smVirtualgarages
+ * @property Collection|Territory[] $territories
+ * @property TerritoryBuilder $territoryBuilder
+ * @property TerritoryMember $territoryMember
+ * @property TerritoryModerator $territoryModerator
+ * @property Collection|Vehicle[] $vehicles
+ *
+ * @package App\Models
+ */
 class Account extends Model
 {
-    public $incrementing = false;
-    public $timestamps = false;
+	protected $connection = 'portal';
+	protected $table = 'accounts';
+	protected $primaryKey = 'uid';
+	public $incrementing = false;
+	public $timestamps = false;
+	public static $snakeAttributes = false;
 
-    protected $connection = 'gameserver';
-    protected $table = 'account';
-    protected $primaryKey = 'uid';
+	protected $casts = [
+		'clan_id' => 'int',
+		'score' => 'int',
+		'kills' => 'int',
+		'deaths' => 'int',
+		'locker' => 'int',
+		'total_connections' => 'int',
+		'whitelisted' => 'int',
+		'exp_level' => 'int',
+		'exp_total' => 'int',
+		'exp_perkPoints' => 'int',
+		'forum_reward' => 'int',
+		'marxet_locker' => 'int'
+	];
 
-    protected $casts = [
-        'clan_id' => 'int',
-        'score' => 'int',
-        'kills' => 'int',
-        'deaths' => 'int',
-        'locker' => 'int',
-        'total_connections' => 'int',
-        'whitelisted' => 'int',
-        'exp_level' => 'int',
-        'exp_total' => 'int',
-        'exp_perkPoints' => 'int',
-        'forum_reward' => 'int',
-        'marxet_locker' => 'int',
-        'first_connect_at' => 'datetime',
-        'last_connect_at' => 'datetime',
-        'last_disconnect_at' => 'datetime',
-        'last_reward_at' => 'datetime',
-        'last_abandoned_at' => 'datetime',
-        'esm_reward' => 'datetime'
-    ];
+	protected $dates = [
+		'first_connect_at',
+		'last_connect_at',
+		'last_disconnect_at',
+		'last_reward_at',
+		'last_abandoned_at',
+		'esm_reward'
+	];
 
-    protected $fillable = [
-        'clan_id',
-        'name',
-        'score',
-        'kills',
-        'deaths',
-        'locker',
-        'first_connect_at',
-        'last_connect_at',
-        'last_disconnect_at',
-        'total_connections',
-        'whitelisted',
-        'last_reward_at',
-        'exp_level',
-        'exp_total',
-        'exp_perkPoints',
-        'exp_perks',
-        'loadouts',
-        'forum_reward',
-        'last_abandoned_at',
-        'owns_virtualgarage',
-        'enemy_territory_logout',
-        'esm_reward',
-        'marxet_locker'
-    ];
+    protected $guarded = [];
 
-    /**
-     * @return BelongsTo
-     */
-    public function clan(): BelongsTo
-    {
-        return $this->belongsTo(Clan::class);
-    }
+	public function accountMoneys(): HasMany
+	{
+		return $this->hasMany(AccountMoney::class, 'account_uid');
+	}
 
-    /**
-     * @return HasOne
-     */
-    public function clanLeader(): HasOne
-    {
-        return $this->hasOne(Clan::class, 'leader_uid');
-    }
+	public function accountMoneySpents(): HasMany
+	{
+		return $this->hasMany(AccountMoneySpent::class, 'account_uid');
+	}
 
-    /**
-     * @return HasMany
-     */
-    public function constructions(): HasMany
-    {
-        return $this->hasMany(Construction::class, 'account_uid');
-    }
+	public function accountOnlineTimes(): HasMany
+	{
+		return $this->hasMany(AccountOnlineTime::class, 'account_uid');
+	}
 
-    /**
-     * @return HasMany
-     */
-    public function containers(): HasMany
-    {
-        return $this->hasMany(Container::class, 'account_uid');
-    }
+	public function clanModerator(): HasOne
+	{
+		return $this->hasOne(ClanModerator::class, 'account_uid');
+	}
 
-    /**
-     * @return HasOne
-     */
-    public function players(): HasOne
-    {
-        return $this->hasOne(Player::class, 'account_uid');
-    }
+	public function clan(): HasOne
+	{
+		return $this->hasOne(Clan::class, 'leader_uid');
+	}
 
-    /**
-     * @return HasOne
-     */
-    public function territory(): HasOne
-    {
-        return $this->hasOne(Territory::class, 'owner_uid');
-    }
+	public function constructions(): HasMany
+	{
+		return $this->hasMany(Construction::class, 'account_uid');
+	}
 
-    /**
-     * @return HasMany
-     */
-    public function vehicles(): HasMany
-    {
-        return $this->hasMany(Vehicle::class, 'account_uid');
-    }
+	public function containers(): HasMany
+	{
+		return $this->hasMany(Container::class, 'account_uid');
+	}
 
-    /**
-     * @return BelongsToMany
-     */
-    public function territories(): BelongsToMany
-    {
-        return $this->belongsToMany(Territory::class, 'territory_members', 'account_uid', 'territory_id');
-    }
+	public function marxets(): HasMany
+	{
+		return $this->hasMany(Marxet::class, 'sellerUID');
+	}
 
-    /**
-     * @return HasMany
-     */
-    public function playerHistory(): HasMany
-    {
-        return $this->hasMany(PlayerHistory::class, 'account_uid');
-    }
+	public function playerStats(): HasMany
+	{
+		return $this->hasMany(PlayerStat::class, 'victim');
+	}
 
-    /**
-     * @return HasMany
-     */
-    public function adminLog(): HasMany
-    {
-        return $this->hasMany(AdminLog::class, 'account_uid', 'uid');
-    }
+	public function players(): HasMany
+	{
+		return $this->hasMany(Player::class, 'account_uid');
+	}
 
-    /**
-     * @return HasMany
-     */
-    public function antiTpLog(): HasMany
-    {
-        return $this->hasMany(AntiTPLog::class, 'account_uid', 'uid');
-    }
+	public function smVirtualgarages(): HasMany
+	{
+		return $this->hasMany(SmVirtualgarage::class, 'owner_uid');
+	}
 
-    /**
-     * @return HasMany
-     */
-    public function banLog(): HasMany
-    {
-        return $this->hasMany(BanLog::class, 'account_uid', 'uid');
-    }
+	public function territories(): HasMany
+	{
+		return $this->hasMany(Territory::class, 'owner_uid');
+	}
 
-    /**
-     * @return HasMany
-     */
-    public function breachingLog(): HasMany
-    {
-        return $this->hasMany(BreachingLog::class, 'account_uid', 'uid');
-    }
+	public function territoryBuilder(): HasOne
+	{
+		return $this->hasOne(TerritoryBuilder::class, 'account_uid');
+	}
 
-    /**
-     * @return HasMany
-     */
-    public function sentMessages(): HasMany
-    {
-        return $this->hasMany(ChatLog::class, 'sender_uid', 'uid');
-    }
+	public function territoryMember(): HasOne
+	{
+		return $this->hasOne(TerritoryMember::class, 'account_uid');
+	}
 
-    /**
-     * @return HasMany
-     */
-    public function receivedMessages(): HasMany
-    {
-        return $this->hasMany(ChatLog::class, 'recipient_uid', 'uid');
-    }
+	public function territoryModerator(): HasOne
+	{
+		return $this->hasOne(TerritoryModerator::class, 'account_uid');
+	}
+
+	public function vehicles(): HasMany
+	{
+		return $this->hasMany(Vehicle::class, 'account_uid');
+	}
 }
