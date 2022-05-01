@@ -86,6 +86,11 @@ class Territory extends Model
 		return $this->belongsTo(Account::class, 'owner_uid');
 	}
 
+    public function containers(): HasMany
+    {
+        return $this->hasMany(Container::class);
+    }
+
 	public function territoryBuilder(): HasOne
 	{
 		return $this->hasOne(TerritoryBuilder::class);
