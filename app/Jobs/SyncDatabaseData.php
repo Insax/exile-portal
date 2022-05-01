@@ -58,7 +58,7 @@ class SyncDatabaseData implements ShouldQueue
      */
     public function handle(): void
     {
-        if(Account::get()->count() == 0) {
+        if(Account::count() != 0) {
             $allAccounts = GameServerAccount::where('last_updated_at', '>', Carbon::now()->subMinutes(1))->get();
             $allClans = GameServerClan::where('last_updated_at', '>', Carbon::now()->subMinutes(1))->get();
             $allConstructions = GameServerConstruction::where('last_updated_at', '>', Carbon::now()->subMinutes(1))->get();
