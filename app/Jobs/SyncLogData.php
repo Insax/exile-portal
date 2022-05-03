@@ -331,15 +331,16 @@ class SyncLogData implements ShouldQueue
                 'created_at' => $loggable->time
             ]);
 
-            ReadableLogging::create([
-                'account_uid' => $loggable->target_account_uid,
-                'clan_id' => $loggable->clan_id,
-                'territory_id' => null,
-                'type' => 'FAMILY_LOGS',
-                'loggable_id' => $loggable->id,
-                'loggable_type' => $loggable::class,
-                'created_at' => $loggable->time
-            ]);
+            if($loggable->target_account_uid)
+                ReadableLogging::create([
+                    'account_uid' => $loggable->target_account_uid,
+                    'clan_id' => $loggable->clan_id,
+                    'territory_id' => null,
+                    'type' => 'FAMILY_LOGS',
+                    'loggable_id' => $loggable->id,
+                    'loggable_type' => $loggable::class,
+                    'created_at' => $loggable->time
+                ]);
         }
 
         foreach ($flagHackingLogs as $log) {
@@ -599,25 +600,27 @@ class SyncLogData implements ShouldQueue
                 'created_at' => $loggable->time
             ]);
 
-            ReadableLogging::create([
-                'account_uid' => $loggable->invited_account_uid,
-                'clan_id' => $loggable->clan_id,
-                'territory_id' => null,
-                'type' => 'PARTY_LOG',
-                'loggable_id' => $loggable->id,
-                'loggable_type' => $loggable::class,
-                'created_at' => $loggable->time
-            ]);
+            if($loggable->invited_player_clan_id)
+                ReadableLogging::create([
+                    'account_uid' => $loggable->invited_account_uid,
+                    'clan_id' => $loggable->clan_id,
+                    'territory_id' => null,
+                    'type' => 'PARTY_LOG',
+                    'loggable_id' => $loggable->id,
+                    'loggable_type' => $loggable::class,
+                    'created_at' => $loggable->time
+                ]);
 
-            ReadableLogging::create([
-                'account_uid' => $loggable->invited_account_uid,
-                'clan_id' => $loggable->invited_player_clan_id,
-                'territory_id' => null,
-                'type' => 'PARTY_LOG',
-                'loggable_id' => $loggable->id,
-                'loggable_type' => $loggable::class,
-                'created_at' => $loggable->time
-            ]);
+            if($loggable->invited_player_clan_id)
+                ReadableLogging::create([
+                    'account_uid' => $loggable->invited_account_uid,
+                    'clan_id' => $loggable->invited_player_clan_id,
+                    'territory_id' => null,
+                    'type' => 'PARTY_LOG',
+                    'loggable_id' => $loggable->id,
+                    'loggable_type' => $loggable::class,
+                    'created_at' => $loggable->time
+                ]);
         }
 
         foreach ($playerKillLogs as $log) {
