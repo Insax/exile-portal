@@ -866,6 +866,9 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($vehicleDestroyedLogs as $log) {
+            if(empty($log->player_id))
+                continue;
+
             $loggable = VehicleDestroyedLog::create([
                 'id' => $log->id,
                 'account_uid' => $log->player_id,
@@ -877,16 +880,15 @@ class SyncLogData implements ShouldQueue
                 'time' => $log->time
             ]);
 
-            if(!empty($loggable->account_uid))
-                ReadableLogging::create([
-                    'account_uid' => $loggable->account_uid,
-                    'clan_id' => $loggable->clan_id,
-                    'territory_id' => null,
-                    'type' => 'VEHICLE_DESTROYED_LOG',
-                    'loggable_id' => $loggable->id,
-                    'loggable_type' => $loggable::class,
-                    'created_at' => $loggable->time
-                ]);
+            ReadableLogging::create([
+                'account_uid' => $loggable->account_uid,
+                'clan_id' => $loggable->clan_id,
+                'territory_id' => null,
+                'type' => 'VEHICLE_DESTROYED_LOG',
+                'loggable_id' => $loggable->id,
+                'loggable_type' => $loggable::class,
+                'created_at' => $loggable->time
+            ]);
         }
 
         foreach ($virtualGarageLogs as $log) {
