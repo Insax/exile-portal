@@ -85,12 +85,12 @@ class SyncDatabaseData implements ShouldQueue
         foreach ($allAccounts as $account) {
             if($account->uid == 'DMS_PersistentVehicle')
                 continue;
-            Account::updateOrCreate($account->getAttributes());
+            Account::updateOrCreate(['uid' => $account->uid], $account->getAttributes());
         }
 
         /* Sync all Clans */
         foreach ($allClans as $clan) {
-            Clan::updateOrCreate([
+            Clan::updateOrCreate(['id', $clan->id], [
                 'id' => $clan->id,
                 'name' => $clan->name,
                 'leader_uid' => $clan->leader_uid,
@@ -109,23 +109,23 @@ class SyncDatabaseData implements ShouldQueue
         }
 
         foreach ($allConstructions as $construction) {
-            Construction::updateOrCreate($construction->getAttributes());
+            Construction::updateOrCreate(['id' => $construction->id], $construction->getAttributes());
         }
 
         foreach ($allContainers as $container) {
-            Container::updateOrCreate($container->getAttributes());
+            Container::updateOrCreate(['id' => $container->id], $container->getAttributes());
         }
 
         foreach ($allMarxets as $allMarxet) {
-            Marxet::updateOrCreate($allMarxet->getAttributes());
+            Marxet::updateOrCreate(['listingID' => $allMarxet->listingId], $allMarxet->getAttributes());
         }
 
         foreach ($allSmVg as $item) {
-            SmVirtualgarage::updateOrCreate($item->getAttributes());
+            SmVirtualgarage::updateOrCreate(['id', $item->id], $item->getAttributes());
         }
 
         foreach ($allTerritories as $territory) {
-            Territory::updateOrCreate([
+            Territory::updateOrCreate(['id', $territory->id], [
                 'id' => $territory->id,
                 'esm_custom_id' => $territory->esm_custom_id,
                 'owner_uid' => $territory->owner_uid,
@@ -184,7 +184,7 @@ class SyncDatabaseData implements ShouldQueue
         }
 
         foreach ($allVehicles as $vehicle) {
-            Vehicle::updateOrCreate($vehicle->getAttributes());
+            Vehicle::updateOrCreate(['id' => $vehicle->id], $vehicle->getAttributes());
         }
     }
 }
