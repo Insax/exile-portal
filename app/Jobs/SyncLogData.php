@@ -778,15 +778,16 @@ class SyncLogData implements ShouldQueue
                 'created_at' => $loggable->time
             ]);
 
-            ReadableLogging::create([
-                'account_uid' => $loggable->target_account_uid,
-                'clan_id' => $loggable->clan_id,
-                'territory_id' => $loggable->territory_id,
-                'type' => 'TERRITORY_LOGS',
-                'loggable_id' => $loggable->id,
-                'loggable_type' => $loggable::class,
-                'created_at' => $loggable->time
-            ]);
+            if($loggable->target_account_uid)
+                ReadableLogging::create([
+                    'account_uid' => $loggable->target_account_uid,
+                    'clan_id' => $loggable->clan_id,
+                    'territory_id' => $loggable->territory_id,
+                    'type' => 'TERRITORY_LOGS',
+                    'loggable_id' => $loggable->id,
+                    'loggable_type' => $loggable::class,
+                    'created_at' => $loggable->time
+                ]);
 
             $territoryRaidMode = TerritoryLog::where('time', '>', Carbon::now())->whereAction('Raidmode')->whereTerritoryId($loggable->territory_id)->count();
             if($territoryRaidMode) {
