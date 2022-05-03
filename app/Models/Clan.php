@@ -34,7 +34,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property Collection|FamilyLog[] $familyLogs
  * @property Collection|FlagHackingLog[] $flagHackingLogs
  * @property Collection|GrindingLog[] $grindingLogs
- * @property Collection|GroupOnlineTime[] $groupOnlineTimes
+ * @property Collection|ClanOnlineTime[] $groupOnlineTimes
  * @property Collection|HotwireLog[] $hotwireLogs
  * @property Collection|LoadoutTraderLog[] $loadoutTraderLogs
  * @property Collection|LockLog[] $lockLogs
@@ -165,7 +165,7 @@ class Clan extends Model
 
 	public function groupOnlineTimes(): HasMany
 	{
-		return $this->hasMany(GroupOnlineTime::class);
+		return $this->hasMany(ClanOnlineTime::class);
 	}
 
 	public function hotwireLogs(): HasMany
