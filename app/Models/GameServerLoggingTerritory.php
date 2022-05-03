@@ -23,8 +23,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $player_pos
  * @property string|null $target_id
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory whereFee($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory wherePlayerPos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory wherePoptabsAfter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory wherePoptabsBefore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory whereTargetId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTerritory whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingTerritory extends Model
 {

@@ -20,8 +20,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $victim_clan_id
  * @property string $victim_pos
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPlayerKill newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPlayerKill newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPlayerKill query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPlayerKill whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPlayerKill whereKillerClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPlayerKill whereKillerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPlayerKill whereKillerPos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPlayerKill whereTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPlayerKill whereVictimClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPlayerKill whereVictimId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPlayerKill whereVictimPos($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingPlayerKill extends Model
 {

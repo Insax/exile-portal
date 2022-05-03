@@ -21,8 +21,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $player_pos
  * @property string $hack_attempts
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingSafehacking newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingSafehacking newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingSafehacking query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingSafehacking whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingSafehacking whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingSafehacking whereContainerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingSafehacking whereHackAttempts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingSafehacking whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingSafehacking wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingSafehacking wherePlayerPos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingSafehacking whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingSafehacking whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingSafehacking extends Model
 {

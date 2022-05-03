@@ -17,8 +17,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $new_id
  * @property string $old_id
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHacklog newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHacklog newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHacklog query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHacklog whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHacklog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHacklog whereNewId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHacklog whereOldId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHacklog whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingHacklog extends Model
 {

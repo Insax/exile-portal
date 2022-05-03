@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ZLoggingThermalscanner
+ * Class GameServerLoggingTrade
  *
  * @property int $id
  * @property string $player_id
@@ -37,11 +37,29 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingThermalscanner whereTerritoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingThermalscanner whereTime($value)
  * @mixin \Eloquent
+ * @property string|null $action
+ * @property string|null $class
+ * @property string|null $quantity
+ * @property string|null $vehicle_id
+ * @property string|null $container_content
+ * @property string|null $price
+ * @property string|null $sell_respect
+ * @property string|null $poptabs_after
+ * @property string|null $respect_after
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTrade whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTrade whereClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTrade whereContainerContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTrade wherePoptabsAfter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTrade wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTrade whereQuantity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTrade whereRespectAfter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTrade whereSellRespect($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingTrade whereVehicleId($value)
  */
-class GameServerLoggingThermalscanner extends Model
+class GameServerLoggingTrade extends Model
 {
 	protected $connection = 'gameserver';
-	protected $table = 'z_logging_thermalscanner';
+	protected $table = 'z_logging_trade';
 	public $incrementing = false;
 	public $timestamps = false;
 	public static $snakeAttributes = false;
@@ -54,16 +72,5 @@ class GameServerLoggingThermalscanner extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'id',
-		'player_id',
-		'clan_id',
-		'object_id',
-		'object_type',
-		'pin_code',
-		'player_pos',
-		'territory_id',
-		'has_rights',
-		'time'
-	];
+    protected $guarded = [];
 }

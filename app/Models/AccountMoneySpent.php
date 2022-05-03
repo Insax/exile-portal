@@ -12,15 +12,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class AccountMoneySpent
- * 
+ *
  * @property int $id
  * @property string $account_uid
  * @property int $amount
  * @property Carbon $time
- * 
  * @property Account $account
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|AccountMoneySpent newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AccountMoneySpent newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|AccountMoneySpent query()
+ * @method static \Illuminate\Database\Eloquent\Builder|AccountMoneySpent whereAccountUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AccountMoneySpent whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AccountMoneySpent whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|AccountMoneySpent whereTime($value)
+ * @mixin \Eloquent
  */
 class AccountMoneySpent extends Model
 {

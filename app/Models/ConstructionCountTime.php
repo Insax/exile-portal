@@ -11,12 +11,18 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class ConstructionCountTime
- * 
+ *
  * @property int $id
  * @property int $construction_count
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|ConstructionCountTime newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ConstructionCountTime newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ConstructionCountTime query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ConstructionCountTime whereConstructionCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ConstructionCountTime whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ConstructionCountTime whereTime($value)
+ * @mixin \Eloquent
  */
 class ConstructionCountTime extends Model
 {

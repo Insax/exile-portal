@@ -11,12 +11,18 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class ContainerCountTime
- * 
+ *
  * @property int $id
  * @property int $container_count
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|ContainerCountTime newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ContainerCountTime newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ContainerCountTime query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ContainerCountTime whereContainerCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContainerCountTime whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ContainerCountTime whereTime($value)
+ * @mixin \Eloquent
  */
 class ContainerCountTime extends Model
 {

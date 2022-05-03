@@ -9,6 +9,8 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * Class Clan
@@ -20,7 +22,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $moderators
  * @property GameServerAccount $account
  * @property Collection|GameServerAccount[] $accounts
- * @property Collection|GameServerClanMapMarker[] $clan_map_markers
  * @package App\Models\Gameserver
  * @property-read int|null $accounts_count
  * @method static \Illuminate\Database\Eloquent\Builder|GameServerClan newModelQuery()
@@ -48,18 +49,13 @@ class GameServerClan extends Model
         'moderators' => 'array'
     ];
 
-	public function account()
-	{
+	public function account(): BelongsTo
+    {
 		return $this->belongsTo(GameServerAccount::class, 'leader_uid');
 	}
 
-	public function accounts()
-	{
+	public function accounts(): HasMany
+    {
 		return $this->hasMany(GameServerAccount::class);
-	}
-
-	public function clan_map_markers()
-	{
-		return $this->hasMany(GameServerClanMapMarker::class);
 	}
 }

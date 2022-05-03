@@ -18,8 +18,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $object_id
  * @property string $pos
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGlitch newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGlitch newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGlitch query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGlitch whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGlitch whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGlitch whereObjectId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGlitch wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGlitch wherePos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGlitch whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingGlitch extends Model
 {

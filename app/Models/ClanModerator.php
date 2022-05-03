@@ -11,14 +11,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class ClanModerator
- * 
+ *
  * @property int $clan_id
  * @property string $account_uid
- * 
  * @property Account $account
  * @property Clan $clan
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanModerator newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanModerator newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanModerator query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanModerator whereAccountUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanModerator whereClanId($value)
+ * @mixin \Eloquent
  */
 class ClanModerator extends Model
 {

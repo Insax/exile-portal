@@ -18,8 +18,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $source_account_id
  * @property string|null $target_account_id
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFamily newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFamily newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFamily query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFamily whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFamily whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFamily whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFamily whereSourceAccountId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFamily whereTargetAccountId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFamily whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingFamily extends Model
 {
@@ -37,12 +46,5 @@ class GameServerLoggingFamily extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'id',
-		'action',
-		'clan_id',
-		'source_account_id',
-		'target_account_id',
-		'time'
-	];
+    protected $guarded = [];
 }

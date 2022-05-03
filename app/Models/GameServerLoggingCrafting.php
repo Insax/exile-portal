@@ -21,8 +21,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $components
  * @property string $returned_item_class
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingCrafting newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingCrafting newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingCrafting query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingCrafting whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingCrafting whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingCrafting whereComponents($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingCrafting whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingCrafting wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingCrafting wherePlayerPos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingCrafting whereRecipeClassName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingCrafting whereReturnedItemClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingCrafting whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingCrafting extends Model
 {
@@ -40,15 +52,5 @@ class GameServerLoggingCrafting extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'id',
-		'player_id',
-		'clan_id',
-		'player_pos',
-		'recipe_class_name',
-		'amount',
-		'components',
-		'returned_item_class',
-		'time'
-	];
+    protected $guarded = [];
 }

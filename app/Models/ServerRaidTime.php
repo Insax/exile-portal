@@ -11,12 +11,18 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class ServerRaidTime
- * 
+ *
  * @property int $id
  * @property int $raid_count
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|ServerRaidTime newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ServerRaidTime newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ServerRaidTime query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ServerRaidTime whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ServerRaidTime whereRaidCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ServerRaidTime whereTime($value)
+ * @mixin \Eloquent
  */
 class ServerRaidTime extends Model
 {

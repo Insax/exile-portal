@@ -7,8 +7,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Vehicle
@@ -48,18 +51,70 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $trashed_at
- *
  * @property Account $account
- *
+ * @property Collection|HotwireLog[] $hotwireLogs
+ * @property Collection|SafeZoneLog[] $safeZoneLogs
+ * @property Collection|VehicleDestroyedLog[] $vehicleDestroyedLogs
+ * @property Collection|VirtualGarageLog[] $virtualGarageLogs
  * @package App\Models
+ * @property-read int|null $hotwire_logs_count
+ * @property-read int|null $safe_zone_logs_count
+ * @property-read int|null $vehicle_destroyed_logs_count
+ * @property-read int|null $virtual_garage_logs_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Vehicle onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereAccountUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereCargoContainer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereCargoItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereCargoMagazines($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereCargoWeapons($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereDamage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereDirectionX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereDirectionY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereDirectionZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereExileLoading($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereFuel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereHitpoints($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereInventory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereIsLocked($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereLastUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereMarxetId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereNickname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle wherePinCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle wherePositionX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle wherePositionY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle wherePositionZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereSpawnedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereTrashedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereTuningData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereUpX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereUpY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereUpZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Vehicle whereVehicleTexture($value)
+ * @method static \Illuminate\Database\Query\Builder|Vehicle withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Vehicle withoutTrashed()
+ * @mixin \Eloquent
  */
 class Vehicle extends Model
 {
+    use SoftDeletes;
+
 	protected $connection = 'portal';
 	protected $table = 'vehicles';
 	public $incrementing = false;
 	public $timestamps = false;
 	public static $snakeAttributes = false;
+
+    const DELETED_AT = 'trashed_at';
 
 	protected $casts = [
 		'id' => 'int',
@@ -90,5 +145,25 @@ class Vehicle extends Model
 	public function account(): BelongsTo
 	{
 		return $this->belongsTo(Account::class, 'account_uid');
+	}
+
+	public function hotwireLogs(): HasMany
+	{
+		return $this->hasMany(HotwireLog::class);
+	}
+
+	public function safeZoneLogs(): HasMany
+	{
+		return $this->hasMany(SafeZoneLog::class);
+	}
+
+	public function vehicleDestroyedLogs(): HasMany
+	{
+		return $this->hasMany(VehicleDestroyedLog::class);
+	}
+
+	public function virtualGarageLogs(): HasMany
+	{
+		return $this->hasMany(VirtualGarageLog::class);
 	}
 }

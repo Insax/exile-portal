@@ -20,8 +20,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $territory_id
  * @property string|null $build_rights
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingDisconnectPosition newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingDisconnectPosition newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingDisconnectPosition query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingDisconnectPosition whereBuildRights($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingDisconnectPosition whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingDisconnectPosition whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingDisconnectPosition wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingDisconnectPosition wherePlayerIsAlive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingDisconnectPosition wherePlayerPos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingDisconnectPosition whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingDisconnectPosition whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingDisconnectPosition extends Model
 {
@@ -39,14 +50,5 @@ class GameServerLoggingDisconnectPosition extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'id',
-		'player_id',
-		'clan_id',
-		'player_pos',
-		'player_is_alive',
-		'territory_id',
-		'build_rights',
-		'time'
-	];
+    protected $guarded = [];
 }

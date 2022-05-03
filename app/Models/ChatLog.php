@@ -1,14 +1,60 @@
 <?php
 
+/**
+ * Created by Reliese Model.
+ */
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ChatLog extends Logging
+/**
+ * Class ChatLog
+ *
+ * @property int $id
+ * @property string $sender_uid
+ * @property string $recipient_uid
+ * @property string $message
+ * @property Carbon $time
+ * @property Account $account
+ * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatLog newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatLog newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatLog query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatLog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatLog whereMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatLog whereRecipientUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatLog whereSenderUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatLog whereTime($value)
+ * @mixin \Eloquent
+ */
+class ChatLog extends Model
 {
-    function toString(): string
-    {
-        // TODO: Implement toString() method.
-    }
+	protected $connection = 'portal';
+	protected $table = 'chat_logs';
+	public $incrementing = false;
+	public $timestamps = false;
+	public static $snakeAttributes = false;
+
+	protected $casts = [
+		'id' => 'int'
+	];
+
+	protected $dates = [
+		'time'
+	];
+
+	protected $fillable = [
+		'sender_uid',
+		'recipient_uid',
+		'message',
+		'time'
+	];
+
+	public function account(): BelongsTo
+	{
+		return $this->belongsTo(Account::class, 'sender_uid');
+	}
 }

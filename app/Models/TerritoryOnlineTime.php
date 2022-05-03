@@ -12,15 +12,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class TerritoryOnlineTime
- * 
+ *
  * @property int $id
  * @property int $territory_id
  * @property int $online_count
  * @property Carbon $time
- * 
  * @property Territory $territory
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryOnlineTime newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryOnlineTime newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryOnlineTime query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryOnlineTime whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryOnlineTime whereOnlineCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryOnlineTime whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryOnlineTime whereTime($value)
+ * @mixin \Eloquent
  */
 class TerritoryOnlineTime extends Model
 {

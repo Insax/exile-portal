@@ -12,15 +12,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class TerritoryMoney
- * 
+ *
  * @property int $id
  * @property int $territory_id
  * @property int $money
  * @property Carbon $time
- * 
  * @property Territory $territory
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryMoney newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryMoney newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryMoney query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryMoney whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryMoney whereMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryMoney whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryMoney whereTime($value)
+ * @mixin \Eloquent
  */
 class TerritoryMoney extends Model
 {

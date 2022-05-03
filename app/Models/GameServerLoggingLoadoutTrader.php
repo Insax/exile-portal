@@ -18,8 +18,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $loadout
  * @property string $price
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingLoadoutTrader newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingLoadoutTrader newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingLoadoutTrader query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingLoadoutTrader whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingLoadoutTrader whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingLoadoutTrader whereLoadout($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingLoadoutTrader wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingLoadoutTrader wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingLoadoutTrader whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingLoadoutTrader extends Model
 {

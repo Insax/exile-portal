@@ -45,10 +45,47 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $exile_loading
  * @property string $inventory
  * @property string|null $marxet_id
- *
  * @property GameServerAccount|null $account
- *
  * @package App\Models\Gameserver
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle newQuery()
+ * @method static \Illuminate\Database\Query\Builder|GameServerVehicle onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereAccountUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereCargoContainer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereCargoItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereCargoMagazines($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereCargoWeapons($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereDamage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereDirectionX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereDirectionY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereDirectionZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereExileLoading($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereFuel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereHitpoints($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereInventory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereIsLocked($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereLastUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereMarxetId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereNickname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle wherePinCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle wherePositionX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle wherePositionY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle wherePositionZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereSpawnedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereTuningData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereUpX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereUpY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereUpZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerVehicle whereVehicleTexture($value)
+ * @method static \Illuminate\Database\Query\Builder|GameServerVehicle withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|GameServerVehicle withoutTrashed()
+ * @mixin \Eloquent
  */
 class GameServerVehicle extends Model
 {

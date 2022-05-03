@@ -57,10 +57,56 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $vest_weapons
  * @property Carbon $last_updated_at
  * @property string $loadout
- *
  * @property Account $account
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|Player newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Player newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Player query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereAccountUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereAlcohol($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereAssignedItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereBackpack($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereBackpackItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereBackpackMagazines($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereBackpackWeapons($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereBinocular($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereBleedingRemaining($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereCurrentWeapon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereDamage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereDirection($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereGoggles($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereHandgunItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereHandgunWeapon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereHeadgear($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereHitpoints($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereHunger($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereLastUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereLoadedMagazines($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereLoadout($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereOxygenRemaining($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player wherePositionX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player wherePositionY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player wherePositionZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player wherePrimaryWeapon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player wherePrimaryWeaponItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereSecondaryWeapon($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereSecondaryWeaponItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereSpawnedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereTemperature($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereThirst($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereUniform($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereUniformItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereUniformMagazines($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereUniformWeapons($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereVest($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereVestItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereVestMagazines($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereVestWeapons($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Player whereWetness($value)
+ * @mixin \Eloquent
  */
 class Player extends Model
 {

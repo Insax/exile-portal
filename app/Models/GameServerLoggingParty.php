@@ -20,8 +20,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $invited_player_clan_id
  * @property string $group_name
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingParty newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingParty newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingParty query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingParty whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingParty whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingParty whereGroupName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingParty whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingParty whereInvitedPlayerClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingParty whereInvitedPlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingParty wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingParty whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingParty extends Model
 {

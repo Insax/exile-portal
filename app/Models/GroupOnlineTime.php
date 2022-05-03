@@ -12,15 +12,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class GroupOnlineTime
- * 
+ *
  * @property int $id
  * @property int $clan_id
  * @property int $online_count
  * @property Carbon $time
- * 
  * @property Clan $clan
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GroupOnlineTime newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GroupOnlineTime newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GroupOnlineTime query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GroupOnlineTime whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GroupOnlineTime whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GroupOnlineTime whereOnlineCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GroupOnlineTime whereTime($value)
+ * @mixin \Eloquent
  */
 class GroupOnlineTime extends Model
 {

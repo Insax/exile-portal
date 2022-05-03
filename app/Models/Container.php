@@ -7,8 +7,11 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Container
@@ -41,18 +44,59 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @property Carbon|null $trashed_at
- *
  * @property Account|null $account
- *
+ * @property Collection|ContainerPackLog[] $containerPackLogs
+ * @property Collection|SafeHackingLog[] $safeHackingLogs
  * @package App\Models
+ * @property-read int|null $container_pack_logs_count
+ * @property-read int|null $safe_hacking_logs_count
+ * @method static \Illuminate\Database\Eloquent\Builder|Container newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Container newQuery()
+ * @method static \Illuminate\Database\Query\Builder|Container onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|Container query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereAbandoned($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereAccountUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereCargoContainer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereCargoItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereCargoMagazines($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereCargoWeapons($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereDirectionX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereDirectionY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereDirectionZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereInventory($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereIsLocked($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereLastUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container wherePinCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container wherePositionX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container wherePositionY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container wherePositionZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereSpawnedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereTrashedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereUpX($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereUpY($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereUpZ($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Container whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|Container withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|Container withoutTrashed()
+ * @mixin \Eloquent
  */
 class Container extends Model
 {
+    use SoftDeletes;
+
 	protected $connection = 'portal';
 	protected $table = 'containers';
 	public $incrementing = false;
 	public $timestamps = false;
 	public static $snakeAttributes = false;
+
+    const DELETED_AT = 'trashed_at';
 
 	protected $casts = [
 		'id' => 'int',
@@ -82,5 +126,15 @@ class Container extends Model
 	public function account(): BelongsTo
 	{
 		return $this->belongsTo(Account::class, 'account_uid');
+	}
+
+	public function containerPackLogs(): HasMany
+	{
+		return $this->hasMany(ContainerPackLog::class);
+	}
+
+	public function safeHackingLogs(): HasMany
+	{
+		return $this->hasMany(SafeHackingLog::class);
 	}
 }

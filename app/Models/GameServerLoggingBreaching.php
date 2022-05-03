@@ -21,8 +21,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $position
  * @property string $charge_class
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingBreaching newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingBreaching newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingBreaching query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingBreaching whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingBreaching whereChargeClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingBreaching whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingBreaching whereConstructionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingBreaching whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingBreaching wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingBreaching wherePosition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingBreaching whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingBreaching whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingBreaching extends Model
 {
@@ -40,15 +52,5 @@ class GameServerLoggingBreaching extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'id',
-		'player_id',
-		'clan_id',
-		'action',
-		'construction_id',
-		'territory_id',
-		'position',
-		'charge_class',
-		'time'
-	];
+    protected $guarded = [];
 }

@@ -20,8 +20,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $vehicle_id
  * @property string $vehicle_pos
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVehicleDestroyed newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVehicleDestroyed newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVehicleDestroyed query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVehicleDestroyed whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVehicleDestroyed whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVehicleDestroyed wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVehicleDestroyed wherePlayerPos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVehicleDestroyed whereTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVehicleDestroyed whereVehicleClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVehicleDestroyed whereVehicleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVehicleDestroyed whereVehiclePos($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingVehicleDestroyed extends Model
 {

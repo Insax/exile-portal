@@ -21,8 +21,20 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $attempts
  * @property string|null $reward_vehicle_class
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFlaghacking newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFlaghacking newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFlaghacking query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFlaghacking whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFlaghacking whereAttempts($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFlaghacking whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFlaghacking whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFlaghacking wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFlaghacking wherePlayerPos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFlaghacking whereRewardVehicleClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFlaghacking whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingFlaghacking whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingFlaghacking extends Model
 {

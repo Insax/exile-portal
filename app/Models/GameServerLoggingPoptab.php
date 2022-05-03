@@ -24,8 +24,23 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $player_after
  * @property string $player_pos
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab whereContainerAfter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab whereContainerBefore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab whereContainerClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab wherePlayerAfter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab wherePlayerBefore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab wherePlayerPos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingPoptab whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingPoptab extends Model
 {

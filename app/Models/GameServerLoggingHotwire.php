@@ -20,8 +20,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $territory_id
  * @property string $player_pos
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHotwire newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHotwire newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHotwire query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHotwire whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHotwire whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHotwire wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHotwire wherePlayerPos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHotwire whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHotwire whereTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHotwire whereVehicleClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingHotwire whereVehicleId($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingHotwire extends Model
 {

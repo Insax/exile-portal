@@ -12,15 +12,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class TerritoryContainerCountTime
- * 
+ *
  * @property int $id
  * @property int $territory_id
  * @property int $container_count
  * @property Carbon $time
- * 
  * @property Territory $territory
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerCountTime newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerCountTime newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerCountTime query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerCountTime whereContainerCount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerCountTime whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerCountTime whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryContainerCountTime whereTime($value)
+ * @mixin \Eloquent
  */
 class TerritoryContainerCountTime extends Model
 {

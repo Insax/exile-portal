@@ -22,8 +22,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $nickname
  * @property string $flag_id
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg whereFlagId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg whereNickname($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg whereTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg whereVehicleClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg whereVehicleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingVg whereVehiclePos($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingVg extends Model
 {

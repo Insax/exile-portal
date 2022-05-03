@@ -18,8 +18,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $item_class
  * @property string $price
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingInmateMarket newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingInmateMarket newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingInmateMarket query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingInmateMarket whereBuyerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingInmateMarket whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingInmateMarket whereItemClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingInmateMarket wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingInmateMarket whereSellerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingInmateMarket whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingInmateMarket extends Model
 {

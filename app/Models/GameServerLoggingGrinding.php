@@ -20,8 +20,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $player_pos
  * @property string $construction_id
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGrinding newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGrinding newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGrinding query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGrinding whereAction($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGrinding whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGrinding whereConstructionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGrinding whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGrinding wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGrinding wherePlayerPos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGrinding whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingGrinding whereTime($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingGrinding extends Model
 {

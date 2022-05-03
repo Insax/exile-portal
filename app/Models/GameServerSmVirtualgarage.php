@@ -25,8 +25,25 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $magazines
  * @property string $weapons
  * @property string $cargo
- *
  * @package App\Models\Gameserver
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage whereCargo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage whereClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage whereDamage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage whereFuel($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage whereHitpoints($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage whereItems($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage whereMagazines($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage whereOwnerUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage wherePincode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage wherePoptabs($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage wherePuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage whereTextures($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerSmVirtualgarage whereWeapons($value)
+ * @mixin \Eloquent
  */
 class GameServerSmVirtualgarage extends Model
 {

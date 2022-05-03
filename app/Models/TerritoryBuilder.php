@@ -11,14 +11,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class TerritoryBuilder
- * 
+ *
  * @property int $territory_id
  * @property string $account_uid
- * 
  * @property Account $account
  * @property Territory $territory
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryBuilder newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryBuilder newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryBuilder query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryBuilder whereAccountUid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryBuilder whereTerritoryId($value)
+ * @mixin \Eloquent
  */
 class TerritoryBuilder extends Model
 {

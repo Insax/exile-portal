@@ -20,8 +20,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $new_pos
  * @property string $tp_count
  * @property Carbon $time
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingAntiTp newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingAntiTp newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingAntiTp query()
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingAntiTp whereClass($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingAntiTp whereDistance($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingAntiTp whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingAntiTp whereNewPos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingAntiTp whereOldPos($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingAntiTp wherePlayerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingAntiTp whereTime($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerLoggingAntiTp whereTpCount($value)
+ * @mixin \Eloquent
  */
 class GameServerLoggingAntiTp extends Model
 {
@@ -39,14 +50,5 @@ class GameServerLoggingAntiTp extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'id',
-		'player_id',
-		'class',
-		'distance',
-		'old_pos',
-		'new_pos',
-		'tp_count',
-		'time'
-	];
+    protected $guarded = [];
 }

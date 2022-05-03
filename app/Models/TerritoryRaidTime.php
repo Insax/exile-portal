@@ -12,15 +12,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class TerritoryRaidTime
- * 
+ *
  * @property int $id
  * @property int $territory_id
  * @property bool $raid_mode
  * @property Carbon $time
- * 
  * @property Territory $territory
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryRaidTime newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryRaidTime newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryRaidTime query()
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryRaidTime whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryRaidTime whereRaidMode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryRaidTime whereTerritoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|TerritoryRaidTime whereTime($value)
+ * @mixin \Eloquent
  */
 class TerritoryRaidTime extends Model
 {

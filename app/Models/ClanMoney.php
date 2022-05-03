@@ -12,15 +12,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * Class ClanMoney
- * 
+ *
  * @property int $id
  * @property int $clan_id
  * @property int $money
  * @property Carbon $time
- * 
  * @property Clan $clan
- *
  * @package App\Models
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMoney newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMoney newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMoney query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMoney whereClanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMoney whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMoney whereMoney($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ClanMoney whereTime($value)
+ * @mixin \Eloquent
  */
 class ClanMoney extends Model
 {
