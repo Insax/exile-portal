@@ -73,7 +73,7 @@ class ConstructionCountTracker implements ShouldQueue
             ]);
         }
 
-        $territoryItemCount = TerritoryContainerContent::selectRaw('territory_id, SUM(count) as count)')->groupBy('territory_id')->get();
+        $territoryItemCount = TerritoryContainerContent::selectRaw('territory_id, SUM(count) as count')->groupBy('territory_id')->get();
 
         foreach ($territoryItemCount as $items) {
             TerritoryItemCountTime::create([

@@ -50,7 +50,8 @@ class AccountMoneyTracker implements ShouldQueue
         foreach ($accounts as $account) {
             AccountMoney::create([
                 'account_uid' => $account->uid,
-                'money' => $account->locker + $account->marxet_locker
+                'money' => $account->locker + $account->marxet_locker,
+                'time' => Carbon::now()
             ]);
         }
 
