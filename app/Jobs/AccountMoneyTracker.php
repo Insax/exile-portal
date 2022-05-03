@@ -58,7 +58,7 @@ class AccountMoneyTracker implements ShouldQueue
         $clanMoneyAccounts = Account::selectRaw('(SUM(locker) + SUM(marxet_locker)) as money, clan_id')->whereNotNull('clan_id')->groupBy('clan_id')->get();
         foreach ($clanMoneyAccounts as $account) {
             ClanMoney::create([
-                'clan_id' => $account,
+                'clan_id' => $account->clan_id,
                 'money' => $account->money,
                 'time' => Carbon::now()
             ]);
