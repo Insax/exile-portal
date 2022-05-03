@@ -67,19 +67,7 @@ class PoptabLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'account_uid',
-		'clan_id',
-		'amount',
-		'container_class',
-		'container_before',
-		'container_after',
-		'player_before',
-		'player_after',
-		'player_pos',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

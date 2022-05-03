@@ -59,16 +59,7 @@ class FlagHackingLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'account_uid',
-		'clan_id',
-		'territory_id',
-		'player_pos',
-		'attempts',
-		'reward_vehicle_class',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

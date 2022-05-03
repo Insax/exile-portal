@@ -50,13 +50,7 @@ class FamilyLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'clan_id',
-		'source_account_uid',
-		'target_account_uid',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function clan(): BelongsTo
 	{

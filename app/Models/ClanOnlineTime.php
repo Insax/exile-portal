@@ -15,5 +15,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ClanOnlineTime extends Model
 {
+    protected $connection = 'portal';
     use HasFactory;
 }

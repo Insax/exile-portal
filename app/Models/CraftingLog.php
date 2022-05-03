@@ -57,16 +57,7 @@ class CraftingLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'account_uid',
-		'clan_id',
-		'player_pos',
-		'recipe_class_name',
-		'amount',
-		'components',
-		'returned_item_class',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

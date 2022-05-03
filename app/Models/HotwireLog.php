@@ -58,15 +58,7 @@ class HotwireLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'account_uid',
-		'clan_id',
-		'vehicle_class',
-		'vehicle_id',
-		'territory_id',
-		'player_pos',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

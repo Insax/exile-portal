@@ -58,15 +58,7 @@ class DisconnectPositionLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'account_uid',
-		'clan_id',
-		'player_pos',
-		'player_is_alive',
-		'territory_id',
-		'build_rights',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

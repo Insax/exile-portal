@@ -46,12 +46,7 @@ class HackLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'new_account_uid',
-		'old_account_uid',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

@@ -62,18 +62,7 @@ class SafeZoneLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'account_uid',
-		'clan_id',
-		'vehicle',
-		'vehicle_id',
-		'player_pos',
-		'vehicle_pos',
-		'vehicle_owner_uid',
-		'vehicle_owner_clan_id',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

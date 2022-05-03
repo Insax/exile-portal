@@ -46,12 +46,7 @@ class ChatLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'sender_uid',
-		'recipient_uid',
-		'message',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

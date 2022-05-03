@@ -60,16 +60,7 @@ class BreachingLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'account_uid',
-		'clan_id',
-		'action',
-		'construction_id',
-		'territory_id',
-		'position',
-		'charge_class',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

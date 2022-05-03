@@ -62,17 +62,7 @@ class VirtualGarageLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'account_uid',
-		'clan_id',
-		'vehicle_class',
-		'vehicle_id',
-		'vehicle_pos',
-		'nickname',
-		'territory_id',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

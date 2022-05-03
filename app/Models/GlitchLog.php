@@ -49,13 +49,7 @@ class GlitchLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'account_uid',
-		'action',
-		'construction_id',
-		'pos',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function construction(): BelongsTo
 	{

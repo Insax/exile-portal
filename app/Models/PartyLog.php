@@ -55,15 +55,7 @@ class PartyLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'account_uid',
-		'clan_id',
-		'invited_account_uid',
-		'invited_player_clan_id',
-		'group_name',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

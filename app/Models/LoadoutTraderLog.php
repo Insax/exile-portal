@@ -51,13 +51,7 @@ class LoadoutTraderLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'account_uid',
-		'clan_id',
-		'loadout',
-		'price',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

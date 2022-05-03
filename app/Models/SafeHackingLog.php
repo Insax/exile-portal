@@ -61,16 +61,7 @@ class SafeHackingLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'account_uid',
-		'clan_id',
-		'territory_id',
-		'container_id',
-		'player_pos',
-		'hack_attempts',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

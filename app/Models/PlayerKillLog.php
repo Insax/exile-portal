@@ -55,15 +55,7 @@ class PlayerKillLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'killer_account_uid',
-		'killer_clan_id',
-		'killer_pos',
-		'victim_account_uid',
-		'victim_clan_id',
-		'victim_pos',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

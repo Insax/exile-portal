@@ -65,18 +65,7 @@ class TerritoryLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'account_uid',
-		'clan_id',
-		'territory_id',
-		'fee',
-		'poptabs_before',
-		'poptabs_after',
-		'player_pos',
-		'target_account_uid',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

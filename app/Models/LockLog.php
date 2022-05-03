@@ -64,18 +64,7 @@ class LockLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'account_uid',
-		'clan_id',
-		'lockable_type',
-		'lockable_id',
-		'pin_code',
-		'player_pos',
-		'territory_id',
-		'build_rights',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

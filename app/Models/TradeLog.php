@@ -70,20 +70,7 @@ class TradeLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'account_uid',
-		'clan_id',
-		'item_class',
-		'quantity',
-		'vehicle_id',
-		'container_content',
-		'price',
-		'sell_respect',
-		'poptabs_after',
-		'respect_after',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

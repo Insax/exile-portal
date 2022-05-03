@@ -56,15 +56,7 @@ class VehicleDestroyedLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'account_uid',
-		'clan_id',
-		'player_pos',
-		'vehicle_class',
-		'vehicle_id',
-		'vehicle_pos',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

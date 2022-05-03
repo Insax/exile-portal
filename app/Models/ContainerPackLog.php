@@ -59,15 +59,7 @@ class ContainerPackLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'account_uid',
-		'clan_id',
-		'container_id',
-		'container_pos',
-		'territory_id',
-		'build_rights',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

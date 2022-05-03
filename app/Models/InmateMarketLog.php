@@ -49,13 +49,7 @@ class InmateMarketLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'buyer_account_uid',
-		'seller_account_uid',
-		'item_class',
-		'price',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

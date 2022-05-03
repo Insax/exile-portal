@@ -63,17 +63,7 @@ class LockerLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'account_uid',
-		'clan_id',
-		'amount',
-		'locker_before',
-		'locker_after',
-		'player_before',
-		'player_after',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{

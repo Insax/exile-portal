@@ -58,15 +58,7 @@ class GrindingLog extends Model
 		'time'
 	];
 
-	protected $fillable = [
-		'action',
-		'account_uid',
-		'clan_id',
-		'territory_id',
-		'player_pos',
-		'construction_id',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{
