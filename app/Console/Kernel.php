@@ -23,14 +23,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->job(SyncDatabaseData::withChain([
-            new ParseAllContainersJob(),
-            new SyncLogData(),
-            new PlayerOnlineTimeTrackerJob(),
-            new AccountMoneyTracker(),
-            new AccountRespectTracker(),
-            new ConstructionCountTracker(),
-        ]))->everyMinute();
+        $schedule->job(new SyncDatabaseData)->then(function () use ($schedule) {
+            ParseAllContainersJob::dispatch();
+            SyncLogData::dispatch();
+            PlayerOnlineTimeTrackerJob::dispatch();
+            AccountMoneyTracker::dispatch();
+            AccountRespectTracker::dispatch();
+            ConstructionCountTracker::dispatch();
+        });
 
         $schedule->job(SoftDeleteGameData::class)->everyThirtyMinutes();
     }
