@@ -728,7 +728,7 @@ class SyncLogData implements ShouldQueue
             $loggable = SafeZoneLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->action,
+                'account_uid' => $log->player_id,
                 'clan_id' => $log->clan_id,
                 'player_pos' => $log->player_pos,
                 'vehicle_id' => $log->vehicle_id,
