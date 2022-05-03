@@ -25,8 +25,8 @@ return new class extends Migration
             $table->text('container_content')->nullable();;
             $table->integer('price')->nullable();;
             $table->integer('sell_respect')->nullable();
-            $table->integer('poptabs_after');
-            $table->integer('respect_after');
+            $table->integer('poptabs_after')->nullable();
+            $table->integer('respect_after')->nullable();
             $table->timestamp('time');
 
             $table->foreign('account_uid')->references('uid')->on('accounts')->onDelete('cascade');
