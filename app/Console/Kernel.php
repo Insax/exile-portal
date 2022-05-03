@@ -2,7 +2,12 @@
 
 namespace App\Console;
 
+use App\Jobs\AccountMoneyTracker;
+use App\Jobs\AccountRespectTracker;
+use App\Jobs\ConstructionCountTracker;
 use App\Jobs\ParseAllContainersJob;
+use App\Jobs\PlayerOnlineTimeTrackerJob;
+use App\Jobs\SoftDeleteGameData;
 use App\Jobs\SyncDatabaseData;
 use App\Jobs\SyncLogData;
 use Illuminate\Console\Scheduling\Schedule;
@@ -20,8 +25,14 @@ class Kernel extends ConsoleKernel
     {
         $schedule->job(SyncDatabaseData::withChain([
             new ParseAllContainersJob(),
-            new SyncLogData()
+            new SyncLogData(),
+            new PlayerOnlineTimeTrackerJob(),
+            new AccountMoneyTracker(),
+            new AccountRespectTracker(),
+            new ConstructionCountTracker(),
         ]))->everyMinute();
+
+        $schedule->job(SoftDeleteGameData::class)->everyThirtyMinutes();
     }
 
     /**

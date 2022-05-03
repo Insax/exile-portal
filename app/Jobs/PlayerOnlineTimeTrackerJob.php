@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\Account;
 use App\Models\AccountOnlineTime;
 use App\Models\ClanOnlineTime;
+use App\Models\TerritoryOnlineTime;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
@@ -53,14 +54,13 @@ class PlayerOnlineTimeTrackerJob implements ShouldQueue
             ]);
         }
 
-        /**
-        $teritoryMembers = array();
-        foreach (Account::whereColumn('last_connect_at', '>', 'last_disconnect_at')->get() as $account) {
-            foreach ($account->territoryMember as $territoryMember) {
-                $territoryMember->territory
-            }
+        foreach (Account::selectRaw('territory_id, count(*) as online_count')->join('territory_members', 'account_uid', '=', 'uid')->whereColumn('last_connect_at', '>', 'last_disconnect_at')->groupBy('territory_id')->get() as $account) {
+            TerritoryOnlineTime::create([
+                'territory_id' => $account->territory_id,
+                'online_count' => $account->online_count,
+                'time' => Carbon::now()
+            ]);
         }
-         */
 
     }
 }

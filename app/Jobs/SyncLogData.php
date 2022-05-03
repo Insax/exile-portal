@@ -51,11 +51,14 @@ use App\Models\PoptabLog;
 use App\Models\ReadableLogging;
 use App\Models\SafeHackingLog;
 use App\Models\SafeZoneLog;
+use App\Models\ServerRaidTime;
 use App\Models\TerritoryLog;
+use App\Models\TerritoryRaidTime;
 use App\Models\ThermalScannerLog;
 use App\Models\TradeLog;
 use App\Models\VehicleDestroyedLog;
 use App\Models\VirtualGarageLog;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -781,7 +784,22 @@ class SyncLogData implements ShouldQueue
                 'loggable_type' => $loggable::class,
                 'created_at' => $loggable->time
             ]);
+
+            $territoryRaidMode = TerritoryLog::where('time', '>', Carbon::now())->whereAction('Raidmode')->whereTerritoryId($loggable->territory_id)->count();
+            if($territoryRaidMode) {
+                TerritoryRaidTime::create([
+                    'territory_id' => $loggable->territory_id,
+                    'raid_mode' => true,
+                    'time' => Carbon::now()
+                ]);
+            }
         }
+
+        $raidModeActiveCount = TerritoryLog::where('time', '>', Carbon::now())->whereAction('Raidmode')->count();
+        ServerRaidTime::create([
+            'raid_count' => $raidModeActiveCount,
+            'time' => Carbon::now()
+        ]);
 
         foreach ($thermalScanLogs as $log) {
             $loggable = ThermalScannerLog::create([
