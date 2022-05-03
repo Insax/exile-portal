@@ -88,7 +88,7 @@ class SyncDatabaseData implements ShouldQueue
 
         /* Sync all Clans */
         foreach ($allClans as $clan) {
-            Clan::updateOrCreate(['id', $clan->id], [
+            Clan::updateOrCreate(['id' => $clan->id], [
                 'id' => $clan->id,
                 'name' => $clan->name,
                 'leader_uid' => $clan->leader_uid,
@@ -119,11 +119,11 @@ class SyncDatabaseData implements ShouldQueue
         }
 
         foreach ($allSmVg as $item) {
-            SmVirtualgarage::updateOrCreate(['id', $item->id], $item->getAttributes());
+            SmVirtualgarage::updateOrCreate(['id' => $item->id], $item->getAttributes());
         }
 
         foreach ($allTerritories as $territory) {
-            Territory::updateOrCreate(['id', $territory->id], [
+            Territory::updateOrCreate(['id' => $territory->id], [
                 'id' => $territory->id,
                 'esm_custom_id' => $territory->esm_custom_id,
                 'owner_uid' => $territory->owner_uid,
