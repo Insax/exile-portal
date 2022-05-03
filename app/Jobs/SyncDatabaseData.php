@@ -2,13 +2,11 @@
 
 namespace App\Jobs;
 
-use App\Models\ClanMapMarker;
 use App\Models\ClanModerator;
 use App\Models\Construction;
 use App\Models\Container;
 use App\Models\GameServerAccount;
 use App\Models\GameServerClan;
-use App\Models\GameServerClanMapMarker;
 use App\Models\GameServerConstruction;
 use App\Models\GameServerContainer;
 use App\Models\GameServerMarxet;
@@ -59,14 +57,14 @@ class SyncDatabaseData implements ShouldQueue
     public function handle(): void
     {
         if(Account::count() != 0) {
-            $allAccounts = GameServerAccount::where('last_updated_at', '>', Carbon::now()->subMinutes(1))->get();
-            $allClans = GameServerClan::where('last_updated_at', '>', Carbon::now()->subMinutes(1))->get();
-            $allConstructions = GameServerConstruction::where('last_updated_at', '>', Carbon::now()->subMinutes(1))->get();
-            $allContainers = GameServerContainer::where('last_updated_at', '>', Carbon::now()->subMinutes(1))->get();
+            $allAccounts = GameServerAccount::where('last_updated_at', '>', Carbon::now()->subHour())->get();
+            $allClans = GameServerClan::where('last_updated_at', '>', Carbon::now()->subHour())->get();
+            $allConstructions = GameServerConstruction::where('last_updated_at', '>', Carbon::now()->subHour())->get();
+            $allContainers = GameServerContainer::where('last_updated_at', '>', Carbon::now()->subHour())->get();
             $allMarxets = GameServerMarxet::all();
             $allSmVg = GameServerSmVirtualgarage::all();
-            $allTerritories = GameServerTerritory::where('last_updated_at', '>', Carbon::now()->subMinutes(1))->get();
-            $allVehicles = GameServerVehicle::where('last_updated_at', '>', Carbon::now()->subMinutes(1))->get();
+            $allTerritories = GameServerTerritory::where('last_updated_at', '>', Carbon::now()->subHour())->get();
+            $allVehicles = GameServerVehicle::where('last_updated_at', '>', Carbon::now()->subHour())->get();
         } else {
             $allAccounts = GameServerAccount::all();
             $allClans = GameServerClan::all();
