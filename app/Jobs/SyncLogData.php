@@ -877,15 +877,16 @@ class SyncLogData implements ShouldQueue
                 'time' => $log->time
             ]);
 
-            ReadableLogging::create([
-                'account_uid' => $loggable->account_uid,
-                'clan_id' => $loggable->clan_id,
-                'territory_id' => null,
-                'type' => 'VEHICLE_DESTROYED_LOG',
-                'loggable_id' => $loggable->id,
-                'loggable_type' => $loggable::class,
-                'created_at' => $loggable->time
-            ]);
+            if(!empty($loggable->account_uid))
+                ReadableLogging::create([
+                    'account_uid' => $loggable->account_uid,
+                    'clan_id' => $loggable->clan_id,
+                    'territory_id' => null,
+                    'type' => 'VEHICLE_DESTROYED_LOG',
+                    'loggable_id' => $loggable->id,
+                    'loggable_type' => $loggable::class,
+                    'created_at' => $loggable->time
+                ]);
         }
 
         foreach ($virtualGarageLogs as $log) {
