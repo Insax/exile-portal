@@ -799,7 +799,7 @@ class SyncLogData implements ShouldQueue
             }
         }
 
-        $raidModeActiveCount = TerritoryLog::where('time', '>', Carbon::now())->whereAction('Raidmode')->count();
+        $raidModeActiveCount = TerritoryLog::where('time', '>', Carbon::now())->whereAction('Raidmode')->distinct()->count('territory_id');
         ServerRaidTime::create([
             'raid_count' => $raidModeActiveCount,
             'time' => Carbon::now()
