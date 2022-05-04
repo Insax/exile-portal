@@ -789,7 +789,7 @@ class SyncLogData implements ShouldQueue
                     'created_at' => $loggable->time
                 ]);
 
-            $territoryRaidMode = TerritoryLog::where('time', '>', Carbon::now())->whereAction('Raidmode')->whereTerritoryId($loggable->territory_id)->count();
+            $territoryRaidMode = TerritoryLog::where('time', '>', Carbon::now())->whereAction('Raidmode')->whereTerritoryId($loggable->territory_id)->distinct()->count('territory_id');
             if($territoryRaidMode) {
                 TerritoryRaidTime::create([
                     'territory_id' => $loggable->territory_id,

@@ -67,7 +67,7 @@ class ConstructionCountTracker implements ShouldQueue
 
         foreach ($territoryContainerCount as $count) {
             TerritoryContainerCountTime::create([
-                'construction_count' => $count->count,
+                'container_count' => $count->count,
                 'territory_id' => $count->territory_id,
                 'time' => Carbon::now()
             ]);
