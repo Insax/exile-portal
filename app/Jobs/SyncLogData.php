@@ -890,6 +890,7 @@ class SyncLogData implements ShouldQueue
                 'price' => $log->price,
                 'sell_respect' => $log->sell_respect,
                 'poptabs_after' => $log->poptabs_after,
+                'respect_after' => $log->respect_after,
                 'time' => $log->time
             ]);
 

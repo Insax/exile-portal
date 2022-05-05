@@ -114,6 +114,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|Territory withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Territory withoutTrashed()
  * @mixin \Eloquent
+ * @property-read \App\Models\Account|null $territoryFlagStealer
+ * @property-read Collection|\App\Models\Account[] $territoryMembers
+ * @property-read int|null $territory_members_count
  */
 class Territory extends Model
 {

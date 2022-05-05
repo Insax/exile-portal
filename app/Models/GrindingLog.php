@@ -67,21 +67,21 @@ class GrindingLog extends Logging
 
 	public function clan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class);
+		return $this->belongsTo(Clan::class)->withTrashed();
 	}
 
 	public function construction(): BelongsTo
 	{
-		return $this->belongsTo(Construction::class);
+		return $this->belongsTo(Construction::class)->withTrashed();
 	}
 
 	public function territory(): BelongsTo
 	{
-		return $this->belongsTo(Territory::class);
+		return $this->belongsTo(Territory::class)->withTrashed();
 	}
 
     function toString(): string
     {
-        return '';
+        return view('logs.entries.grind', ['log' => $this])->render();
     }
 }

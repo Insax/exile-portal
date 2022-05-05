@@ -47,7 +47,7 @@
     </a> and it was declined
     @break
     @case('Kicked')
-        kicked player <a
+    kicked player <a
         class="whitespace-no-wrap underline"
         href="{{ route('account.view', ['account' => $log->target_account_uid]) }}">
         {{ $log->targetAccount->name }}

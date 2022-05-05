@@ -66,7 +66,7 @@ class CraftingLog extends Logging
 
 	public function clan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class);
+		return $this->belongsTo(Clan::class)->withTrashed();
 	}
 
     function toString(): string

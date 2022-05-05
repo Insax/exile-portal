@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int $construction_id
  * @property string $pos
  * @property Carbon $time
+ * @property Account $account
  * @property Construction $construction
  * @package App\Models
  * @method static \Illuminate\Database\Eloquent\Builder|GlitchLog newModelQuery()
@@ -51,13 +52,18 @@ class GlitchLog extends Logging
 
     protected $guarded = [];
 
+    public function account(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'account_uid');
+    }
+
 	public function construction(): BelongsTo
 	{
-		return $this->belongsTo(Construction::class);
+		return $this->belongsTo(Construction::class)->withTrashed();
 	}
 
     function toString(): string
     {
-        return '';
+        return view('logs.entries.glitch', ['log' => $this])->render();
     }
 }

@@ -24,8 +24,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $vehicle_owner_uid
  * @property int|null $vehicle_owner_clan_id
  * @property Carbon $time
- * @property Account|null $account
+ * @property Account $account
+ * @property Account|null $ownerAccount
  * @property Clan|null $clan
+ * @property Clan|null $ownerClan
  * @package App\Models
  * @method static \Illuminate\Database\Eloquent\Builder|SafeZoneLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|SafeZoneLog newQuery()
@@ -66,13 +68,23 @@ class SafeZoneLog extends Logging
 
 	public function account(): BelongsTo
 	{
-		return $this->belongsTo(Account::class, 'vehicle_owner_uid');
+		return $this->belongsTo(Account::class, 'account_uid');
 	}
+
+    public function ownerAccount(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'account_uid');
+    }
 
 	public function clan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class, 'vehicle_owner_clan_id');
+		return $this->belongsTo(Clan::class, 'clan_id')->withTrashed();
 	}
+
+    public function ownerClan(): BelongsTo
+    {
+        return $this->belongsTo(Clan::class, 'vehicle_owner_clan_id')->withTrashed();
+    }
 
 	public function vehicle(): BelongsTo
 	{
@@ -81,6 +93,6 @@ class SafeZoneLog extends Logging
 
     function toString(): string
     {
-        return '';
+        return view('logs.entries.safezone', ['log' => $this]);
     }
 }

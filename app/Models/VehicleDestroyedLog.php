@@ -65,16 +65,16 @@ class VehicleDestroyedLog extends Logging
 
 	public function clan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class);
+		return $this->belongsTo(Clan::class)->withTrashed();
 	}
 
 	public function vehicle(): BelongsTo
 	{
-		return $this->belongsTo(Vehicle::class);
+		return $this->belongsTo(Vehicle::class)->withTrashed();
 	}
 
     function toString(): string
     {
-        return '';
+        return view('logs.entries.vehicle-destroyed', ['log' => $this])->render();
     }
 }

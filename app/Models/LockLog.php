@@ -9,6 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * Class LockLog
@@ -27,6 +28,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Account $account
  * @property Clan|null $clan
  * @property Territory|null $territory
+ * @property  Vehicle|Construction|Container $lockable
  * @package App\Models
  * @method static \Illuminate\Database\Eloquent\Builder|LockLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|LockLog newQuery()
@@ -73,16 +75,21 @@ class LockLog extends Logging
 
 	public function clan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class);
+		return $this->belongsTo(Clan::class)->withTrashed();
 	}
 
 	public function territory(): BelongsTo
 	{
-		return $this->belongsTo(Territory::class);
+		return $this->belongsTo(Territory::class)->withTrashed();
 	}
+
+    public function lockable(): MorphTo
+    {
+        return $this->morphTo()->withTrashed();
+    }
 
     function toString(): string
     {
-        return '';
+        return view('logs.entries.lock', ['log' => $this])->render();
     }
 }

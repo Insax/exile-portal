@@ -9,6 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
  * Class ThermalScannerLog
@@ -25,6 +26,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Carbon $time
  * @property Account $account
  * @property Territory|null $territory
+ * @property  Vehicle|Construction|Container $scanable
  * @package App\Models
  * @method static \Illuminate\Database\Eloquent\Builder|ThermalScannerLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ThermalScannerLog newQuery()
@@ -75,16 +77,26 @@ class ThermalScannerLog extends Logging
 
 	public function account(): BelongsTo
 	{
-		return $this->belongsTo(Account::class, 'account_uid');
+		return $this->belongsTo(Account::class, 'account_uid')->withTrashed();
 	}
 
 	public function territory(): BelongsTo
 	{
-		return $this->belongsTo(Territory::class);
+		return $this->belongsTo(Territory::class)->withTrashed();
 	}
+
+    public function clan(): BelongsTo
+    {
+        return $this->belongsTo(Clan::class)->withTrashed();
+    }
+
+    public function scanable(): MorphTo
+    {
+        return $this->morphTo()->withTrashed();
+    }
 
     function toString(): string
     {
-        return '';
+        return view('logs.entries.thermalscan', ['log' => $this])->render();
     }
 }

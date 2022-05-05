@@ -65,26 +65,26 @@ class SafeHackingLog extends Logging
 
 	public function account(): BelongsTo
 	{
-		return $this->belongsTo(Account::class, 'account_uid');
+		return $this->belongsTo(Account::class, 'account_uid')->withTrashed();
 	}
 
 	public function clan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class);
+		return $this->belongsTo(Clan::class)->withTrashed();
 	}
 
 	public function container(): BelongsTo
 	{
-		return $this->belongsTo(Container::class);
+		return $this->belongsTo(Container::class)->withTrashed();
 	}
 
 	public function territory(): BelongsTo
 	{
-		return $this->belongsTo(Territory::class);
+		return $this->belongsTo(Territory::class)->withTrashed();
 	}
 
     function toString(): string
     {
-        return '';
+        return view('logs.entries.safehacking', ['log' => $this]);
     }
 }

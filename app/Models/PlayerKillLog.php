@@ -21,8 +21,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int|null $victim_clan_id
  * @property string $victim_pos
  * @property Carbon $time
- * @property Account $account
- * @property Clan|null $clan
+ * @property Account $killerAccount
+ * @property Account $victimAccount
+ * @property Clan|null $killerClan
+ * @property Clan|null $victimClan
  * @package App\Models
  * @method static \Illuminate\Database\Eloquent\Builder|PlayerKillLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PlayerKillLog newQuery()
@@ -57,18 +59,28 @@ class PlayerKillLog extends Logging
 
     protected $guarded = [];
 
-	public function account(): BelongsTo
+	public function killerAccount(): BelongsTo
 	{
-		return $this->belongsTo(Account::class, 'victim_account_uid');
+		return $this->belongsTo(Account::class, 'killer_account_uid');
 	}
 
-	public function clan(): BelongsTo
+	public function killerClan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class, 'victim_clan_id');
+		return $this->belongsTo(Clan::class, 'killer_clan_id')->withTrashed();
 	}
+
+    public function victimAccount(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'victim_account_uid');
+    }
+
+    public function victimClan(): BelongsTo
+    {
+        return $this->belongsTo(Clan::class, 'victim_clan_id')->withTrashed();
+    }
 
     function toString(): string
     {
-        return '';
+        return view('logs.entries.player-kill', ['log' => $this])->render();
     }
 }

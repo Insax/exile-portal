@@ -1,8 +1,8 @@
 @php /** @var \App\Models\FlagHackingLog $log */ @endphp
 <a
     class="whitespace-no-wrap underline"
-    href="{{ route('account.view', ['account' => $log->source_account_uid]) }}">
-    {{ $log->sourceAccount->name }}
+    href="{{ route('account.view', ['account' => $log->account_uid]) }}">
+    {{ $log->account->name }}
 </a>
 @if($log->clan_id)
     in Family <a
@@ -12,5 +12,27 @@
     </a>
 @endif
 @switch($log->action)
-   
+    @case('COMPLETED')
+    completed hacking
+    @break
+    @case('Cancelled')
+    cancelled hacking
+    @break
+    @case('Failed')
+    failed hacking
+    @break
+    @case('Interrupted')
+    interrupted hacking
+    @break
+    @case('Started')
+    started hacking
+    @break
 @endswitch
+the Flag of Territory <a
+    class="whitespace-no-wrap underline"
+    href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
+    {{ $log->territory->name }}
+</a> at position {{ $log->player_pos }}, {{ $log->attempts }} so far
+@if($log->reward_vehicle_class)
+    and received a {{ __($log->reward_vehicle_class) }}
+@endif

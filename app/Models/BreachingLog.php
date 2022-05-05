@@ -79,7 +79,7 @@ class BreachingLog extends Logging
 
 	public function territory(): BelongsTo
 	{
-		return $this->belongsTo(Territory::class);
+		return $this->belongsTo(Territory::class)->withTrashed();
 	}
 
     function toString(): string

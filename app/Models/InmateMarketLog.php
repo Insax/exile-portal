@@ -19,7 +19,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $item_class
  * @property int $price
  * @property Carbon $time
- * @property Account $account
+ * @property Account $buyerAccount
+ * @property Account $sellerAccount
  * @package App\Models
  * @method static \Illuminate\Database\Eloquent\Builder|InmateMarketLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|InmateMarketLog newQuery()
@@ -51,13 +52,18 @@ class InmateMarketLog extends Logging
 
     protected $guarded = [];
 
-	public function account(): BelongsTo
+	public function buyerAccount(): BelongsTo
 	{
-		return $this->belongsTo(Account::class, 'seller_account_uid');
+		return $this->belongsTo(Account::class, 'buyer_account_uid');
 	}
+
+    public function sellerAccount(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'seller_account_uid');
+    }
 
     function toString(): string
     {
-        return '';
+        return view('logs.entries.inmate', ['log' => $this])->render();
     }
 }

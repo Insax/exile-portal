@@ -77,13 +77,18 @@ class TradeLog extends Logging
 		return $this->belongsTo(Account::class, 'account_uid');
 	}
 
+    public function clan(): BelongsTo
+    {
+        return $this->belongsTo(Clan::class)->withTrashed();
+    }
+
 	public function vehicle(): BelongsTo
 	{
-		return $this->belongsTo(Vehicle::class);
+		return $this->belongsTo(Vehicle::class)->withTrashed();
 	}
 
     function toString(): string
     {
-        return '';
+        return view('logs.entries.trade', ['log' => $this])->render();
     }
 }

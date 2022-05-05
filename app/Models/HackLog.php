@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Eloquent;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -18,7 +19,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $new_account_uid
  * @property string $old_account_uid
  * @property Carbon $time
- * @property Account $account
+ * @property Account $oldAccount
+ * @property Account $newAccount
  * @package App\Models
  * @method static \Illuminate\Database\Eloquent\Builder|HackLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|HackLog newQuery()
@@ -28,7 +30,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|HackLog whereNewAccountUid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|HackLog whereOldAccountUid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|HackLog whereTime($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class HackLog extends Logging
 {
@@ -48,13 +50,18 @@ class HackLog extends Logging
 
     protected $guarded = [];
 
-	public function account(): BelongsTo
+	public function oldAccount(): BelongsTo
 	{
 		return $this->belongsTo(Account::class, 'old_account_uid');
 	}
 
+    public function newAccount(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'new_account_uid');
+    }
+
     function toString(): string
     {
-        return '';
+        return view('logs.entries.hack', ['log' => $this])->render();
     }
 }

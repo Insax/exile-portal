@@ -22,7 +22,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $group_name
  * @property Carbon $time
  * @property Account $account
+ * @property Account $inviteeAccount
  * @property Clan|null $clan
+ * @property Clan|null $inviteeClan
  * @package App\Models
  * @method static \Illuminate\Database\Eloquent\Builder|PartyLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|PartyLog newQuery()
@@ -59,16 +61,26 @@ class PartyLog extends Logging
 
 	public function account(): BelongsTo
 	{
-		return $this->belongsTo(Account::class, 'invited_account_uid');
+		return $this->belongsTo(Account::class, 'account_uid');
 	}
 
-	public function clan(): BelongsTo
+    public function inviteeAccount(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'invited_account_uid');
+    }
+
+    public function clan(): BelongsTo
+    {
+        return $this->belongsTo(Clan::class)->withTrashed();
+    }
+
+	public function inviteeClan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class, 'invited_player_clan_id');
+		return $this->belongsTo(Clan::class, 'invited_player_clan_id')->withTrashed();
 	}
 
     function toString(): string
     {
-        return '';
+        return view('logs.entries.party', ['log' => $this])->render();
     }
 }

@@ -24,7 +24,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $player_pos
  * @property string|null $target_account_uid
  * @property Carbon $time
- * @property Account|null $account
+ * @property Account $account
+ * @property Account|null $targetAccount
  * @property Clan|null $clan
  * @property Territory|null $territory
  * @package App\Models
@@ -69,21 +70,26 @@ class TerritoryLog extends Logging
 
 	public function account(): BelongsTo
 	{
-		return $this->belongsTo(Account::class, 'target_account_uid');
+		return $this->belongsTo(Account::class, 'account_uid');
 	}
+
+    public function targetAccount(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'target_account_uid');
+    }
 
 	public function clan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class);
+		return $this->belongsTo(Clan::class)->withTrashed();
 	}
 
 	public function territory(): BelongsTo
 	{
-		return $this->belongsTo(Territory::class);
+		return $this->belongsTo(Territory::class)->withTrashed();
 	}
 
     function toString(): string
     {
-        return '';
+        return view('logs.entries.territory', ['log' => $this])->render();
     }
 }

@@ -1,4 +1,4 @@
-@php /** @var \App\Models\ContainerPackLog $log */ @endphp
+@php /** @var \App\Models\PartyLog $log */ @endphp
 <a
     class="whitespace-no-wrap underline"
     href="{{ route('account.view', ['account' => $log->account_uid]) }}">
@@ -11,10 +11,8 @@
         {{ $log->clan->name }}
     </a>
 @endif
-packed container {{ __($log->container->class) }} at position {{ $log->container_pos }}
-in Territory
-<a
-    class="whitespace-no-wrap underline"
-    href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
-    {{ $log->territory->name }}
-</a>
+@switch($log->action)
+    @case('Created')
+    created the party {{ $log->group_name }}
+    @break
+@endswitch

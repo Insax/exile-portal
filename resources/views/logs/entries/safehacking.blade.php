@@ -1,4 +1,4 @@
-@php /** @var \App\Models\BreachingLog $log */ @endphp
+@php /** @var \App\Models\SafeHackingLog $log */ @endphp
 <a
     class="whitespace-no-wrap underline"
     href="{{ route('account.view', ['account' => $log->account_uid]) }}">
@@ -11,10 +11,25 @@
         {{ $log->clan->name }}
     </a>
 @endif
-{{ __($log->action) }} a {{ __($log->charge_class) }}
-on a {{ __($log->construction->class) }} at Position {{ $log->position }} in Territory
-<a
+@switch($log->action)
+    @case('COMPLETED')
+    completed hacking
+    @break
+    @case('Cancelled')
+    cancelled hacking
+    @break
+    @case('Failed')
+    failed hacking
+    @break
+    @case('Interrupted')
+    interrupted hacking
+    @break
+    @case('Started')
+    started hacking
+    @break
+@endswitch
+{{ __($log->container->class) }} of Territory <a
     class="whitespace-no-wrap underline"
     href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
     {{ $log->territory->name }}
-</a>
+</a> at position {{ $log->player_pos }}, {{ $log->hack_attempts }} so far
