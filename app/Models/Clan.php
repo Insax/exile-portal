@@ -110,7 +110,7 @@ class Clan extends Model
 
     public static function findOrCreateDummy(?int $clanId)
     {
-        if($clanId == null || self::whereId($clanId)->exists())
+        if($clanId == null || self::whereId($clanId)->withTrashed()->exists())
             return;
 
         $dummyClan = self::create([

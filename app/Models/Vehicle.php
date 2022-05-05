@@ -144,7 +144,7 @@ class Vehicle extends Model
 
     public static function findOrCreateDummy(?int $vehicleId)
     {
-        if($vehicleId == null || self::whereId($vehicleId)->exists())
+        if($vehicleId == null || self::whereId($vehicleId)->withTrashed()->exists())
             return;
 
         $dummyVehicle = self::create([

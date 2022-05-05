@@ -150,7 +150,7 @@ class Territory extends Model
 
     public static function findOrCreateDummy(?int $territoryId)
     {
-        if($territoryId == null || self::whereId($territoryId)->exists())
+        if($territoryId == null || self::whereId($territoryId)->withTrashed()->exists())
             return;
 
         $dummyTerritory = self::create([

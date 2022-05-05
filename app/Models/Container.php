@@ -125,7 +125,7 @@ class Container extends Model
 
     public static function findOrCreateDummy(?int $containerId)
     {
-        if($containerId == null || self::whereId($containerId)->exists())
+        if($containerId == null || self::whereId($containerId)->withTrashed()->exists())
             return;
 
         $dummyConstruction = self::create([

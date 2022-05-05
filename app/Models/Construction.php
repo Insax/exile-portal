@@ -118,7 +118,7 @@ class Construction extends Model
 
     public static function findOrCreateDummy(?int $constructionId)
     {
-        if($constructionId == null || self::whereId($constructionId)->exists())
+        if($constructionId == null || self::whereId($constructionId)->withTrashed()->exists())
             return;
 
         $dummyConstruction = self::create([
