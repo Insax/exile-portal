@@ -89,7 +89,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class GameServerVehicle extends Model
 {
-	use SoftDeletes;
 	protected $connection = 'gameserver';
 	protected $table = 'vehicle';
 	public $timestamps = false;

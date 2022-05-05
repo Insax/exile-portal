@@ -69,7 +69,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class GameServerTerritory extends Model
 {
-	use SoftDeletes;
 	protected $connection = 'gameserver';
 	protected $table = 'territory';
 	public $timestamps = false;
