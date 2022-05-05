@@ -63,17 +63,7 @@ class ThermalScannerLog extends Logging
 		'time'
 	];
 
-	protected $fillable = [
-		'account_uid',
-		'clan_id',
-		'scanable_type',
-		'scanable_id',
-		'pin_code',
-		'player_pos',
-		'territory_id',
-		'has_rights',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{
