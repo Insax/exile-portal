@@ -50,7 +50,7 @@
                         @foreach($logs as $log)
                             <tr class="table-row-portal">
                                 <td class="px-5 py-5 text-center text-sm">
-                                    <p class="whitespace-no-wrap">{!! $log->loggable->toString() !!}</p>
+                                    <p class="whitespace-no-wrap">{!! empty($log->loggable->toString()) ? var_dump($log->loggable) : $log->loggable->toString() !!}</p>
                                 </td>
                                 <td class="px-5 py-5 text-center text-sm">
                                     <a class="whitespace-no-wrap">{{ $log->created_at }}</a>
