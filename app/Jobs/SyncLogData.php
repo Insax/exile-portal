@@ -226,7 +226,7 @@ class SyncLogData implements ShouldQueue
                 'id' => $log->id,
                 'sender_uid' => $log->sender_id,
                 'recipient_uid' => $log->receiver_id,
-                'message' => $log->message,
+                'message' => $log->text,
                 'time' => $log->time
             ]);
 
