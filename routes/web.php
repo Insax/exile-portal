@@ -31,7 +31,7 @@ Route::view('dashboard', 'dashboard')
 	->name('dashboard')
 	->middleware(['auth', 'verified', 'twoFactor']);
 
-Route::prefix('portal')->middleware(['auth', 'verified', 'twoFactor', 'can: portal.manage'])->controller(ManagePortalController::class)->group(function () {
+Route::prefix('portal')->middleware(['auth', 'verified', 'twoFactor', 'can:portal.manage'])->controller(ManagePortalController::class)->group(function () {
     Route::get('/', 'home')->name('portal.home');
 });
 
