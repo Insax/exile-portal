@@ -35,4 +35,18 @@
         href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
         {{ $log->territory->name }}
     </a> at Position {{ $log->player_pos }}
+    @case('Restore')
+    restored territory <a
+        class="whitespace-no-wrap underline"
+        href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
+        {{ $log->territory->name }}
+    </a>
+    @break
+    @case('Payransom')
+        payed ransom for <a
+        class="whitespace-no-wrap underline"
+        href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
+        {{ $log->territory->name }}
+    </a>, fee {{ $log->fee }} Poptabs
+    @break
 @endswitch
