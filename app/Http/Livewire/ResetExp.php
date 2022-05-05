@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Account;
+use App\Models\GameServerAccount;
 use LivewireUI\Modal\ModalComponent;
 
 class ResetExp extends ModalComponent
@@ -18,7 +19,7 @@ class ResetExp extends ModalComponent
 
     public function resetEXP()
     {
-        Account::find($this->accountUID)->update([
+        GameServerAccount::find($this->accountUID)->update([
             'exp_perkPoints' => $this->accountLevel * 2,
             'exp_perks' => null
         ]);

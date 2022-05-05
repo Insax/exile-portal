@@ -19,7 +19,7 @@
                     @if($this->needsPayment)
                         <div class="flex flex-wrap">
                             <label for="advancePayment" class="block text-sm font-bold mb-2 sm:mb-4">
-
+                                Numbers of Days until next due
                             </label>
 
                             <input type="number" id="advancePayment"

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\GameServerTerritory;
 use App\Models\Territory;
 use Carbon\Carbon;
 use LivewireUI\Modal\ModalComponent;
@@ -17,7 +18,7 @@ class UnstealTerritory extends ModalComponent
 
     public function restore()
     {
-        $territory = Territory::find($this->territoryId);
+        $territory = GameServerTerritory::find($this->territoryId);
         $territory->flag_stolen = 0;
         $territory->flag_stolen_at = null;
         $territory->flag_stolen_by_uid = null;
