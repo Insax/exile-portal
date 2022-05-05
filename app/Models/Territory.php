@@ -148,7 +148,7 @@ class Territory extends Model
 
     protected $guarded = [];
 
-    public static function findOrCreateDummy(int $territoryId)
+    public static function findOrCreateDummy(?int $territoryId)
     {
         if($territoryId == null || self::whereId($territoryId)->exists())
             return;

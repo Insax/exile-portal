@@ -123,7 +123,7 @@ class Container extends Model
 
     protected $guarded = [];
 
-    public static function findOrCreateDummy(int $containerId)
+    public static function findOrCreateDummy(?int $containerId)
     {
         if($containerId == null || self::whereId($containerId)->exists())
             return;

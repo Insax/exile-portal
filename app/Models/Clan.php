@@ -108,7 +108,7 @@ class Clan extends Model
 
     protected $guarded = [];
 
-    public static function findOrCreateDummy(int $clanId)
+    public static function findOrCreateDummy(?int $clanId)
     {
         if($clanId == null || self::whereId($clanId)->exists())
             return;

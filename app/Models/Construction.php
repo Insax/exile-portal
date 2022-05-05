@@ -116,7 +116,7 @@ class Construction extends Model
 
     protected $guarded = [];
 
-    public static function findOrCreateDummy(int $constructionId)
+    public static function findOrCreateDummy(?int $constructionId)
     {
         if($constructionId == null || self::whereId($constructionId)->exists())
             return;

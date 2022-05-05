@@ -142,7 +142,7 @@ class Vehicle extends Model
 
     protected $guarded = [];
 
-    public static function findOrCreateDummy(int $vehicleId)
+    public static function findOrCreateDummy(?int $vehicleId)
     {
         if($vehicleId == null || self::whereId($vehicleId)->exists())
             return;
