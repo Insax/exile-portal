@@ -58,7 +58,7 @@ class DeleteOrRestoreTerritory extends ModalComponent
                 ->withProperty('action', 'deleted')
                 ->log($this->reason);
         }
-
+        $territory->last_updated_at = Carbon::now();
         $territory->save();
 
         $this->closeModal();

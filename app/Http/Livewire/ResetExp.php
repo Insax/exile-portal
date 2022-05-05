@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Account;
 use App\Models\GameServerAccount;
+use Carbon\Carbon;
 use LivewireUI\Modal\ModalComponent;
 
 class ResetExp extends ModalComponent
@@ -21,7 +22,8 @@ class ResetExp extends ModalComponent
     {
         GameServerAccount::find($this->accountUID)->update([
             'exp_perkPoints' => $this->accountLevel * 2,
-            'exp_perks' => null
+            'exp_perks' => null,
+            'last_updated_at' => Carbon::now()
         ]);
 
         $this->closeModal();
