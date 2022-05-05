@@ -5,11 +5,14 @@
     {{ $log->account->name }}
 </a>
 @switch($log->action)
-    @case('Test')
-    glitched
+    @case('WallCheck')
+    tried to glitch using a vehicle
+    @break
+    @case('WallIntersect')
+    tried glitch
     @break
 @endswitch
-though <p
+through <p
     class="whitespace-no-wrap">
     {{ __($log->construction->class) }}
 </p> at {{ $log->pos }}
