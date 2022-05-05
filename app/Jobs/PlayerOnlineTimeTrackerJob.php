@@ -46,7 +46,7 @@ class PlayerOnlineTimeTrackerJob implements ShouldQueue
         }
 
 
-        foreach (Account::selectRaw('clan_id, count(*) as online_players')->whereColumn('last_connect_at', '>', 'last_disconnect_at')->groupBy('clan_id')->get() as $account) {
+        foreach (Account::selectRaw('clan_id, count(*) as online_players')->whereColumn('last_connect_at', '>', 'last_disconnect_at')->whereNotNull('clan_id')->groupBy('clan_id')->get() as $account) {
             ClanOnlineTime::create([
                 'clan_id' => $account->clan_id,
                 'online_count' => $account->online_players,
