@@ -100,7 +100,7 @@ class SyncLogData implements ShouldQueue
         $breachLogs = GameServerLoggingBreaching::where('id', '>', $breachingLogMax)->orderBy('id', 'ASC')->get();
 
         $chatLogMax = (int)ChatLog::max('id');
-        $chatLogs = GameServerLoggingChat::where('id', '>', $chatLogMax);
+        $chatLogs = GameServerLoggingChat::where('id', '>', $chatLogMax)->orderBy('id', 'ASC')->get();
 
         $containerPackLogMax = (int)ContainerPackLog::max('id');
         $containerPackLogs = GameServerLoggingContainerPack::where('id', '>', $containerPackLogMax)->orderBy('id', 'ASC')->get();
