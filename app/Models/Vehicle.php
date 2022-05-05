@@ -178,7 +178,7 @@ class Vehicle extends Model
             'nickname' => 'Dummy',
             'tuning_data' => '[]',
             'exile_loading' => '',
-            'inventory' => [[],[[],[]],[[],[]],[[],[]],[]],
+            'inventory' => '[[],[[],[]],[[],[]],[[],[]],[]]',
             'marxet_id' => null,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
