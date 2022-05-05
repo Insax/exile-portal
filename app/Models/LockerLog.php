@@ -41,7 +41,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|LockerLog whereTime($value)
  * @mixin \Eloquent
  */
-class LockerLog extends Model
+class LockerLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'locker_logs';
@@ -74,4 +74,9 @@ class LockerLog extends Model
 	{
 		return $this->belongsTo(Clan::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

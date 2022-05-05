@@ -40,7 +40,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|FlagHackingLog whereTime($value)
  * @mixin \Eloquent
  */
-class FlagHackingLog extends Model
+class FlagHackingLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'flag_hacking_logs';
@@ -75,4 +75,9 @@ class FlagHackingLog extends Model
 	{
 		return $this->belongsTo(Territory::class);
 	}
+
+    function toString(): string
+    {
+        return view('logs.entries.flag-hack', ['log' => $this])->render();
+    }
 }

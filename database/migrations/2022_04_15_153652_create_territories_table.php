@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('territories', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->primary();
             $table->string('esm_custom_id', 45)->nullable();
-            $table->string('owner_uid', 17);
+            $table->string('owner_uid', 17)->nullable();
             $table->string('name', 64);
             $table->double('position_x');
             $table->double('position_y');

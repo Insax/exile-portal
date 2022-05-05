@@ -33,6 +33,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|GameServerClan whereModerators($value)
  * @method static \Illuminate\Database\Eloquent\Builder|GameServerClan whereName($value)
  * @mixin \Eloquent
+ * @property string $last_updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerClan whereLastUpdatedAt($value)
  */
 class GameServerClan extends Model
 {

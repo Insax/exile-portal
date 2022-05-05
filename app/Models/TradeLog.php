@@ -47,7 +47,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|TradeLog whereVehicleId($value)
  * @mixin \Eloquent
  */
-class TradeLog extends Model
+class TradeLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'trade_logs';
@@ -81,4 +81,9 @@ class TradeLog extends Model
 	{
 		return $this->belongsTo(Vehicle::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

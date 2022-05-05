@@ -39,7 +39,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|HotwireLog whereVehicleId($value)
  * @mixin \Eloquent
  */
-class HotwireLog extends Model
+class HotwireLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'hotwire_logs';
@@ -79,4 +79,9 @@ class HotwireLog extends Model
 	{
 		return $this->belongsTo(Vehicle::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

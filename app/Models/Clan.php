@@ -108,6 +108,23 @@ class Clan extends Model
 
     protected $guarded = [];
 
+    public static function findOrCreateDummy(int $clanId)
+    {
+        if($clanId == null || self::whereId($clanId)->exists())
+            return;
+
+        $dummyClan = self::create([
+            'id' => $clanId,
+            'name' => 'Dummy',
+            'leader_uid' => null,
+            'last_updated_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        $dummyClan->delete();
+    }
+
 	public function account(): BelongsTo
 	{
 		return $this->belongsTo(Account::class, 'leader_uid');

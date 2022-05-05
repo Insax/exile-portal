@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id')->primary();
             $table->string('class', 64);
             $table->dateTime('spawned_at');
-            $table->string('account_uid', 17);
+            $table->string('account_uid', 17)->nullable();
             $table->boolean('is_locked');
             $table->double('fuel');
             $table->double('damage');

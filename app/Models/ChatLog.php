@@ -18,7 +18,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string $recipient_uid
  * @property string $message
  * @property Carbon $time
- * @property Account $account
+ * @property Account $sender
+ * @property Account $recipient
  * @package App\Models
  * @method static \Illuminate\Database\Eloquent\Builder|ChatLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ChatLog newQuery()
@@ -30,7 +31,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|ChatLog whereTime($value)
  * @mixin \Eloquent
  */
-class ChatLog extends Model
+class ChatLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'chat_logs';
@@ -48,8 +49,18 @@ class ChatLog extends Model
 
     protected $guarded = [];
 
-	public function account(): BelongsTo
+	public function sender(): BelongsTo
 	{
 		return $this->belongsTo(Account::class, 'sender_uid');
 	}
+
+    public function recipient(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'recipient_uid');
+    }
+
+    function toString(): string
+    {
+        return view('logs.entries.chat', ['log' => $this])->render();
+    }
 }

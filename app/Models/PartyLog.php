@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|PartyLog whereTime($value)
  * @mixin \Eloquent
  */
-class PartyLog extends Model
+class PartyLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'party_logs';
@@ -66,4 +66,9 @@ class PartyLog extends Model
 	{
 		return $this->belongsTo(Clan::class, 'invited_player_clan_id');
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

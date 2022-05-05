@@ -39,7 +39,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|ContainerPackLog whereTime($value)
  * @mixin \Eloquent
  */
-class ContainerPackLog extends Model
+class ContainerPackLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'container_pack_logs';
@@ -68,16 +68,21 @@ class ContainerPackLog extends Model
 
 	public function clan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class);
+		return $this->belongsTo(Clan::class)->withTrashed();
 	}
 
 	public function container(): BelongsTo
 	{
-		return $this->belongsTo(Container::class);
+		return $this->belongsTo(Container::class)->withTrashed();
 	}
 
 	public function territory(): BelongsTo
 	{
-		return $this->belongsTo(Territory::class);
+		return $this->belongsTo(Territory::class)->withTrashed();
 	}
+
+    function toString(): string
+    {
+        return view('logs.entries.container-pack-log', ['logs' => $this]);
+    }
 }

@@ -39,7 +39,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|GrindingLog whereTime($value)
  * @mixin \Eloquent
  */
-class GrindingLog extends Model
+class GrindingLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'grinding_logs';
@@ -79,4 +79,9 @@ class GrindingLog extends Model
 	{
 		return $this->belongsTo(Territory::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

@@ -123,6 +123,44 @@ class Container extends Model
 
     protected $guarded = [];
 
+    public static function findOrCreateDummy(int $containerId)
+    {
+        if($containerId == null || self::whereId($containerId)->exists())
+            return;
+
+        $dummyConstruction = self::create([
+            'id' => $containerId,
+            'class' => 'Dummy',
+            'spawned_at' => Carbon::now(),
+            'account_uid' => null,
+            'is_locked' => 0,
+            'position_x' => '0',
+            'position_y' => '0',
+            'position_z' => '0',
+            'direction_x' => '0',
+            'direction_y' => '0',
+            'direction_z' => '0',
+            'up_x' => '0',
+            'up_y' => '0',
+            'up_z' => '0',
+            'cargo_items' => '[[],[]]',
+            'cargo_magazines' => '[]',
+            'cargo_weapons' => '[]',
+            'cargo_container' => '[]',
+            'last_updated_at' => Carbon::now(),
+            'pin_code' => '0000',
+            'territory_id' => null,
+            'deleted_at' => Carbon::now(),
+            'money' => 0,
+            'abandoned' => null,
+            'inventory' => '[[],[[],[]],[[],[]],[[],[]],[]]',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        $dummyConstruction->delete();
+    }
+
 	public function account(): BelongsTo
 	{
 		return $this->belongsTo(Account::class, 'account_uid');

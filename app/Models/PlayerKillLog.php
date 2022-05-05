@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|PlayerKillLog whereVictimPos($value)
  * @mixin \Eloquent
  */
-class PlayerKillLog extends Model
+class PlayerKillLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'player_kill_logs';
@@ -66,4 +66,9 @@ class PlayerKillLog extends Model
 	{
 		return $this->belongsTo(Clan::class, 'victim_clan_id');
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

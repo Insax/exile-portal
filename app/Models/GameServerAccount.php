@@ -79,6 +79,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|GameServerAccount whereUid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|GameServerAccount whereWhitelisted($value)
  * @mixin \Eloquent
+ * @property string $friends
+ * @property string $friend_last_reset_at
+ * @property string $last_updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerAccount whereFriendLastResetAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerAccount whereFriends($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerAccount whereLastUpdatedAt($value)
  */
 class GameServerAccount extends Model
 {

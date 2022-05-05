@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('constructions', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->primary();
             $table->string('class', 64);
-            $table->string('account_uid', 17);
+            $table->string('account_uid', 17)->nullable();
             $table->dateTime('spawned_at');
             $table->double('position_x');
             $table->double('position_y');

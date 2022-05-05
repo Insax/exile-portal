@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|InmateMarketLog whereTime($value)
  * @mixin \Eloquent
  */
-class InmateMarketLog extends Model
+class InmateMarketLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'inmate_market_logs';
@@ -55,4 +55,9 @@ class InmateMarketLog extends Model
 	{
 		return $this->belongsTo(Account::class, 'seller_account_uid');
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

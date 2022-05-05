@@ -44,7 +44,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|LockLog whereTime($value)
  * @mixin \Eloquent
  */
-class LockLog extends Model
+class LockLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'lock_logs';
@@ -80,4 +80,9 @@ class LockLog extends Model
 	{
 		return $this->belongsTo(Territory::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

@@ -116,6 +116,40 @@ class Construction extends Model
 
     protected $guarded = [];
 
+    public static function findOrCreateDummy(int $constructionId)
+    {
+        if($constructionId == null || self::whereId($constructionId)->exists())
+            return;
+
+        $dummyConstruction = self::create([
+            'id' => $constructionId,
+            'class' => 'Dummy',
+            'account_uid' => null,
+            'spawned_at' => Carbon::now(),
+            'position_x' => '0',
+            'position_y' => '0',
+            'position_z' => '0',
+            'direction_x' => '0',
+            'direction_y' => '0',
+            'direction_z' => '0',
+            'up_x' => '0',
+            'up_y' => '0',
+            'up_z' => '0',
+            'is_locked' => 0,
+            'pin_code' => '000000',
+            'damage' => '0',
+            'territory_id' => null,
+            'last_updated_at' => Carbon::now(),
+            'deleted_at' => Carbon::now(),
+            'construction_texture' => null,
+            'construction_name' => 'Dummy',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        $dummyConstruction->delete();
+    }
+
 	public function account(): BelongsTo
 	{
 		return $this->belongsTo(Account::class, 'account_uid');

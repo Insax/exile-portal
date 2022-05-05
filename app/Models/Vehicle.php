@@ -142,6 +142,51 @@ class Vehicle extends Model
 
     protected $guarded = [];
 
+    public static function findOrCreateDummy(int $vehicleId)
+    {
+        if($vehicleId == null || self::whereId($vehicleId)->exists())
+            return;
+
+        $dummyVehicle = self::create([
+            'id' => $vehicleId,
+            'class' => 'Dummy',
+            'spawned_at' => Carbon::now(),
+            'account_uid' => null,
+            'is_locked' => 0,
+            'fuel' => 1,
+            'damage' => 0,
+            'hitpoints' => '[]',
+            'position_x' => '0',
+            'position_y' => '0',
+            'position_z' => '0',
+            'direction_x' => '0',
+            'direction_y' => '0',
+            'direction_z' => '0',
+            'up_x' => '0',
+            'up_y' => '0',
+            'up_z' => '0',
+            'cargo_items' => '[[],[]]',
+            'cargo_magazines' => '[]',
+            'cargo_weapons' => '[]',
+            'cargo_container' => '[]',
+            'last_updated_at' => Carbon::now(),
+            'pin_code' => '0000',
+            'deleted_at' => Carbon::now(),
+            'money' => 0,
+            'vehicle_texture' => null,
+            'territory_id' => null,
+            'nickname' => 'Dummy',
+            'tuning_data' => '[]',
+            'exile_loading' => '',
+            'inventory' => [[],[[],[]],[[],[]],[[],[]],[]],
+            'marxet_id' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        $dummyVehicle->delete();
+    }
+
 	public function account(): BelongsTo
 	{
 		return $this->belongsTo(Account::class, 'account_uid');

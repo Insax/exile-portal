@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -147,6 +148,38 @@ class Territory extends Model
 
     protected $guarded = [];
 
+    public static function findOrCreateDummy(int $territoryId)
+    {
+        if($territoryId == null || self::whereId($territoryId)->exists())
+            return;
+
+        $dummyTerritory = self::create([
+            'id' => $territoryId,
+            'esm_custom_id' => null,
+            'owner_uid' => null,
+            'name' => 'Dummy',
+            'position_x' => '0',
+            'position_y' => '0',
+            'position_z' => '0',
+            'radius' => 0,
+            'level' => 0,
+            'flag_texture' => 'dummy',
+            'flag_stolen' => 0,
+            'flag_stolen_by_uid' => null,
+            'flag_stolen_at' => null,
+            'last_paid_at' => Carbon::now(),
+            'xm8_protectionmoney_notified' => 0,
+            'esm_payment_counter' => null,
+            'deleted_at' => Carbon::now(),
+            'territory_permissions' => '[]',
+            'last_updated_at' => Carbon::now(),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        $dummyTerritory->delete();
+    }
+
 	public function account(): BelongsTo
 	{
 		return $this->belongsTo(Account::class, 'owner_uid');
@@ -155,6 +188,11 @@ class Territory extends Model
     public function containers(): HasMany
     {
         return $this->hasMany(Container::class);
+    }
+
+    public function territoryFlagStealer(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'flag_stolen_by_uid', 'uid');
     }
 
 	public function breachingLogs(): HasMany
@@ -236,6 +274,11 @@ class Territory extends Model
 	{
 		return $this->hasOne(TerritoryMember::class);
 	}
+
+    public function territoryMembers(): BelongsToMany
+    {
+        return $this->belongsToMany(Account::class, 'territory_members', 'territory_id', 'account_uid');
+    }
 
 	public function territoryModerator(): HasOne
 	{

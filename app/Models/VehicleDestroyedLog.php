@@ -38,7 +38,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|VehicleDestroyedLog whereVehiclePos($value)
  * @mixin \Eloquent
  */
-class VehicleDestroyedLog extends Model
+class VehicleDestroyedLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'vehicle_destroyed_logs';
@@ -72,4 +72,9 @@ class VehicleDestroyedLog extends Model
 	{
 		return $this->belongsTo(Vehicle::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

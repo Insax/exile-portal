@@ -36,7 +36,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|AntiTeleportLog whereVehicleClass($value)
  * @mixin \Eloquent
  */
-class AntiTeleportLog extends Model
+class AntiTeleportLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'anti_teleport_logs';
@@ -68,4 +68,9 @@ class AntiTeleportLog extends Model
 	{
 		return $this->belongsTo(Account::class, 'account_uid');
 	}
+
+    function toString(): string
+    {
+        return view('logs.entries.anti-tp', ['log', $this])->render();
+    }
 }

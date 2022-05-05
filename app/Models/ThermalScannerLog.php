@@ -41,7 +41,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|ThermalScannerLog whereTime($value)
  * @mixin \Eloquent
  */
-class ThermalScannerLog extends Model
+class ThermalScannerLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'thermal_scanner_logs';
@@ -82,4 +82,9 @@ class ThermalScannerLog extends Model
 	{
 		return $this->belongsTo(Territory::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

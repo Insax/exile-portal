@@ -44,7 +44,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|TerritoryLog whereTime($value)
  * @mixin \Eloquent
  */
-class TerritoryLog extends Model
+class TerritoryLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'territory_logs';
@@ -81,4 +81,9 @@ class TerritoryLog extends Model
 	{
 		return $this->belongsTo(Territory::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

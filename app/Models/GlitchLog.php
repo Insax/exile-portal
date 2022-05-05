@@ -32,7 +32,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|GlitchLog whereTime($value)
  * @mixin \Eloquent
  */
-class GlitchLog extends Model
+class GlitchLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'glitch_logs';
@@ -55,4 +55,9 @@ class GlitchLog extends Model
 	{
 		return $this->belongsTo(Construction::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

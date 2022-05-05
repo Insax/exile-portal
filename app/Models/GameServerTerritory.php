@@ -64,6 +64,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|GameServerTerritory withTrashed()
  * @method static \Illuminate\Database\Query\Builder|GameServerTerritory withoutTrashed()
  * @mixin \Eloquent
+ * @property string $last_updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|GameServerTerritory whereLastUpdatedAt($value)
  */
 class GameServerTerritory extends Model
 {

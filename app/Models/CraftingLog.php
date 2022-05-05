@@ -39,7 +39,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|CraftingLog whereTime($value)
  * @mixin \Eloquent
  */
-class CraftingLog extends Model
+class CraftingLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'crafting_logs';
@@ -68,4 +68,9 @@ class CraftingLog extends Model
 	{
 		return $this->belongsTo(Clan::class);
 	}
+
+    function toString(): string
+    {
+        return view('logs.entries.crafting', ['log' => $this])->render();
+    }
 }

@@ -45,7 +45,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|PoptabLog whereTime($value)
  * @mixin \Eloquent
  */
-class PoptabLog extends Model
+class PoptabLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'poptab_logs';
@@ -78,4 +78,9 @@ class PoptabLog extends Model
 	{
 		return $this->belongsTo(Clan::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

@@ -41,7 +41,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|BreachingLog whereTime($value)
  * @mixin \Eloquent
  */
-class BreachingLog extends Model
+class BreachingLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'breaching_logs';
@@ -69,16 +69,21 @@ class BreachingLog extends Model
 
 	public function clan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class);
+		return $this->belongsTo(Clan::class)->withTrashed();
 	}
 
 	public function construction(): BelongsTo
 	{
-		return $this->belongsTo(Construction::class);
+		return $this->belongsTo(Construction::class)->withTrashed();
 	}
 
 	public function territory(): BelongsTo
 	{
 		return $this->belongsTo(Territory::class);
 	}
+
+    function toString(): string
+    {
+        return view('logs.entries.breaching', ['log' => $this])->render();
+    }
 }

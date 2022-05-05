@@ -43,7 +43,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|SafeZoneLog whereVehiclePos($value)
  * @mixin \Eloquent
  */
-class SafeZoneLog extends Model
+class SafeZoneLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'safe_zone_logs';
@@ -78,4 +78,9 @@ class SafeZoneLog extends Model
 	{
 		return $this->belongsTo(Vehicle::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

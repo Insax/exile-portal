@@ -39,6 +39,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|ReadableLogging whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ReadableLogging whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read Model|\Eloquent $loggable
  */
 class ReadableLogging extends Model
 {
@@ -59,7 +60,8 @@ class ReadableLogging extends Model
 		'clan_id',
 		'territory_id',
 		'loggable_type',
-		'loggable_id'
+		'loggable_id',
+        'created_at'
 	];
 
 	public function account(): BelongsTo
@@ -76,4 +78,9 @@ class ReadableLogging extends Model
 	{
 		return $this->belongsTo(Territory::class);
 	}
+
+    public function loggable()
+    {
+        return $this->morphTo();
+    }
 }

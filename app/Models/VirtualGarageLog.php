@@ -43,7 +43,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|VirtualGarageLog whereVehiclePos($value)
  * @mixin \Eloquent
  */
-class VirtualGarageLog extends Model
+class VirtualGarageLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'virtual_garage_logs';
@@ -83,4 +83,9 @@ class VirtualGarageLog extends Model
 	{
 		return $this->belongsTo(Vehicle::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

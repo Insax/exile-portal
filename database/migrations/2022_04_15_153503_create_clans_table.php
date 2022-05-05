@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('clans', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->primary();
             $table->string('name');
-            $table->string('leader_uid', 17);
+            $table->string('leader_uid', 17)->nullable();
             $table->dateTime('last_updated_at');
             $table->timestamps();
             $table->softDeletes();

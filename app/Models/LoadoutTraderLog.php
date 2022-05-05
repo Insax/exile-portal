@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|LoadoutTraderLog whereTime($value)
  * @mixin \Eloquent
  */
-class LoadoutTraderLog extends Model
+class LoadoutTraderLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'loadout_trader_logs';
@@ -62,4 +62,9 @@ class LoadoutTraderLog extends Model
 	{
 		return $this->belongsTo(Clan::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

@@ -38,7 +38,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|DisconnectPositionLog whereTime($value)
  * @mixin \Eloquent
  */
-class DisconnectPositionLog extends Model
+class DisconnectPositionLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'disconnect_position_logs';
@@ -67,11 +67,16 @@ class DisconnectPositionLog extends Model
 
 	public function clan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class);
+		return $this->belongsTo(Clan::class)->withTrashed();
 	}
 
 	public function territory(): BelongsTo
 	{
-		return $this->belongsTo(Territory::class);
+		return $this->belongsTo(Territory::class)->withTrashed();
 	}
+
+    function toString(): string
+    {
+        return view('logs.entries.disconnect-position', ['log' => $this])->render();
+    }
 }

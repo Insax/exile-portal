@@ -41,7 +41,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|SafeHackingLog whereTime($value)
  * @mixin \Eloquent
  */
-class SafeHackingLog extends Model
+class SafeHackingLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'safe_hacking_logs';
@@ -82,4 +82,9 @@ class SafeHackingLog extends Model
 	{
 		return $this->belongsTo(Territory::class);
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }

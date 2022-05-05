@@ -20,7 +20,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null $target_account_uid
  * @property Carbon $time
  * @property Clan|null $clan
- * @property Account|null $account
+ * @property Account|null $sourceAccount
+ * @property Account|null $targetAccount
  * @package App\Models
  * @method static \Illuminate\Database\Eloquent\Builder|FamilyLog newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|FamilyLog newQuery()
@@ -33,7 +34,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|FamilyLog whereTime($value)
  * @mixin \Eloquent
  */
-class FamilyLog extends Model
+class FamilyLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'family_logs';
@@ -54,11 +55,22 @@ class FamilyLog extends Model
 
 	public function clan(): BelongsTo
 	{
-		return $this->belongsTo(Clan::class);
+		return $this->belongsTo(Clan::class)->withTrashed();
 	}
 
-	public function account(): BelongsTo
+    public function sourceAccount(): BelongsTo
+    {
+        return $this->belongsTo(Account::class, 'source_account_uid');
+    }
+
+
+	public function targetAccount(): BelongsTo
 	{
 		return $this->belongsTo(Account::class, 'target_account_uid');
 	}
+
+    function toString(): string
+    {
+        return view('logs.entries.family', ['log' => $this])->render();
+    }
 }

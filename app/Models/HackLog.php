@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|HackLog whereTime($value)
  * @mixin \Eloquent
  */
-class HackLog extends Model
+class HackLog extends Logging
 {
 	protected $connection = 'portal';
 	protected $table = 'hack_logs';
@@ -52,4 +52,9 @@ class HackLog extends Model
 	{
 		return $this->belongsTo(Account::class, 'old_account_uid');
 	}
+
+    function toString(): string
+    {
+        return '';
+    }
 }
