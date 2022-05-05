@@ -49,4 +49,15 @@
         {{ $log->territory->name }}
     </a>, fee {{ $log->fee }} Poptabs
     @break
+    @case('Add')
+     invited player <a
+        class="whitespace-no-wrap underline"
+        href="{{ route('account.view', ['account' => $log->target_account_uid]) }}">
+        {{ $log->targetAccount->name }}
+    </a> to Territory <a
+        class="whitespace-no-wrap underline"
+        href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
+        {{ $log->territory->name }}
+    </a>
+    @break;
 @endswitch
