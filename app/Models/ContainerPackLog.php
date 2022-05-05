@@ -83,6 +83,6 @@ class ContainerPackLog extends Logging
 
     function toString(): string
     {
-        return view('logs.entries.container-pack-log', ['logs' => $this]);
+        return view('logs.entries.container-pack-log', ['logs' => $this])->render();
     }
 }
