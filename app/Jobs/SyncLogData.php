@@ -596,7 +596,7 @@ class SyncLogData implements ShouldQueue
                 'locker_before' => $log->locker_before,
                 'locker_after' => $log->locker_before,
                 'player_before' => is_int($log->player_before) ? $log->player_before : 0,
-                'player_after' => $log->player_after
+                'player_after' => is_int($log->player_after) ? $log->player_after : 0
             ]);
 
             ReadableLogging::create([
@@ -721,7 +721,7 @@ class SyncLogData implements ShouldQueue
                 'clan_id' => $log->clan_id,
                 'amount' => $log->amount,
                 'player_before' => is_int($log->player_before) ? $log->player_before : 0,
-                'player_after' => $log->player_after,
+                'player_after' => is_int($log->player_after) ? $log->player_after : 0,
                 'player_pos' => $log->player_pos,
                 'container_before' => $log->container_before,
                 'container_after' => $log->container_after,
