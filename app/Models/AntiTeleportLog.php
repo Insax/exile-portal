@@ -54,15 +54,7 @@ class AntiTeleportLog extends Logging
 		'time'
 	];
 
-	protected $fillable = [
-		'account_uid',
-		'vehicle_class',
-		'distance',
-		'old_pos',
-		'new_pos',
-		'tp_count',
-		'time'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{
