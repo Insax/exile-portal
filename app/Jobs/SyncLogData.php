@@ -615,6 +615,9 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($partyLogs as $log) {
+            if(empty($log->player_id))
+                continue;
+
             Clan::findOrCreateDummy($log->clan_id);
             Clan::findOrCreateDummy($log->invited_player_clan_id);
             $loggable = PartyLog::create([
