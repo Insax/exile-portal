@@ -273,9 +273,9 @@ class Territory extends Model
 		return $this->hasMany(TerritoryLog::class);
 	}
 
-	public function territoryMember(): HasOne
+	public function territoryMember(): HasMany
 	{
-		return $this->hasOne(TerritoryMember::class);
+		return $this->hasMany(TerritoryMember::class);
 	}
 
     public function territoryMembers(): BelongsToMany

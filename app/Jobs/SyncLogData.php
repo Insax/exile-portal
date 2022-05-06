@@ -332,7 +332,7 @@ class SyncLogData implements ShouldQueue
                 'id' => $log->id,
                 'action' => $log->action,
                 'source_account_uid' => $log->source_account_id,
-                'target_account_uid' => $log->target_account_id,
+                'target_account_uid' => empty($log->target_account_id) ? null : $log->target_account_id,
                 'clan_id' => $log->clan_id,
                 'time' => $log->time
             ]);
@@ -592,7 +592,7 @@ class SyncLogData implements ShouldQueue
                 'amount' => $log->amount,
                 'locker_before' => $log->locker_before,
                 'locker_after' => $log->locker_before,
-                'player_before' => $log->player_before,
+                'player_before' => is_int($log->player_before) ? $log->player_before : 0,
                 'player_after' => $log->player_after
             ]);
 
