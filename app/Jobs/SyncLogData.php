@@ -723,8 +723,8 @@ class SyncLogData implements ShouldQueue
                 'player_before' => is_int($log->player_before) ? $log->player_before : 0,
                 'player_after' => is_int($log->player_after) ? $log->player_after : 0,
                 'player_pos' => $log->player_pos,
-                'container_before' => $log->container_before,
-                'container_after' => $log->container_after,
+                'container_before' => is_int($log->container_before) ? $log->container_before : 0,
+                'container_after' => is_int($log->container_after) ? $log->container_after : 0,
                 'container_class' => $log->container_class,
                 'time' => $log->time
             ]);
