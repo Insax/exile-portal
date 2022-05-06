@@ -253,7 +253,7 @@ class SyncLogData implements ShouldQueue
         foreach ($containerPackLogs as $log) {
             Clan::findOrCreateDummy($log->clan_id);
 
-            if($log->container_id > 1)
+            if($log->container_id < 1)
                 continue;
 
             Container::findOrCreateDummy($log->container_id);
