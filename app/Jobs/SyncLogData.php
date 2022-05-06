@@ -717,7 +717,7 @@ class SyncLogData implements ShouldQueue
                 'account_uid' => $log->player_id,
                 'clan_id' => $log->clan_id,
                 'amount' => $log->amount,
-                'player_before' => $log->player_before,
+                'player_before' => is_int($log->player_before) ? $log->player_before : 0,
                 'player_after' => $log->player_after,
                 'player_pos' => $log->player_pos,
                 'container_before' => $log->container_before,
