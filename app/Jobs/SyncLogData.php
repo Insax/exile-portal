@@ -327,6 +327,9 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($familyLogs as $log) {
+            if($log->action == 'InvitError')
+                continue;
+
             Clan::findOrCreateDummy($log->clan_id);
             $loggable = FamilyLog::create([
                 'id' => $log->id,
