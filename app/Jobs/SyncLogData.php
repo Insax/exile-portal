@@ -625,8 +625,8 @@ class SyncLogData implements ShouldQueue
                 'action' => $log->action,
                 'account_uid' => $log->player_id,
                 'clan_id' => $log->clan_id,
-                'invited_account_uid' => $log->invited_player_id,
-                'invited_player_clan_id' => $log->invited_player_clan_id,
+                'invited_account_uid' => empty($log->invited_player_id) ? null : $log->invited_player_id,
+                'invited_player_clan_id' => empty($log->invited_player_clan_id) ? null : $log->invited_player_clan_id,
                 'group_name' => $log->group_name,
                 'time' => $log->time
             ]);
