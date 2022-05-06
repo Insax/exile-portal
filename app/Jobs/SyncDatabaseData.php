@@ -57,14 +57,14 @@ class SyncDatabaseData implements ShouldQueue
     public function handle(): void
     {
         if(Account::count() != 0) {
-            $allAccounts = GameServerAccount::where('last_updated_at', '>', Carbon::now()->subHour())->get();
-            $allClans = GameServerClan::where('last_updated_at', '>', Carbon::now()->subHour())->get();
-            $allConstructions = GameServerConstruction::where('last_updated_at', '>', Carbon::now()->subHour())->get();
-            $allContainers = GameServerContainer::where('last_updated_at', '>', Carbon::now()->subHour())->get();
+            $allAccounts = GameServerAccount::where('last_updated_at', '>', Carbon::now()->subDay())->get();
+            $allClans = GameServerClan::where('last_updated_at', '>', Carbon::now()->subDay())->get();
+            $allConstructions = GameServerConstruction::where('last_updated_at', '>', Carbon::now()->subDay())->get();
+            $allContainers = GameServerContainer::where('last_updated_at', '>', Carbon::now()->subDay())->get();
             $allMarxets = GameServerMarxet::all();
             $allSmVg = GameServerSmVirtualgarage::all();
-            $allTerritories = GameServerTerritory::where('last_updated_at', '>', Carbon::now()->subHour())->get();
-            $allVehicles = GameServerVehicle::where('last_updated_at', '>', Carbon::now()->subHour())->get();
+            $allTerritories = GameServerTerritory::where('last_updated_at', '>', Carbon::now()->subDay())->get();
+            $allVehicles = GameServerVehicle::where('last_updated_at', '>', Carbon::now()->subDay())->get();
         } else {
             $allAccounts = GameServerAccount::all();
             $allClans = GameServerClan::all();
