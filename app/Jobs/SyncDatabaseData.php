@@ -113,11 +113,11 @@ class SyncDatabaseData implements ShouldQueue
         foreach ($allContainers as $container) {
             Container::withTrashed()->updateOrCreate(['id' => $container->id], $container->getAttributes());
         }
-
+/*
         foreach ($allMarxets as $allMarxet) {
             Marxet::updateOrCreate(['listingID' => $allMarxet->listingId], $allMarxet->getAttributes());
         }
-
+*/
         foreach ($allSmVg as $item) {
             SmVirtualgarage::updateOrCreate(['id' => $item->id], $item->getAttributes());
         }
