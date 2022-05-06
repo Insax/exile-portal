@@ -88,7 +88,7 @@ class SyncDatabaseData implements ShouldQueue
 
         /* Sync all Clans */
         foreach ($allClans as $clan) {
-            Clan::updateOrCreate(['id' => $clan->id], [
+            Clan::withTrashed()->updateOrCreate(['id' => $clan->id], [
                 'id' => $clan->id,
                 'name' => $clan->name,
                 'leader_uid' => $clan->leader_uid,
@@ -107,11 +107,11 @@ class SyncDatabaseData implements ShouldQueue
         }
 
         foreach ($allConstructions as $construction) {
-            Construction::updateOrCreate(['id' => $construction->id], $construction->getAttributes());
+            Construction::withTrashed()->updateOrCreate(['id' => $construction->id], $construction->getAttributes());
         }
 
         foreach ($allContainers as $container) {
-            Container::updateOrCreate(['id' => $container->id], $container->getAttributes());
+            Container::withTrashed()->updateOrCreate(['id' => $container->id], $container->getAttributes());
         }
 
         foreach ($allMarxets as $allMarxet) {
@@ -123,7 +123,7 @@ class SyncDatabaseData implements ShouldQueue
         }
 
         foreach ($allTerritories as $territory) {
-            Territory::updateOrCreate(['id' => $territory->id], [
+            Territory::withTrashed()->updateOrCreate(['id' => $territory->id], [
                 'id' => $territory->id,
                 'esm_custom_id' => $territory->esm_custom_id,
                 'owner_uid' => $territory->owner_uid,
@@ -182,7 +182,7 @@ class SyncDatabaseData implements ShouldQueue
         }
 
         foreach ($allVehicles as $vehicle) {
-            Vehicle::updateOrCreate(['id' => $vehicle->id], $vehicle->getAttributes());
+            Vehicle::withTrashed()->updateOrCreate(['id' => $vehicle->id], $vehicle->getAttributes());
         }
     }
 }
