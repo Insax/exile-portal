@@ -784,8 +784,8 @@ class SyncLogData implements ShouldQueue
                 'player_pos' => $log->player_pos,
                 'vehicle_id' => $log->vehicle_id,
                 'vehicle' => $log->vehicle,
-                'vehicle_owner_uid' => $log->vehicle_owner,
-                'vehicle_owner_clan_id' => $log->vehicle_owner_clan_id,
+                'vehicle_owner_uid' => empty($log->vehicle_owner) ? null : $log->vehicle_owner,
+                'vehicle_owner_clan_id' => empty($log->vehicle_owner_clan_id) ? null: $log->vehicle_owner_clan_id,
                 'vehicle_pos' => $log->vehicle_pos,
                 'time' => $log->time
             ]);
