@@ -81,6 +81,6 @@ class ReadableLogging extends Model
 
     public function loggable()
     {
-        return $this->morphTo()->withTrashed();
+        return $this->morphTo();
     }
 }
