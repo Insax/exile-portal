@@ -1,9 +1,5 @@
 @php /** @var \App\Models\SafeZoneLog $log */ @endphp
-<a
-    class="whitespace-no-wrap underline"
-    href="{{ route('account.view', ['account' => $log->account_uid]) }}">
-    {{ $log->account->name }}
-</a>
+@livewire('display-account', ['account' => $log->account])
 @if($log->clan_id)
     in Family <a
         class="whitespace-no-wrap underline"
@@ -15,11 +11,7 @@ at Position {{ $log->player_pos }}
 @switch($log->action)
     @case('VehicleKick')
     got kicked out of Vehicle {{ __($log->vehicle) }} owned by
-    <a
-        class="whitespace-no-wrap underline"
-        href="{{ route('account.view', ['account' => $log->vehicle_owner_uid]) }}">
-        {{ $log->ownerAccount->name }}
-    </a>
+    @livewire('display-account', ['account' => $log->ownerAccount])
     @if($log->vehicle_owner_clan_id)
         in Family <a
             class="whitespace-no-wrap underline"

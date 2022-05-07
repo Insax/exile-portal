@@ -1,9 +1,5 @@
 @php /** @var \App\Models\FamilyLog $log */ @endphp
-<a
-    class="whitespace-no-wrap underline"
-    href="{{ route('account.view', ['account' => $log->source_account_uid]) }}">
-    {{ $log->sourceAccount->name }}
-</a>
+@livewire('display-account', ['account' => $log->sourceAccount])
 @if($log->clan_id)
     in Family <a
         class="whitespace-no-wrap underline"
@@ -16,41 +12,21 @@
     created the family {{ $log->clan->name }}
     @break
     @case('InviteFailed')
-    failed to invite player <a
-        class="whitespace-no-wrap underline"
-        href="{{ route('account.view', ['account' => $log->target_account_uid]) }}">
-        {{ $log->targetAccount->name }}
-    </a>
+    failed to invite player @livewire('display-account', ['account' => $log->targetAccount])
     @break
     @case('Leave')
     left the family {{ $log->clan->name }}
     @break
     @case('Invited')
-    invited player <a
-        class="whitespace-no-wrap underline"
-        href="{{ route('account.view', ['account' => $log->target_account_uid]) }}">
-        {{ $log->targetAccount->name }}
-    </a> to join
+    invited player @livewire('display-account', ['account' => $log->targetAccount]) to join
     @break
     @case('InviteAccepted')
-    invited player<a
-        class="whitespace-no-wrap underline"
-        href="{{ route('account.view', ['account' => $log->target_account_uid]) }}">
-        {{ $log->targetAccount->name }}
-    </a> and it was accepted!
+    invited player @livewire('display-account', ['account' => $log->targetAccount]) and it was accepted!
     @break
     @case('InviteDeclined')
-    invited player <a
-        class="whitespace-no-wrap underline"
-        href="{{ route('account.view', ['account' => $log->target_account_uid]) }}">
-        {{ $log->targetAccount->name }}
-    </a> and it was declined
+    invited player @livewire('display-account', ['account' => $log->targetAccount]) and it was declined
     @break
     @case('Kicked')
-    kicked player <a
-        class="whitespace-no-wrap underline"
-        href="{{ route('account.view', ['account' => $log->target_account_uid]) }}">
-        {{ $log->targetAccount->name }}
-    </a> from the family
+    kicked player @livewire('display-account', ['account' => $log->targetAccount]) from the family
     @break
 @endswitch

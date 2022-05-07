@@ -1,9 +1,5 @@
 @php /** @var \App\Models\PartyLog $log */ @endphp
-<a
-    class="whitespace-no-wrap underline"
-    href="{{ route('account.view', ['account' => $log->account_uid]) }}">
-    {{ $log->account->name }}
-</a>
+@livewire('display-account', ['account' => $log->account])
 @if($log->clan_id)
     in Family <a
         class="whitespace-no-wrap underline"
@@ -13,11 +9,7 @@
 @endif
 @switch($log->action)
     @case('Invite')
-    invited Player <a
-        class="whitespace-no-wrap underline"
-        href="{{ route('account.view', ['account' => $log->invited_account_uid]) }}">
-        {{ $log->inviteeAccount->name }}
-    </a>
+    invited Player @livewire('display-account', ['account' => $log->inviteeAccount])
     @if($log->invited_player_clan_id)
         in Family <a
             class="whitespace-no-wrap underline"

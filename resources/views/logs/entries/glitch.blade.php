@@ -1,9 +1,5 @@
 @php /** @var \App\Models\GlitchLog $log */ @endphp
-<a
-    class="whitespace-no-wrap underline"
-    href="{{ route('account.view', ['account' => $log->account_uid]) }}">
-    {{ $log->account->name }}
-</a>
+@livewire('display-account', ['account' => $log->account])
 @switch($log->action)
     @case('WallCheck')
     tried to glitch using a vehicle

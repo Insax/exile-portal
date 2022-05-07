@@ -1,9 +1,5 @@
 @php /** @var \App\Models\TerritoryLog $log */ @endphp
-<a
-    class="whitespace-no-wrap underline"
-    href="{{ route('account.view', ['account' => $log->account_uid]) }}">
-    {{ $log->account->name }}
-</a>
+@livewire('display-account', ['account' => $log->account])
 @if($log->clan_id)
     in Family <a
         class="whitespace-no-wrap underline"
@@ -50,11 +46,7 @@
     </a>, fee {{ $log->fee }} Poptabs
     @break
     @case('Add')
-     invited player <a
-        class="whitespace-no-wrap underline"
-        href="{{ route('account.view', ['account' => $log->target_account_uid]) }}">
-        {{ $log->targetAccount->name }}
-    </a> to Territory <a
+     invited player @livewire('display-account', ['account' => $log->targetAccount]) to Territory <a
         class="whitespace-no-wrap underline"
         href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
         {{ $log->territory->name }}
