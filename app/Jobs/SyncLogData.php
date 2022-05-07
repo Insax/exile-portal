@@ -815,7 +815,7 @@ class SyncLogData implements ShouldQueue
                 'action' => $log->action,
                 'account_uid' => $log->player_id,
                 'clan_id' => $log->clan_id,
-                'target_account_uid' => $log->target_id,
+                'target_account_uid' => empty($log->target_id) ? null : $log->target_id,
                 'territory_id' => $log->territory_id,
                 'player_pos' => $log->player_pos,
                 'fee' => $log->fee,
