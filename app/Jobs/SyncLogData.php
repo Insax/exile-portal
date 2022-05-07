@@ -189,7 +189,7 @@ class SyncLogData implements ShouldQueue
                 'territory_id' => null,
                 'clan_id' => null,
                 'loggable_id' => $loggable->id,
-                'loggable_type' => $log::class,
+                'loggable_type' => $loggable::class,
                 'created_at' => $loggable->time
             ]);
         }
