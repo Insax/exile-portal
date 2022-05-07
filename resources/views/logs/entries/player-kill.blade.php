@@ -1,5 +1,5 @@
 @php /** @var \App\Models\PlayerKillLog $log */ @endphp
-@livewire('display-account', ['account' => $log->killerAccount()])
+@livewire('display-account', ['account' => $log->killerAccount])
 @if($log->killer_clan_id)
     in Family <a
         class="whitespace-no-wrap underline"
@@ -8,7 +8,7 @@
     </a>
 @endif
 from Position {{ $log->killer_pos }} killed Player
-@livewire('display-account', ['account' => $log->victimAccount()])
+@livewire('display-account', ['account' => $log->victimAccount])
 @if($log->victim_clan_id)
     in Family <a
         class="whitespace-no-wrap underline"

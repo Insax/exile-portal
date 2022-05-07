@@ -45,7 +45,7 @@ class ListLogs extends Component
         if(count($this->logTypes))
             $queryBuilder->whereIn('type', $this->logTypes);
 
-        $data = $queryBuilder->where($this->searchColumn, '=', $this->searchString)->where('created_at', '>', Carbon::now()->subDays($this->days))->orderBy('created_at', 'DESC')->with('loggable')->paginate(50);
+        $data = $queryBuilder->where($this->searchColumn, '=', $this->searchString)->where('created_at', '>', Carbon::now()->subDays($this->days))->orderBy('created_at', 'DESC')->with(['loggable', 'account', 'clan', 'territory'])->paginate(500);
 
         return view('livewire.list-logs', ['logs' => $data]);
     }
