@@ -49,8 +49,8 @@
                         <tbody class="container-portal">
                         @foreach($logs as $log)
                             <tr class="table-row-portal">
-                                <td class="px-5 py-5 text-center text-sm inline">
-                                    <p class="whitespace-no-wrap inline-block">{!! $log->loggable->toString() !!}</p>
+                                <td class="px-5 py-5 text-center text-sm">
+                                    {!! $log->loggable->toString() !!}
                                 </td>
                                 <td class="px-5 py-5 text-center text-sm">
                                     <a class="whitespace-no-wrap">{{ $log->created_at }}</a>
