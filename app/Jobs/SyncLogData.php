@@ -776,6 +776,9 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($safeZoneLogs as $log) {
+            if(empty($log->player_id))
+                continue;
+
             Clan::findOrCreateDummy($log->clan_id);
             Clan::findOrCreateDummy($log->vehicle_owner_clan_id);
             Vehicle::findOrCreateDummy($log->vehicle_id);
