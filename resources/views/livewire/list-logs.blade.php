@@ -49,7 +49,7 @@
                         <tbody class="container-portal">
                         @foreach($logs as $log)
                             <tr class="table-row-portal">
-                                <td class="px-5 py-5 text-center text-sm">
+                                <td class="px-5 py-5 text-center text-sm inline-block">
                                     <p class="whitespace-no-wrap inline-block">{!! $log->loggable->toString() !!}</p>
                                 </td>
                                 <td class="px-5 py-5 text-center text-sm">
