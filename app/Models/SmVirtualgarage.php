@@ -67,21 +67,7 @@ class SmVirtualgarage extends Model
 		'fuel' => 'float'
 	];
 
-	protected $fillable = [
-		'class',
-		'puid',
-		'owner_uid',
-		'textures',
-		'poptabs',
-		'pincode',
-		'damage',
-		'hitpoints',
-		'fuel',
-		'items',
-		'magazines',
-		'weapons',
-		'cargo'
-	];
+    protected $guarded = [];
 
 	public function account(): BelongsTo
 	{
