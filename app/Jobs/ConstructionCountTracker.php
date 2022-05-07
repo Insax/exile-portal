@@ -53,7 +53,7 @@ class ConstructionCountTracker implements ShouldQueue
             'time' => Carbon::now()
         ]);
 
-        $territoryConstructionCount = Construction::selectRaw('territory_id, COUNT(*) as count')->groupBy('territory_id')->get();
+        $territoryConstructionCount = Construction::selectRaw('territory_id, COUNT(*) as count')->whereNotNull('territory_id')->groupBy('territory_id')->get();
 
         foreach ($territoryConstructionCount as $count) {
             TerritoryConstructionCountTime::create([
@@ -63,7 +63,7 @@ class ConstructionCountTracker implements ShouldQueue
             ]);
         }
 
-        $territoryContainerCount = Container::selectRaw('territory_id, COUNT(*) as count')->groupBy('territory_id')->get();
+        $territoryContainerCount = Container::selectRaw('territory_id, COUNT(*) as count')->whereNotNull('territory_id')->groupBy('territory_id')->get();
 
         foreach ($territoryContainerCount as $count) {
             TerritoryContainerCountTime::create([
