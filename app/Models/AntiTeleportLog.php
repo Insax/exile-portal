@@ -63,6 +63,6 @@ class AntiTeleportLog extends Logging
 
     function toString(): string
     {
-        return view('logs.entries.anti-tp', ['log', $this])->render();
+        return view('logs.entries.anti-tp', ['log' => $this])->render();
     }
 }
