@@ -564,6 +564,19 @@ class SyncLogData implements ShouldQueue
         foreach ($lockLogs as $log) {
             Clan::findOrCreateDummy($log->clan_id);
             Territory::findOrCreateDummy($log->territory_id);
+
+            switch ($log->object_type) {
+                case Container::class:
+                    Container::findOrCreateDummy($log->object_id);
+                    break;
+                case Vehicle::class:
+                    Vehicle::findOrCreateDummy($log->object_id);
+                    break;
+                case Construction::class:
+                    Construction::findOrCreateDummy($log->object_id);
+                    break;
+            }
+
             $loggable = LockLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
