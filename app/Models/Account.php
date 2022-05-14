@@ -9,6 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -229,9 +230,9 @@ class Account extends Model
 		return $this->hasOne(ClanModerator::class, 'account_uid');
 	}
 
-	public function clan(): HasOne
+	public function clan(): BelongsTo
 	{
-		return $this->hasOne(Clan::class);
+		return $this->belongsTo(Clan::class);
 	}
 
 	public function constructions(): HasMany
