@@ -231,7 +231,7 @@ class Account extends Model
 
 	public function clan(): HasOne
 	{
-		return $this->hasOne(Clan::class, 'leader_uid');
+		return $this->hasOne(Clan::class);
 	}
 
 	public function constructions(): HasMany
