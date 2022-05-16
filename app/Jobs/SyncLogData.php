@@ -222,6 +222,9 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($chatLogs as $log) {
+            if(empty($log->sender_id) || empty($log->receiver_id))
+                continue;
+
             $loggable = ChatLog::create([
                 'id' => $log->id,
                 'sender_uid' => $log->sender_id,
