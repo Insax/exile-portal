@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -355,9 +356,9 @@ class Account extends Model
 		return $this->hasMany(SmVirtualgarage::class, 'owner_uid');
 	}
 
-	public function territories(): HasMany
+	public function territories(): BelongsToMany
 	{
-		return $this->hasMany(Territory::class, 'owner_uid');
+		return $this->belongsToMany(Territory::class, 'territory_members', 'account_uid', 'territory_id');
 	}
 
 	public function territoryBuilder(): HasOne
