@@ -46,7 +46,7 @@
     </a>, fee {{ $log->fee }} Poptabs
     @break
     @case('Add')
-     invited player @include('livewire.display-account', ['account' => $log->targetAccount]) to Territory <a
+     invited player @include('livewire.display-account', ['uid' => $log->target_account_uid, 'name' => $log->targetAccount->name]) to Territory <a
         class="whitespace-no-wrap underline"
         href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
         {{ $log->territory->name }}

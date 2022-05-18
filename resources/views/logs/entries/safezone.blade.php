@@ -11,7 +11,7 @@ at Position {{ $log->player_pos }}
 @switch($log->action)
     @case('VehicleKick')
     got kicked out of Vehicle {{ __($log->vehicle) }} owned by
-    @include('livewire.display-account', ['account' => $log->ownerAccount])
+    @include('livewire.display-account', ['uid' => $log->vehicle_owner_uid, 'name' => $log->ownerAccount->name])
     @if($log->vehicle_owner_clan_id)
         in Family <a
             class="whitespace-no-wrap underline"
