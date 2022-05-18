@@ -10,14 +10,14 @@ use Livewire\Component;
 
 class DisplayAccount extends Component
 {
-    public string $accountUid = '';
+    public Account $account;
     public function mount(Account $account)
     {
-        $this->accountUid = $account->uid;
+        $this->account = $account;
     }
 
     public function render(): Factory|View|Application
     {
-        return view('livewire.display-account', ['account' => Account::find($this->accountUid)]);
+        return view('livewire.display-account', ['account' => $this->account]);
     }
 }
