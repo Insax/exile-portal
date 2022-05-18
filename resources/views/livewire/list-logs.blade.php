@@ -7,15 +7,8 @@
             <div>
                 <h2 class="text-2xl font-semibold leading-tight">Log Overview</h2>
             </div>
-            <form wire:submit.prevent="search">
                 <div class="my-2 flex sm:flex-row flex-col items-center">
                     <div class="flex flex-row mb-1 sm:mb-0 items-center input-group">
-                        <btn type="button" class="rounded-l-full inline-block py-1.5 px-2 leading-tight relative flex flex-wrap items-stretch border border-portal-red bg-portal-gray rounded-l">
-                            <div class="form-check form-switch items-center">
-                                <input class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top btn-portal focus:outline-none bg-no-repeat cursor-pointer shadow-sm bg-portal-red" type="checkbox" role="switch" id="flexSwitchCheckDefault" wire:model="mode">
-                                <label class="items-center form-check-label inline-flex text-portal-red mt-1" for="flexSwitchCheckDefault"> {{ $this->mode ? 'Parallel Mode' : 'Historical Mode'}}</label>
-                            </div>
-                        </btn>
                         <div class="relative">
                             <select wire:model="searchColumn"
                                     class="appearance-none h-full rounded-none border block appearance-none w-full py-2 px-4 pr-8 leading-tight">
@@ -33,7 +26,7 @@
                                 </path>
                             </svg>
                         </span>
-                        <input placeholder="Search for a Name..." wire:model="searchString"
+                        <input placeholder="Please provide an ID/UID" wire:model="searchString"
                                type="text" class="rounded-none sm:rounded-l-none block pl-8 pr-6 py-2 w-full text-sm" />
                     </div>
                 </div>
@@ -53,56 +46,68 @@
                                placeholder="Select a start date" data-mdb-toggle="datepicker" wire:model="endDate"/>
                     </div>
                 </div>
-                <div class="mx-2">
+            <div class="mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                <ul class="nav nav-pills nav-justified flex flex-col md:flex-row flex-wrap list-none pl-0 mb-4"
+                    id="pills-tabJustify" role="tablist">
+                    @php
+                        $first = true;
+                    @endphp
                     @foreach($this->availableLogTypes as $type)
-                        <div>
-                            <input type="checkbox" wire:model="logTypes" value="{{$type}}"/> <label>{{ $type }}</label>
-                        </div>
+                        <li class="nav-item flex-grow text-center my-2 md:mr-2" role="presentation">
+                            <a href="#{{$type}}"
+                               class="nav-link w-full block font-medium text-xs leading-tight uppercase rounded px-6 py-3 focus:outline-none focus:ring-0 {{ $first ? 'active' : '' }}"
+                               id="{{$type}}-tab" data-bs-toggle="pill" data-bs-target="#{{$type}}" role="tab"
+                               aria-controls="{{$type}}"
+                               aria-selected="{{ $first ? 'true' : 'false'  }}">{{$type}}</a>
+                        </li>
+                        @if($first)
+                            {{ $first = false }}
+                        @endif
                     @endforeach
-                </div>
-                <div>
-                    <button type="submit" class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out">
-                        Search!
-                    </button>
-                </div>
-            </form>
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div class="min-w-full shadow rounded-lg overflow-hidden">
-                    {{ $logs->links() }}
-                    <table class="min-w-full leading-normal">
-                        <thead class="container-portal">
-                        <tr>
-                            <th
-                                class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
-                                Logtype
-                            </th>
-                            <th
-                                class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
-                                Logentry
-                            </th>
-                            <th
-                                class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
-                                Time
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody class="container-portal">
-                        @foreach($logs as $log)
-                            <tr class="table-row-portal">
-                                <td class="px-5 py-5 text-center text-sm">
-                                    {!! $log->type !!}
-                                </td>
-                                <td class="px-5 py-5 text-center text-sm">
-                                    {!! $log->loggable->toString() !!}
-                                </td>
-                                <td class="px-5 py-5 text-center text-sm">
-                                    <a class="whitespace-no-wrap">{{ $log->created_at }}</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                    {{ $logs->links() }}
+                </ul>
+                @php
+                    $first = true;
+                @endphp
+                <div class="tab-content" id="types">
+                    @foreach($this->availableLogTypes as $type)
+                        <div
+                            class="min-w-full shadow rounded-lg overflow-hidden tab-pane fade {{$first ? 'show active' : ''}}"
+                            role="tabpanel" id="{{ $type }}"
+                            aria-labelledby="{{$type}}-tab">
+                            <table class="min-w-full leading-normal">
+                                <thead class="container-portal">
+                                <tr>
+                                    <th
+                                        class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
+                                        Logentry
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
+                                        Time
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="container-portal">
+                                @foreach($logs as $log)
+                                    @if($log->type != $type)
+                                        @continue
+                                    @endif
+                                    <tr class="table-row-portal">
+                                        <td class="px-5 py-5 text-center text-sm">
+                                            {!! $log->loggable->toString() !!}
+                                        </td>
+                                        <td class="px-5 py-5 text-center text-sm">
+                                            <a class="whitespace-no-wrap">{{ $log->created_at }}</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        @if($first)
+                            {{ $first = false }}
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
