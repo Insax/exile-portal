@@ -67,7 +67,11 @@
                         <tr>
                             <th
                                 class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
-                                String
+                                Logtype
+                            </th>
+                            <th
+                                class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
+                                Logentry
                             </th>
                             <th
                                 class="px-5 py-3 border-x-2 border-portal-gray/10 text-center text-xs font-semibold uppercase tracking-wider">
@@ -78,6 +82,9 @@
                         <tbody class="container-portal">
                         @foreach($logs as $log)
                             <tr class="table-row-portal">
+                                <td class="px-5 py-5 text-center text-sm">
+                                    {!! $log->type !!}
+                                </td>
                                 <td class="px-5 py-5 text-center text-sm">
                                     {!! $log->loggable->toString() !!}
                                 </td>
