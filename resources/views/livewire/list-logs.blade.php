@@ -35,7 +35,8 @@
                     <div class="inline-block datepicker relative" data-mdb-toggle-button="false">
                         <input type="text"
                                class="form-control w-full transition ease-in-out rounded-none"
-                               placeholder="Select a start date" data-mdb-toggle="datepicker" wire:model="startDate"/>
+                               placeholder="Select a start date" data-mdb-toggle="datepicker" wire:model="startDate"
+                               onchange="this.dispatchEvent(new InputEvent('input'))"/>
                     </div>
                 </div>
                 <div>
@@ -43,7 +44,8 @@
                     <div class="inline-block datepicker relative" data-mdb-toggle-button="false">
                         <input type="text"
                                class="form-control w-full transition ease-in-out rounded-none"
-                               placeholder="Select a start date" data-mdb-toggle="datepicker" wire:model="endDate"/>
+                               placeholder="Select a start date" data-mdb-toggle="datepicker" wire:model="endDate"
+                               onchange="this.dispatchEvent(new InputEvent('input'))"/>
                     </div>
                 </div>
             <div class="mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto" wire:loading>
