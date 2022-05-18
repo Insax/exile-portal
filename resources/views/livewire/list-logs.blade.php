@@ -8,10 +8,16 @@
                 <h2 class="text-2xl font-semibold leading-tight">Log Overview</h2>
             </div>
             <div class="my-2 flex sm:flex-row flex-col items-center">
-                <div class="flex flex-row mb-1 sm:mb-0">
+                <div class="flex flex-row mb-1 sm:mb-0 items-center input-group">
+                    <btn type="button" class="rounded-l-full inline-block py-1.5 px-2 leading-tight relative flex flex-wrap items-stretch border border-portal-red bg-portal-gray rounded-l">
+                        <div class="form-check form-switch items-center">
+                            <input class="form-check-input appearance-none w-9 -ml-10 rounded-full float-left h-5 align-top btn-portal focus:outline-none bg-no-repeat cursor-pointer shadow-sm bg-portal-red" type="checkbox" role="switch" id="flexSwitchCheckDefault" wire:model="mode">
+                            <label class="items-center form-check-label inline-flex text-portal-red mt-1" for="flexSwitchCheckDefault"> {{ $this->mode ? 'Parallel Mode' : 'Historical Mode'}}</label>
+                        </div>
+                    </btn>
                     <div class="relative">
                         <select wire:model="searchColumn"
-                                class="appearance-none h-full rounded-r border block appearance-none w-full py-2 px-4 pr-8 leading-tight">
+                                class="appearance-none h-full rounded-none border block appearance-none w-full py-2 px-4 pr-8 leading-tight">
                             @foreach($this->availableSearchColumns as $columns)
                                 <option> {{ $columns }}</option>
                             @endforeach
@@ -27,8 +33,31 @@
                         </svg>
                     </span>
                     <input placeholder="Search for a Name..." wire:model="searchString"
-                           type="text" class="rounded-l sm:rounded-l-none block pl-8 pr-6 py-2 w-full text-sm" />
+                           type="text" class="rounded-none sm:rounded-l-none block pl-8 pr-6 py-2 w-full text-sm" />
                 </div>
+            </div>
+            <div>
+                <label for="datepicker">Start Date: </label>
+                <div class="inline-block datepicker relative" data-mdb-toggle-button="false">
+                    <input type="text"
+                           class="form-control w-full transition ease-in-out rounded-none"
+                           placeholder="Select a start date" data-mdb-toggle="datepicker"wire:model="startDate"/>
+                </div>
+            </div>
+            <div>
+                <label for="datepicker">End Date: </label>
+                <div class="inline-block datepicker relative" data-mdb-toggle-button="false">
+                    <input type="text"
+                           class="form-control w-full transition ease-in-out rounded-none"
+                           placeholder="Select a start date" data-mdb-toggle="datepicker"wire:model="startDate"/>
+                </div>
+            </div>
+            <div class="mt-2">
+                @foreach($this->availableLogTypes as $type)
+                    <div>
+                        <input type="checkbox" wire:model="logTypes" value="{{$type}}"/> <label>{{ $type }}</label>
+                    </div>
+                @endforeach
             </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="min-w-full shadow rounded-lg overflow-hidden">
