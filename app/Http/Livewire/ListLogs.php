@@ -34,8 +34,6 @@ class ListLogs extends Component
     ];
 
     public function updating() {
-        \Debugbar::log($this->startDate);
-        \Debugbar::log($this->endDate);
         $this->resetPage();
     }
 
