@@ -1,5 +1,5 @@
 @php /** @var \App\Models\CraftingLog $log */ @endphp
-@livewire('display-account', ['account' => $log->account])
+@include('display-account', ['account' => $log->account])
 @if($log->clan_id)
     in Family <a
         class="whitespace-no-wrap underline"

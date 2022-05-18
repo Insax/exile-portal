@@ -1,3 +1,3 @@
 @php /** @var \App\Models\HackLog $log */ @endphp
-@livewire('display-account', ['account' => $log->oldAccount]) switched accounts - new Account:
-@livewire('display-account', ['account' => $log->newAccount])
+@include('display-account', ['account' => $log->oldAccount]) switched accounts - new Account:
+@include('display-account', ['account' => $log->newAccount])
