@@ -1,5 +1,5 @@
 @php /** @var \App\Models\SafeZoneLog $log */ @endphp
-@include('display-account', ['account' => $log->account])
+@include('livewire.display-account, ['account' => $log->account])
 @if($log->clan_id)
     in Family <a
         class="whitespace-no-wrap underline"
@@ -11,7 +11,7 @@ at Position {{ $log->player_pos }}
 @switch($log->action)
     @case('VehicleKick')
     got kicked out of Vehicle {{ __($log->vehicle) }} owned by
-    @include('display-account', ['account' => $log->ownerAccount])
+    @include('livewire.display-account, ['account' => $log->ownerAccount])
     @if($log->vehicle_owner_clan_id)
         in Family <a
             class="whitespace-no-wrap underline"

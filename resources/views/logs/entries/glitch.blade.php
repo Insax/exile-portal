@@ -1,5 +1,5 @@
 @php /** @var \App\Models\GlitchLog $log */ @endphp
-@include('display-account', ['account' => $log->account])
+@include('livewire.display-account, ['account' => $log->account])
 @switch($log->action)
     @case('WallCheck')
     tried to glitch using a vehicle
