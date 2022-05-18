@@ -42,16 +42,16 @@ class ListLogs extends Component
     public function render()
     {
         if(empty($this->startDate))
-            $this->startDate = Carbon::now()->subDays(5)->format('d/m/Y');
+            $this->startDate = Carbon::now()->subDay()->toDateString();
 
         if(empty($this->endDate))
-            $this->endDate = Carbon::now()->format('d/m/Y');
+            $this->endDate = Carbon::now()->toDateString();
 
-        $this->availableLogTypes = ReadableLogging::where($this->searchColumn, '=', $this->searchString)->where('created_at', '>=', Carbon::createFromFormat('d/m/Y', $this->startDate))->where('created_at', '<=', Carbon::createFromFormat('d/m/Y', $this->endDate))->distinct()->orderBy('type')->pluck('type')->toArray();
+        $this->availableLogTypes = ReadableLogging::where($this->searchColumn, '=', $this->searchString)->where('created_at', '>=', Carbon::parse($this->startDate))->where('created_at', '<=', Carbon::parse($this->endDate))->distinct()->orderBy('type')->pluck('type')->toArray();
 
         $queryBuilder = ReadableLogging::query();
 
-        $data = $queryBuilder->where($this->searchColumn, '=', $this->searchString)->where('created_at', '>=', Carbon::createFromFormat('d/m/Y', $this->startDate))->where('created_at', '<=', Carbon::createFromFormat('d/m/Y', $this->endDate))->orderBy('created_at', 'DESC')->with(['loggable', 'account', 'clan', 'territory'])->get();
+        $data = $queryBuilder->where($this->searchColumn, '=', $this->searchString)->where('created_at', '>=', Carbon::parse($this->startDate))->where('created_at', '<=', Carbon::parse($this->endDate))->orderBy('created_at', 'DESC')->with(['loggable', 'account', 'clan', 'territory'])->get();
 
         return view('livewire.list-logs', ['logs' => $data]);
     }
