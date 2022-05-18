@@ -56,10 +56,10 @@
     }
 
     .btn-portal {
-        @apply bg-portal-gray/50 border-portal-gray border-2 text-portal-red hover:bg-portal-red hover:text-portal-gray hover:border-portal-gray
+        @apply bg-portal-gray/50 border-portal-gray border-2 text-portal-red hover:bg-portal-red hover:text-portal-gray hover:border-portal-gray hover:bg-portal-red active:bg-portal-red active:text-portal-gray active:border-portal-gray
     }
 
     .btn-portal-inv {
-        @apply bg-portal-red/50 border-portal-gray border-2 text-portal-gray
+        @apply bg-portal-red/50 border-portal-gray border-2 text-portal-gray hover:bg-portal-red hover:text-portal-gray hover:border-portal-red hover:bg-portal-gray active:bg-portal-gray active:text-portal-red active:border-portal-red
     }
 }

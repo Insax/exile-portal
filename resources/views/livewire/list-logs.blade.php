@@ -55,7 +55,7 @@
                     @foreach($this->availableLogTypes as $type)
                         <li class="nav-item flex-grow text-center my-2 md:mr-2" role="presentation">
                             <a href="#{{$type}}"
-                               class="nav-link w-full block font-medium text-xs leading-tight uppercase rounded px-6 py-3 focus:outline-none focus:ring-0 {{ $first ? 'active' : '' }}"
+                               class="w-full block font-medium text-xs leading-tight uppercase rounded px-6 py-3 focus:outline-none focus:ring-0 {{ $first ? 'active' : '' }} btn-portal"
                                id="{{$type}}-tab" data-bs-toggle="pill" data-bs-target="#{{$type}}" role="tab"
                                aria-controls="{{$type}}"
                                aria-selected="{{ $first ? 'true' : 'false'  }}">{{$type}}</a>
