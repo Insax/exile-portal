@@ -18,6 +18,7 @@ class ListLogs extends Component
     public bool $mode = false;
     public string $startDate = '';
     public string $endDate = '';
+    private $data = null;
 
     protected $queryString = [
         'searchColumn' => ['except' => 'account_uid'],
@@ -35,12 +36,27 @@ class ListLogs extends Component
         'clan_id'
     ];
 
-    public function updating()
-    {
-        $this->resetPage();
-    }
+    public function search() {
+        if(empty($this->startDate))
+            $this->startDate = Carbon::now()->subDays(5)->format('d/m/Y');
 
-    public int $days = 3;
+        if(empty($this->endDate))
+            $this->endDate = Carbon::now()->format('d/m/Y');
+
+        if(empty($this->logTypes))
+            $this->logTypes = $this->availableLogTypes;
+
+        $this->availableLogTypes = ReadableLogging::distinct()->pluck('type')->toArray();
+
+        $queryBuilder = ReadableLogging::query();
+
+        if(count($this->logTypes))
+            $queryBuilder->whereIn('type', $this->logTypes);
+
+        $this->data = $queryBuilder->whereIn('type', $this->logTypes)->where($this->searchColumn, '=', $this->searchString)->where('created_at', '>=', Carbon::createFromFormat('d/m/Y', $this->startDate))->where('created_at', '<=', Carbon::createFromFormat('d/m/Y', $this->endDate))->orderBy('created_at', 'DESC')->with(['loggable', 'account', 'clan', 'territory'])->paginate(500);
+        $this->resetPage();
+
+    }
 
     public function render()
     {
@@ -60,8 +76,8 @@ class ListLogs extends Component
         if(count($this->logTypes))
             $queryBuilder->whereIn('type', $this->logTypes);
 
-        $data = $queryBuilder->whereIn('type', $this->logTypes)->where($this->searchColumn, '=', $this->searchString)->where('created_at', '>=', Carbon::createFromFormat('d/m/Y', $this->startDate))->where('created_at', '<=', Carbon::createFromFormat('d/m/Y', $this->endDate))->orderBy('created_at', 'DESC')->with(['loggable', 'account', 'clan', 'territory'])->paginate(500);
+        $this->data = $queryBuilder->whereIn('type', $this->logTypes)->where($this->searchColumn, '=', $this->searchString)->where('created_at', '>=', Carbon::createFromFormat('d/m/Y', $this->startDate))->where('created_at', '<=', Carbon::createFromFormat('d/m/Y', $this->endDate))->orderBy('created_at', 'DESC')->with(['loggable', 'account', 'clan', 'territory'])->paginate(500);
 
-        return view('livewire.list-logs', ['logs' => $data]);
+        return view('livewire.list-logs', ['logs' => $this->data]);
     }
 }
