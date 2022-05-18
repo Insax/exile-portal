@@ -1,5 +1,5 @@
 @php /** @var \App\Models\ThermalScannerLog $log */ @endphp
-@include('livewire.display-account, ['account' => $log->account])
+@include('livewire.display-account', ['account' => $log->account])
 @if($log->clan_id)
     in Family <a
         class="whitespace-no-wrap underline"
