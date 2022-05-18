@@ -46,7 +46,10 @@
                                placeholder="Select a start date" data-mdb-toggle="datepicker" wire:model="endDate"/>
                     </div>
                 </div>
-            <div class="mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+            <div class="mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto" wire:loading>
+                <p>Fetching logs...</p>
+            </div>
+            <div class="mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto" wire:loading.attr="hidden">
                 <ul class="nav nav-pills nav-justified flex flex-col md:flex-row flex-wrap list-none pl-0 mb-4"
                     id="pills-tabJustify" role="tablist">
                     @php
@@ -68,7 +71,7 @@
                 @php
                     $first = true;
                 @endphp
-                <div class="tab-content" id="types">
+                <div class="tab-content" id="types" wire:loading.attr="hidden">
                     @foreach($this->availableLogTypes as $type)
                         <div
                             class="min-w-full shadow rounded-lg overflow-hidden tab-pane fade {{$first ? 'show active' : ''}}"

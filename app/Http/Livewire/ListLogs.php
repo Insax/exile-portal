@@ -12,7 +12,6 @@ class ListLogs extends Component
     use WithPagination;
 
     public string $searchColumn = 'account_uid';
-    //public array $logTypes = array();
     public string $searchString = '';
     public array $availableLogTypes = array();
     public bool $mode = false;
@@ -33,6 +32,10 @@ class ListLogs extends Component
         'territory_id',
         'clan_id'
     ];
+
+    public function updating() {
+        $this->resetPage();
+    }
 
     public function render()
     {
