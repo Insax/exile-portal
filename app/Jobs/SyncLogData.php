@@ -942,9 +942,9 @@ class SyncLogData implements ShouldQueue
                 'vehicle_id' => $log->vehicle_id,
                 'container_content' => $log->container_content,
                 'price' => $log->price,
-                'sell_respect' => $log->sell_respect,
-                'poptabs_after' => $log->poptabs_after,
-                'respect_after' => $log->respect_after,
+                'sell_respect' => $this->correctInvalidPoptabValue($log->sell_respect),
+                'poptabs_after' => $this->correctInvalidPoptabValue($log->poptabs_after),
+                'respect_after' => $this->correctInvalidPoptabValue($log->respect_after),
                 'time' => $log->time
             ]);
 
