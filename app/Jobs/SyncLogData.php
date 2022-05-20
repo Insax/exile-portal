@@ -1025,9 +1025,9 @@ class SyncLogData implements ShouldQueue
         }
     }
 
-    public function correctInvalidPoptabValue(string $value): int
+    public function correctInvalidPoptabValue(?string $value): int
     {
-        if($value == 'scalar NaN' || $value == 'any')
+        if($value == 'scalar NaN' || $value == 'any' || empty($value))
             return 0;
         return (int)$value;
     }
