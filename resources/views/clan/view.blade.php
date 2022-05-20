@@ -17,7 +17,7 @@
                 <button type="button"
                         class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
                         onclick='Livewire.emit("openModal", "rename-clan", {{ json_encode(["clan" => $clan->id]) }})'>
-                    Rename Territory!
+                    Rename Clan!
                 </button>
             </p>
         @endcan
