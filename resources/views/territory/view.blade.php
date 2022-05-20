@@ -25,6 +25,15 @@
                 </button>
             </p>
         @endcan
+        @can('territory.manage')
+            <p class="block mx-auto">
+                <button type="button"
+                        class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
+                        onclick='Livewire.emit("openModal", "rename-territory", {{ json_encode(["territory" => $territory->id]) }})'>
+                    Rename Territory!
+                </button>
+            </p>
+        @endcan
         <p class="block mx-auto">
             <button type="button"
                     class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"

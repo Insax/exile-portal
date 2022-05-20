@@ -65,7 +65,10 @@ class SetupRoles extends Command
             'name' => 'clans.manage'
         ]);
 
-        User::find(1)->assignRole('Super Admin');
+        $usr = User::find(1);
+        if(!$usr->hasRole('Super Admin'))
+            $usr->assignRole('Super Admin');
+
         $this->call('permission:cache-reset');
         return 0;
     }

@@ -12,6 +12,15 @@
                 Set Note on Clan
             </button>
         </p>
+        @can('$clan.manage')
+            <p class="block mx-auto">
+                <button type="button"
+                        class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
+                        onclick='Livewire.emit("openModal", "rename-clan", {{ json_encode(["clan" => $clan->id]) }})'>
+                    Rename Territory!
+                </button>
+            </p>
+        @endcan
     </div>
     <h1 class="text-portal-red my-8 text-center text-5xl">Clan Information</h1>
     <div class="w-3/4 grid grid-cols-3 gap-8 mx-auto">
