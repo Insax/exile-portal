@@ -770,6 +770,9 @@ class SyncLogData implements ShouldQueue
             if(empty($log->player_id))
                 continue;
 
+            if($log->container_id == 'any')
+                continue;
+
             Clan::findOrCreateDummy($log->clan_id);
             Territory::findOrCreateDummy($log->territory_id);
             Container::findOrCreateDummy($log->container_id);
