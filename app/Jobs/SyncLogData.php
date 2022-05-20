@@ -615,8 +615,8 @@ class SyncLogData implements ShouldQueue
                 'amount' => $log->amount,
                 'locker_before' => $log->locker_before,
                 'locker_after' => $log->locker_before,
-                'player_before' => is_int($log->player_before) ? $log->player_before : 0,
-                'player_after' => is_int($log->player_after) ? $log->player_after : 0
+                'player_before' => $this->correctInvalidPoptabValue($log->player_before),
+                'player_after' => $this->correctInvalidPoptabValue($log->player_after)
             ]);
 
             ReadableLogging::create([
@@ -746,11 +746,11 @@ class SyncLogData implements ShouldQueue
                 'account_uid' => $log->player_id,
                 'clan_id' => $log->clan_id,
                 'amount' => $log->amount,
-                'player_before' => is_int($log->player_before) ? $log->player_before : 0,
-                'player_after' => is_int($log->player_after) ? $log->player_after : 0,
+                'player_before' => $this->correctInvalidPoptabValue($log->player_before),
+                'player_after' => $this->correctInvalidPoptabValue($log->player_after),
                 'player_pos' => $log->player_pos,
-                'container_before' => is_int($log->container_before) ? $log->container_before : 0,
-                'container_after' => is_int($log->container_after) ? $log->container_after : 0,
+                'container_before' => $this->correctInvalidPoptabValue($log->container_before),
+                'container_after' => $this->correctInvalidPoptabValue($log->container_after),
                 'container_class' => $log->container_class,
                 'time' => $log->time
             ]);
@@ -1017,5 +1017,12 @@ class SyncLogData implements ShouldQueue
                 'created_at' => $loggable->time
             ]);
         }
+    }
+
+    public function correctInvalidPoptabValue(string $value): int
+    {
+        if($value == 'scalar NaN' || $value == 'any')
+            return 0;
+        return (int)$value;
     }
 }
