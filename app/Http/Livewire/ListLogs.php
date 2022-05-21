@@ -45,11 +45,11 @@ class ListLogs extends Component
         if(empty($this->endDate))
             $this->endDate = Carbon::now()->toDateString();
 
-        $this->availableLogTypes = ReadableLogging::where($this->searchColumn, '=', $this->searchString)->where('created_at', '>=', Carbon::parse($this->startDate))->where('created_at', '<=', Carbon::parse($this->endDate))->distinct()->orderBy('type')->pluck('type')->toArray();
+        $this->availableLogTypes = ReadableLogging::where($this->searchColumn, '=', $this->searchString)->where('created_at', '>=', Carbon::parse($this->startDate))->where('created_at', '<=', Carbon::parse($this->endDate)->addDay())->distinct()->orderBy('type')->pluck('type')->toArray();
 
         $queryBuilder = ReadableLogging::query();
 
-        $data = $queryBuilder->where($this->searchColumn, '=', $this->searchString)->where('created_at', '>=', Carbon::parse($this->startDate))->where('created_at', '<=', Carbon::parse($this->endDate))->orderBy('created_at', 'DESC')->with(['loggable', 'account', 'clan', 'territory'])->get();
+        $data = $queryBuilder->where($this->searchColumn, '=', $this->searchString)->where('created_at', '>=', Carbon::parse($this->startDate))->where('created_at', '<=', Carbon::parse($this->endDate)->addDay())->orderBy('created_at', 'DESC')->with(['loggable', 'account', 'clan', 'territory'])->get();
 
         return view('livewire.list-logs', ['logs' => $data]);
     }
