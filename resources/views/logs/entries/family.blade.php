@@ -12,7 +12,7 @@
     created the family {{ $log->clan->name }}
     @break
     @case('InviteFailed')
-    failed to invite player @include('livewire.display-account', ['uid' => $log->target_account_uid, 'name' => $log->targetAccount->name])
+    invited a player and it failed.
     @break
     @case('Leave')
     left the family {{ $log->clan->name }}
