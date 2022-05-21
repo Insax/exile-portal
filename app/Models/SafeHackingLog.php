@@ -65,7 +65,7 @@ class SafeHackingLog extends Logging
 
 	public function account(): BelongsTo
 	{
-		return $this->belongsTo(Account::class, 'account_uid')->withTrashed();
+		return $this->belongsTo(Account::class, 'account_uid');
 	}
 
 	public function clan(): BelongsTo

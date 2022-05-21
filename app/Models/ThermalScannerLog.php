@@ -67,7 +67,7 @@ class ThermalScannerLog extends Logging
 
 	public function account(): BelongsTo
 	{
-		return $this->belongsTo(Account::class, 'account_uid')->withTrashed();
+		return $this->belongsTo(Account::class, 'account_uid');
 	}
 
 	public function territory(): BelongsTo
