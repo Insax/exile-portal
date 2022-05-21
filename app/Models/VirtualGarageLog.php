@@ -86,6 +86,6 @@ class VirtualGarageLog extends Logging
 
     function toString(): string
     {
-        return view('logs.entries.virtual-garage', ['log' => $this]);
+        return view('logs.entries.virtual-garage', ['log' => $this])->render();
     }
 }

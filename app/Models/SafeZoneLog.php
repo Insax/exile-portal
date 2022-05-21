@@ -93,6 +93,6 @@ class SafeZoneLog extends Logging
 
     function toString(): string
     {
-        return view('logs.entries.safezone', ['log' => $this]);
+        return view('logs.entries.safezone', ['log' => $this])->render();
     }
 }

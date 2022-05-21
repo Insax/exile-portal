@@ -85,6 +85,6 @@ class SafeHackingLog extends Logging
 
     function toString(): string
     {
-        return view('logs.entries.safehacking', ['log' => $this]);
+        return view('logs.entries.safehacking', ['log' => $this])->render();
     }
 }
