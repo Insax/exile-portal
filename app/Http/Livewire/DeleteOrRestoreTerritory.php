@@ -45,7 +45,7 @@ class DeleteOrRestoreTerritory extends ModalComponent
                 $territory->last_paid_at = Carbon::now()->subDays(8)->addDays($this->advancePayment);
 
             activity()->by(Auth::user())
-                ->on($territory)
+                ->on($localTerritory)
                 ->withProperties([
                     'action' => 'restored',
                     'advance' => $this->advancePayment
