@@ -4,7 +4,7 @@
             <div
                 class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b card-header-portal rounded-t-md">
                 <h5 class="text-xl font-medium leading-normal " id="addInput">
-                    Delete User {{ $this->instanceId }}
+                    Delete User {{ $this->userId }}
                 </h5>
                 <button type="button"
                         class="text-portal-red btn-close box-content w-4 h-4 p-1 border-none rounded-none btn-portal"
