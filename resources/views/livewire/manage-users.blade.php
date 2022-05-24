@@ -70,7 +70,7 @@
                                             </button>
                                             <button type="button"
                                                     class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
-                                                    data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                                    wire:click='$emit("openModal", "delete-user", {{ json_encode(["user" => $user->id]) }})'>
                                                 Delete
                                             </button>
                                         @else
