@@ -7,7 +7,7 @@
                     Delete Portal Instance {{ $this->instanceId }}
                 </h5>
                 <button type="button"
-                        class="text-portal-red btn-close box-content w-4 h-4 p-1 border-none rounded-none btn-portal"
+                        class="text-portal-red btn-close box-content w-4 h-4 p-1 border-none rounded-none btn-portal text-green-500"
                         wire:click="$emit('closeModal')" aria-label="Close"></button>
             </div>
             <div class="modal-body relative p-4 card-portal">

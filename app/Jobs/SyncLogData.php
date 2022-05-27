@@ -930,8 +930,12 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($tradeLogs as $log) {
+            if($log->vehicle_id == 'any')
+                $log->vehicle_id = null;
+
             Clan::findOrCreateDummy($log->clan_id);
             Vehicle::findOrCreateDummy($log->vehicle_id);
+
             $loggable = TradeLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
@@ -997,6 +1001,9 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($virtualGarageLogs as $log) {
+            if($log->vehicle_id == 'any')
+                $log->vehicle_id = null;
+
             Clan::findOrCreateDummy($log->clan_id);
             Territory::findOrCreateDummy($log->flag_id);
             Vehicle::findOrCreateDummy($log->vehicle_id);
