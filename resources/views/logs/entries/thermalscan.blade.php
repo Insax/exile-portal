@@ -13,5 +13,5 @@ scanned {{ __($log->scanable->class) }} which has Code: {{ $log->pin_code }} at 
         class="whitespace-no-wrap underline"
         href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
         {{ $log->territory->name }}
-    </a> and {{ $this->has_rights ? 'and has Building rights' : 'and does not have Bulding rights' }}
+    </a> and {{ $log->has_rights ? 'and has Building rights' : 'and does not have Bulding rights' }}
 @endif
