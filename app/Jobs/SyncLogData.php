@@ -370,6 +370,10 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($flagHackingLogs as $log) {
+            if(empty($log->player_id)) {
+                continue;
+            }
+            
             Clan::findOrCreateDummy($log->clan_id);
             Territory::findOrCreateDummy($log->territory_id);
             $loggable = FlagHackingLog::create([
