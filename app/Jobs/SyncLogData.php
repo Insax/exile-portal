@@ -689,8 +689,9 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($playerKillLogs as $log) {
-            if($log->killer_id == '' || $log->victim_id == '')
+            if(empty($log->killer_id) || empty($log->victim_id)) {
                 continue;
+            }
 
             Clan::findOrCreateDummy($log->killer_clan_id);
             Clan::findOrCreateDummy($log->victim_clan_id);
