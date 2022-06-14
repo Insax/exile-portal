@@ -44,7 +44,7 @@
         <p class="block mx-auto">
             <a type="button"
                class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
-               href="{{ route('logs.list', ['startDate' => \Carbon\Carbon::now()->subDays(3)->toDateString(), 'endDate' => \Carbon\Carbon::now()->toDateString(), 'searchString' => $territory->id, 'search_column' => 'territory_id']) }}">
+               href="{{ route('logs.list', ['startDate' => \Carbon\Carbon::now()->subDays(3)->toDateString(), 'endDate' => \Carbon\Carbon::now()->toDateString(), 'searchString' => $territory->id, 'searchColumn' => 'territory_id']) }}">
                 Show Logs
             </a>
         </p>
