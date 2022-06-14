@@ -36,8 +36,6 @@ class ListLogs extends Component
     public function updating() {
         $this->resetPage();
     }
-    
-    private function loadAllLogs
 
     public function render()
     {
