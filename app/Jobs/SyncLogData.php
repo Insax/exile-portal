@@ -903,6 +903,9 @@ class SyncLogData implements ShouldQueue
         ]);
 
         foreach ($thermalScanLogs as $log) {
+            if($log->object_id == -1) {
+                continue;
+            }
             Clan::findOrCreateDummy($log->clan_id);
             Territory::findOrCreateDummy($log->territory_id);
 
