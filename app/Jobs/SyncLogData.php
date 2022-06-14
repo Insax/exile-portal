@@ -981,7 +981,7 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($vehicleDestroyedLogs as $log) {
-            if(empty($log->player_id))
+            if(empty($log->player_id) || $log->vehicle_id == -1)
                 continue;
 
             Clan::findOrCreateDummy($log->clan_id);
