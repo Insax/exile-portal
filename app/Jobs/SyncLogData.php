@@ -108,7 +108,7 @@ class SyncLogData implements ShouldQueue
         $craftingLogMax = (int)CraftingLog::max('id');
         $craftingLogs = GameServerLoggingCrafting::where('id', '>', $craftingLogMax)->orderBy('id', 'ASC')->get();
 
-        $disconnectLogMax = (int)PositionLog::max('id');
+        $disconnectLogMax = (int)DisconnectPositionLog::max('id');
         $disconnectLogs = GameServerLoggingDisconnectPosition::where('id', '>', $disconnectLogMax)->orderBy('id', 'ASC')->get();
 
         $familyLogMax = (int)FamilyLog::max('id');
