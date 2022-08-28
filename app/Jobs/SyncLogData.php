@@ -108,7 +108,7 @@ class SyncLogData implements ShouldQueue
         $craftingLogMax = (int)CraftingLog::max('id');
         $craftingLogs = GameServerLoggingCrafting::where('id', '>', $craftingLogMax)->orderBy('id', 'ASC')->get();
 
-        $disconnectLogMax = (int)DisconnectPositionLog::max('id');
+        $disconnectLogMax = (int)PositionLog::max('id');
         $disconnectLogs = GameServerLoggingDisconnectPosition::where('id', '>', $disconnectLogMax)->orderBy('id', 'ASC')->get();
 
         $familyLogMax = (int)FamilyLog::max('id');
@@ -315,6 +315,10 @@ class SyncLogData implements ShouldQueue
         foreach ($disconnectLogs as $log) {
             Clan::findOrCreateDummy($log->clan_id);
             Territory::findOrCreateDummy($log->territory_id);
+            
+            if(!Account::whereUid($log->player_id)->exists())
+                continue;
+            
             $loggable = DisconnectPositionLog::create([
                 'id' => $log->id,
                 'account_uid' => $log->player_id,
