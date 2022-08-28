@@ -288,6 +288,9 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($craftingLogs as $log) {
+            if(empty($log->player_id))
+                continue;
+            
             Clan::findOrCreateDummy($log->clan_id);
             $loggable = CraftingLog::create([
                 'id' => $log->id,
