@@ -288,7 +288,7 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($craftingLogs as $log) {
-            if(empty($log->player_id) && !is_numeric($log->amount))
+            if(empty($log->player_id) || !is_numeric($log->amount))
                 continue;
             
             Clan::findOrCreateDummy($log->clan_id);
