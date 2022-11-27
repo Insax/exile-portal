@@ -790,7 +790,7 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($safeHackingLogs as $log) {
-            if(empty($log->player_id) && ($log->territory_id < 1))
+            if(empty($log->player_id) || ($log->territory_id < 1))
                 continue;
 
             if($log->container_id == 'any')
