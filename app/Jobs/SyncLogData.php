@@ -173,7 +173,7 @@ class SyncLogData implements ShouldQueue
 
         foreach ($antiTpLogs as $log) {
             
-            if(!is_numeric($log->distance)) {
+            if(!is_numeric($log->distance) || $log->distance > 2147483646) {
                 continue;
             }
             
