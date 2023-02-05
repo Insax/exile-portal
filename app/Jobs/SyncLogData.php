@@ -172,6 +172,11 @@ class SyncLogData implements ShouldQueue
         $virtualGarageLogs = GameServerLoggingVg::where('id', '>', $virtualGarageLogMax)->orderBy('id', 'ASC')->get();
 
         foreach ($antiTpLogs as $log) {
+            
+            if(!is_numeric($log->distance)) {
+                continue;
+            }
+            
             $loggable = AntiTeleportLog::create([
                 'id' => $log->id,
                 'account_uid' => $log->player_id,
