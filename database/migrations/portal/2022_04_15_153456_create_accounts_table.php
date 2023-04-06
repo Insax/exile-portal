@@ -42,6 +42,9 @@ return new class extends Migration
             $table->integer('marxet_locker');
             $table->string('friends', 2048);
             $table->dateTime('friend_last_reset_at');
+            $table->dateTime('premium_date');
+            $table->dateTime('CotW_date');
+            $table->dateTime('PremiumDrop_date');
             $table->dateTime('last_updated_at');
             $table->timestamps();
         });
