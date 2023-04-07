@@ -34,7 +34,7 @@ return new class extends Migration
             $table->unsignedInteger('esm_payment_counter')->nullable();
             $table->dateTime('deleted_at')->nullable();
             $table->string('territory_permissions', 300);
-            $table->integer('bought_slots');
+            $table->integer('bought_slots')->nullable();
             $table->dateTime('last_updated_at');
             $table->timestamps();
             $table->softDeletes('trashed_at');
