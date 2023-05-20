@@ -588,7 +588,7 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($lockLogs as $log) {
-            if(empty($log->player_id || $log->object_id = -1)) {
+            if(empty($log->player_id || $log->object_id == -1)) {
                 continue;
             }
 
