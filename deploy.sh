@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 git pull
 composer install --no-dev
 npm install
