@@ -26,10 +26,10 @@ class Kernel extends ConsoleKernel
         $schedule->job(new SyncDatabaseData)->then(function () {
             ParseAllContainersJob::dispatch();
             SyncLogData::dispatch();
-            PlayerOnlineTimeTrackerJob::dispatch();
-            AccountMoneyTracker::dispatch();
-            AccountRespectTracker::dispatch();
-            ConstructionCountTracker::dispatch();
+            //PlayerOnlineTimeTrackerJob::dispatch();
+            //AccountMoneyTracker::dispatch();
+            //AccountRespectTracker::dispatch();
+            //ConstructionCountTracker::dispatch();
         })->everyMinute();
 
         $schedule->job(SoftDeleteGameData::class)->everyThirtyMinutes();
