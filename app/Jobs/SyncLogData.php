@@ -1032,7 +1032,7 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($virtualGarageLogs as $log) {
-            if($log->vehicle_id == 'any' || $log->vehicle_id == null)
+            if($log->vehicle_id == 'any' || $log->vehicle_id == null || $log->vehicle_id == -1)
                 continue;
 
             Clan::findOrCreateDummy($log->clan_id);
