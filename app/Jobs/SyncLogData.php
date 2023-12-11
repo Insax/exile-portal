@@ -497,6 +497,9 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($hotwireLogs as $log) {
+            if($log->vehicle_id = -1)
+                continue;
+            
             Clan::findOrCreateDummy($log->clan_id);
             Territory::findOrCreateDummy($log->territory_id);
             Vehicle::findOrCreateDummy($log->vehicle_id);
