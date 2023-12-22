@@ -18,15 +18,31 @@
     left the family {{ $log->clan->name }}
     @break
     @case('Invited')
-    invited player @include('livewire.display-account', ['uid' => $log->target_account_uid, 'name' => $log->targetAccount->name]) to join
+    @if($log->targetAccount)
+        invited player @include('livewire.display-account', ['uid' => $log->target_account_uid, 'name' => $log->targetAccount->name]) to join
+    @else
+        invited unknown player to join
+    @endif
     @break
     @case('InviteAccepted')
-    invited player @include('livewire.display-account', ['uid' => $log->target_account_uid, 'name' => $log->targetAccount->name]) and it was accepted!
+    @if($log->targetAccount)
+        invited player @include('livewire.display-account', ['uid' => $log->target_account_uid, 'name' => $log->targetAccount->name]) and it was accepted!
+    @else
+        invited unknown player to join and it was accepted
+    @endif
     @break
     @case('InviteDeclined')
+    @if($log->targetAccount)
     invited player @include('livewire.display-account', ['uid' => $log->target_account_uid, 'name' => $log->targetAccount->name]) and it was declined
+    @else
+        invited unknown player to join and it was declined
+    @endif
     @break
     @case('Kicked')
+    @if($log->targetAccount)
     kicked player @include('livewire.display-account', ['uid' => $log->target_account_uid, 'name' => $log->targetAccount->name]) from the family
+    @else
+        kicked unknown player from the Family
+    @endif
     @break
 @endswitch
