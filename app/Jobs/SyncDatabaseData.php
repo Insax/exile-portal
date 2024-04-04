@@ -110,7 +110,8 @@ class SyncDatabaseData implements ShouldQueue
                 'last_abandoned_at' => $account->last_abandoned_at,
                 'owns_virtualgarage' => $account->owns_virtualgarage,
                 'total_connections' => $account->total_connections,
-                'whitelisted' => $account->whitelisted
+                'whitelisted' => $account->whitelisted,
+                'premium_data' => $account->premium_date
             ]);
         }
 
