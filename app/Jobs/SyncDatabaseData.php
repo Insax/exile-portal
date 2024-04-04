@@ -99,7 +99,7 @@ class SyncDatabaseData implements ShouldQueue
                 'locker' => $account->locker,
                 'last_updated_at' => $account->last_updated_at,
                 'enemy_territory_logout' => $account->enemy_territory_logout,
-                'exp_perkPoints' => $account->exp_perk_points,
+                'exp_perkPoints' => $account->exp_perkPoints,
                 'esm_reward' => $account->esm_reward,
                 'exp_total' => $account->exp_total,
                 'first_connect_at' => $account->first_connect_at,
