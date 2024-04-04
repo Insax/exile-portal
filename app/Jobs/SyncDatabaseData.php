@@ -103,7 +103,7 @@ class SyncDatabaseData implements ShouldQueue
                 'esm_reward' => $account->esm_reward,
                 'exp_total' => $account->exp_total,
                 'first_connect_at' => $account->first_connect_at,
-                'forum_reward' => Carbon::now(),
+                'forum_reward' => 'false',
                 'friend_last_reset_at' => $account->friend_last_reset_at,
                 'last_reward_at' => $account->last_reward_at,
                 'marxet_locker' => $account->marxet_locker,
