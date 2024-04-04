@@ -112,7 +112,8 @@ class SyncDatabaseData implements ShouldQueue
                 'total_connections' => $account->total_connections,
                 'whitelisted' => $account->whitelisted,
                 'premium_date' => $account->premium_date,
-                'CotW_date' => $account->cotw_date
+                'CotW_date' => $account->cotw_date,
+                'PremiumDrop_date' => $account->premium_drop_date
             ]);
         }
 
