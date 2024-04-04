@@ -111,7 +111,8 @@ class SyncDatabaseData implements ShouldQueue
                 'owns_virtualgarage' => $account->owns_virtualgarage,
                 'total_connections' => $account->total_connections,
                 'whitelisted' => $account->whitelisted,
-                'premium_date' => $account->premium_date
+                'premium_date' => $account->premium_date,
+                'CotW_date' => $account->cotw_date
             ]);
         }
 
