@@ -172,14 +172,14 @@ class SyncLogData implements ShouldQueue
         $virtualGarageLogs = GameServerLoggingVg::where('id', '>', $virtualGarageLogMax)->orderBy('id', 'ASC')->get();
 
         foreach ($antiTpLogs as $log) {
-            
+
             if(!is_numeric($log->distance) || $log->distance > 2147483646) {
                 continue;
             }
-            
+
             $loggable = AntiTeleportLog::create([
                 'id' => $log->id,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'distance' => $log->distance,
                 'new_pos' => $log->new_pos,
                 'old_pos' => $log->old_pos,
@@ -203,13 +203,13 @@ class SyncLogData implements ShouldQueue
             if($log->territory_id == -1) {
                 continue;
             }
-            
+
             Clan::findOrCreateDummy($log->clan_id);
             Construction::findOrCreateDummy($log->construction_id);
             Territory::findOrCreateDummy($log->territory_id);
             $loggable = BreachingLog::create([
                 'id' => $log->id,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'action' => $log->action,
                 'construction_id' => $log->construction_id,
@@ -236,8 +236,8 @@ class SyncLogData implements ShouldQueue
 
             $loggable = ChatLog::create([
                 'id' => $log->id,
-                'sender_uid' => $log->sender_id,
-                'recipient_uid' => $log->receiver_id,
+                'sender_uid' => $log->sender_account_uid,
+                'recipient_uid' => $log->recipient_account_uid,
                 'message' => $log->text,
                 'time' => $log->time
             ]);
@@ -272,7 +272,7 @@ class SyncLogData implements ShouldQueue
             Territory::findOrCreateDummy($log->territory_id);
             $loggable = ContainerPackLog::create([
                 'id' => $log->id,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'container_id' => $log->container_id,
                 'territory_id' => $log->territory_id,
@@ -293,13 +293,13 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($craftingLogs as $log) {
-            if(empty($log->player_id) || !is_numeric($log->amount))
+            if(empty($log->account_uid) || !is_numeric($log->amount))
                 continue;
-            
+
             Clan::findOrCreateDummy($log->clan_id);
             $loggable = CraftingLog::create([
                 'id' => $log->id,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'player_pos' => $log->player_pos,
                 'recipe_class_name' => $log->recipe_class_name,
@@ -323,13 +323,13 @@ class SyncLogData implements ShouldQueue
         foreach ($disconnectLogs as $log) {
             Clan::findOrCreateDummy($log->clan_id);
             Territory::findOrCreateDummy($log->territory_id);
-            
-            if(!Account::whereUid($log->player_id)->exists())
+
+            if(!Account::whereUid($log->account_uid)->exists())
                 continue;
-            
+
             $loggable = DisconnectPositionLog::create([
                 'id' => $log->id,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'player_pos' => $log->player_pos,
                 'territory_id' => $log->territory_id,
@@ -357,8 +357,8 @@ class SyncLogData implements ShouldQueue
             $loggable = FamilyLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'source_account_uid' => $log->source_account_id,
-                'target_account_uid' => empty($log->target_account_id) ? null : $log->target_account_id,
+                'source_account_uid' => $log->source_account_uid,
+                'target_account_uid' => empty($log->target_account_uid) ? null : $log->target_account_uid,
                 'clan_id' => $log->clan_id,
                 'time' => $log->time
             ]);
@@ -386,16 +386,16 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($flagHackingLogs as $log) {
-            if(empty($log->player_id)) {
+            if(empty($log->account_uid)) {
                 continue;
             }
-            
+
             Clan::findOrCreateDummy($log->clan_id);
             Territory::findOrCreateDummy($log->territory_id);
             $loggable = FlagHackingLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'territory_id' => $log->territory_id,
                 'player_pos' => $log->player_pos,
@@ -418,12 +418,12 @@ class SyncLogData implements ShouldQueue
         foreach ($glitchLogs as $log) {
             if(!is_numeric($log->object_id))
                 continue;
-            
+
             Construction::findOrCreateDummy($log->object_id);
             $loggable = GlitchLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'construction_id' => $log->object_id,
                 'pos' => $log->pos,
                 'time' => $log->time
@@ -447,7 +447,7 @@ class SyncLogData implements ShouldQueue
             $loggable = GrindingLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'territory_id' => $log->territory_id,
                 'construction_id' => $log->construction_id,
@@ -499,13 +499,13 @@ class SyncLogData implements ShouldQueue
         foreach ($hotwireLogs as $log) {
             if($log->vehicle_id = -1)
                 continue;
-            
+
             Clan::findOrCreateDummy($log->clan_id);
             Territory::findOrCreateDummy($log->territory_id);
             Vehicle::findOrCreateDummy($log->vehicle_id);
             $loggable = HotwireLog::create([
                 'id' => $log->id,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'territory_id' => $log->territory_id,
                 'vehicle_id' => $log->vehicle_id,
@@ -528,8 +528,8 @@ class SyncLogData implements ShouldQueue
         foreach ($inmateMarketLogs as $log) {
             $loggable = InmateMarketLog::create([
                 'id' => $log->id,
-                'buyer_account_uid' => $log->buyer_id,
-                'seller_account_uid' => $log->seller_id,
+                'buyer_account_uid' => $log->buyer_account_uid,
+                'seller_account_uid' => $log->seller_account_uid,
                 'price' => $log->price,
                 'item_class' => $log->item_class,
                 'time' => $log->time
@@ -566,7 +566,7 @@ class SyncLogData implements ShouldQueue
             Clan::findOrCreateDummy($log->clan_id);
             $loggable = LoadoutTraderLog::create([
                 'id' => $log->id,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'price' => $log->price,
                 'loadout' => $log->loadout,
@@ -591,7 +591,7 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($lockLogs as $log) {
-            if(empty($log->player_id || $log->object_id == -1)) {
+            if(empty($log->account_uid || $log->object_id == -1)) {
                 continue;
             }
 
@@ -613,7 +613,7 @@ class SyncLogData implements ShouldQueue
             $loggable = LockLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'territory_id' => $log->territory_id,
                 'player_pos' => $log->player_pos,
@@ -640,7 +640,7 @@ class SyncLogData implements ShouldQueue
             $loggable = LockerLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'amount' => $log->amount,
                 'locker_before' => $log->locker_before,
@@ -661,7 +661,7 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($partyLogs as $log) {
-            if(empty($log->player_id) || empty($log->invited_player_id))
+            if(empty($log->account_uid) || empty($log->invited_player_id))
                 continue;
 
             Clan::findOrCreateDummy($log->clan_id);
@@ -669,10 +669,10 @@ class SyncLogData implements ShouldQueue
             $loggable = PartyLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
-                'invited_account_uid' => $log->invited_player_id,
-                'invited_player_clan_id' => $log->invited_player_clan_id,
+                'invited_account_uid' => $log->invited_player_uid,
+                'invited_player_clan_id' => $log->invited_player_clan_uid,
                 'group_name' => $log->group_name,
                 'time' => $log->time
             ]);
@@ -774,7 +774,7 @@ class SyncLogData implements ShouldQueue
             $loggable = PoptabLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'amount' => $log->amount,
                 'player_before' => $this->correctInvalidPoptabValue($log->player_before),
@@ -798,7 +798,7 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($safeHackingLogs as $log) {
-            if(empty($log->player_id) || ($log->territory_id < 1))
+            if(empty($log->account_uid) || ($log->territory_id < 1))
                 continue;
 
             if($log->container_id == 'any' || $log->container_id == -1)
@@ -811,7 +811,7 @@ class SyncLogData implements ShouldQueue
             $loggable = SafeHackingLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'territory_id' => $log->territory_id,
                 'container_id' => $log->container_id,
@@ -832,7 +832,7 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($safeZoneLogs as $log) {
-            if(empty($log->player_id))
+            if(empty($log->account_uid))
                 continue;
 
             Clan::findOrCreateDummy($log->clan_id);
@@ -841,7 +841,7 @@ class SyncLogData implements ShouldQueue
             $loggable = SafeZoneLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'player_pos' => $log->player_pos,
                 'vehicle_id' => $log->vehicle_id,
@@ -864,7 +864,7 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($territoryLogs as $log) {
-            if($log->target_id == '' || empty($log->player_id))
+            if($log->target_id == '' || empty($log->account_uid))
                 continue;
 
             Clan::findOrCreateDummy($log->clan_id);
@@ -872,7 +872,7 @@ class SyncLogData implements ShouldQueue
             $loggable = TerritoryLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'target_account_uid' => $log->target_id,
                 'territory_id' => $log->territory_id,
@@ -941,7 +941,7 @@ class SyncLogData implements ShouldQueue
 
             $loggable = ThermalScannerLog::create([
                 'id' => $log->id,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'territory_id' => $log->territory_id,
                 'player_pos' => $log->player_pos,
@@ -973,7 +973,7 @@ class SyncLogData implements ShouldQueue
             $loggable = TradeLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'item_class' => $log->class,
                 'quantity' => $log->quantity,
@@ -1006,7 +1006,7 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($vehicleDestroyedLogs as $log) {
-            if(empty($log->player_id) || $log->vehicle_id == -1)
+            if(empty($log->account_uid) || $log->vehicle_id == -1)
                 continue;
 
             Clan::findOrCreateDummy($log->clan_id);
@@ -1014,7 +1014,7 @@ class SyncLogData implements ShouldQueue
 
             $loggable = VehicleDestroyedLog::create([
                 'id' => $log->id,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'vehicle_id' => $log->vehicle_id,
                 'vehicle_class' => $log->vehicle_class,
@@ -1044,7 +1044,7 @@ class SyncLogData implements ShouldQueue
             $loggable = VirtualGarageLog::create([
                 'id' => $log->id,
                 'action' => $log->action,
-                'account_uid' => $log->player_id,
+                'account_uid' => $log->account_uid,
                 'clan_id' => $log->clan_id,
                 'nickname' => $log->nickname,
                 'vehicle_id' => $log->vehicle_id,
