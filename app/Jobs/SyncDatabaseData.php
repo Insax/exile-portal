@@ -83,7 +83,35 @@ class SyncDatabaseData implements ShouldQueue
         foreach ($allAccounts as $account) {
             if($account->uid == 'DMS_PersistentVehicle')
                 continue;
-            Account::updateOrCreate(['uid' => $account->uid], $account->getAttributes());
+            Account::updateOrCreate(['uid' => $account->uid], [
+                'uid' => $account->uid,
+                'name' => $account->name,
+                'clan_id' => $account->clan_id,
+                'last_connect_at' => $account->last_connect_at,
+                'last_disconnect_at' => $account->last_disconnect_at,
+                'deaths' => $account->deaths,
+                'friends' => $account->friends,
+                'loadouts' => $account->loadouts,
+                'exp_perks' => $account->exp_perks,
+                'exp_level' => $account->exp_level,
+                'kills' => $account->kills,
+                'score' => $account->score,
+                'locker' => $account->locker,
+                'last_updated_at' => $account->last_updated_at,
+                'enemy_territory_logout' => $account->enemy_territory_logout,
+                'exp_perkPoints' => $account->exp_perk_points,
+                'esm_reward' => $account->esm_reward,
+                'exp_total' => $account->exp_total,
+                'first_connect_at' => $account->first_connect_at,
+                'forum_reward' => Carbon::now(),
+                'friend_last_reset_at' => $account->friend_last_reset_at,
+                'last_reward_at' => $account->last_reward_at,
+                'marxet_locker' => $account->marxet_locker,
+                'last_abandoned_at' => $account->last_abandoned_at,
+                'owns_virtualgarage' => $account->owns_virtualgarage,
+                'total_connections' => $account->total_connections,
+                'whitelisted' => $account->whitelisted
+            ]);
         }
 
         /* Sync all Clans */
