@@ -1050,7 +1050,7 @@ class SyncLogData implements ShouldQueue
                 'vehicle_id' => $log->vehicle_id,
                 'vehicle_class' => $log->vehicle_class,
                 'vehicle_pos' => $log->vehicle_pos,
-                'territory_id' => $log->flag_id,
+                'territory_id' => $log->territory_id,
                 'time' => $log->time
             ]);
 
