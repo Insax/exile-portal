@@ -140,7 +140,29 @@ class SyncDatabaseData implements ShouldQueue
         }
 
         foreach ($allConstructions as $construction) {
-            Construction::withTrashed()->updateOrCreate(['id' => $construction->id], $construction->getAttributes());
+            Construction::withTrashed()->updateOrCreate(['id' => $construction->id], [
+                'id' => $construction->id,
+                'class' => $construction->class,
+                'last_updated_at' => $construction->last_updated_at,
+                'account_uid' => $construction->account_uid,
+                'territory_id' => $construction->territory_id,
+                'construction_name' => $construction->construction_name,
+                'deleted_at' => $construction->deleted_at,
+                'construction_texture' => $construction->construction_texture,
+                'damage' => $construction->damage,
+                'direction_x' => $construction->direction_x,
+                'position_x' => $construction->position_x,
+                'position_y' => $construction->position_y,
+                'direction_y' => $construction->direction_y,
+                'position_z' => $construction->position_z,
+                'direction_z' => $construction->direction_z,
+                'is_locked' => $construction->is_locked,
+                'pin_code' => $construction->pin_code ?? '000000',
+                'up_x' => $construction->up_x,
+                'up_y' => $construction->up_y,
+                'up_z' => $construction->up_z,
+                'spawned_at' => $construction->spawned_at,
+            ]);
             Construction::onlyTrashed()->whereId($construction->id)->restore();
         }
 
