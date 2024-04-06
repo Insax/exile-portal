@@ -96,7 +96,7 @@
                                         @continue
                                     @endif
                                     <tr class="table-row-portal">
-                                        <td class="px-5 py-5 text-center text-sm">
+                                        <td class="px-5 py-5 text-center text-sm flex inline-flex">
                                             {!! $log->loggable->toString() !!}
                                         </td>
                                         <td class="px-5 py-5 text-center text-sm">
