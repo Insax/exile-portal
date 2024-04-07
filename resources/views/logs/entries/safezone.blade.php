@@ -1,7 +1,7 @@
 @php /** @var \App\Models\SafeZoneLog $log */ @endphp
 @include('livewire.display-account', ['uid' => $log->account->uid, 'name' => $log->account->name])&nbsp;
 @if($log->clan_id)
-    in Family <a
+    in Family&nbsp; <a
         class="whitespace-no-wrap underline"
         href="{{ route('clan.view', ['clan' => $log->clan_id]) }}">
         {{ $log->clan->name }}
@@ -14,7 +14,7 @@ at Position {{ $log->player_pos }}&nbsp;
     @if($log->vehicle_owner_uid)
         @include('livewire.display-account', ['uid' => $log->vehicle_owner_uid, 'name' => $log->ownerAccount->name])
         @if($log->vehicle_owner_clan_id)
-        in Family <a
+        in Family&nbsp; <a
             class="whitespace-no-wrap underline"
             href="{{ route('clan.view', ['clan' => $log->vehicle_owner_clan_id]) }}">
             {{ $log->ownerClan->name }}

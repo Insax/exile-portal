@@ -1,7 +1,7 @@
 @php /** @var \App\Models\CraftingLog $log */ @endphp
 @include('livewire.display-account', ['uid' => $log->account->uid, 'name' => $log->account->name])&nbsp;
 @if($log->clan_id)
-    in Family <a
+    in Family&nbsp; <a
         class="whitespace-no-wrap underline"
         href="{{ route('clan.view', ['clan' => $log->clan_id]) }}">
         {{ $log->clan->name }}

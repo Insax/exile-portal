@@ -1,7 +1,7 @@
 @php /** @var \App\Models\DisconnectPositionLog $log */ @endphp
 @include('livewire.display-account', ['uid' => $log->account->uid, 'name' => $log->account->name])&nbsp;
 @if($log->clan_id)
-    in Family <a
+    in Family&nbsp; <a
         class="whitespace-no-wrap underline"
         href="{{ route('clan.view', ['clan' => $log->clan_id]) }}">
         {{ $log->clan->name }}
@@ -9,7 +9,7 @@
 @endif
 disconnected at {{ $log->player_pos }}&nbsp;
 @if($log->territory_id)
-    in Territory <a
+    in Territory &nbsp;<a
         class="whitespace-no-wrap underline"
         href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
         {{ $log->territory->name }}
