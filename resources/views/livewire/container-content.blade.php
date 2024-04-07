@@ -44,7 +44,7 @@
                         @foreach($territoryContainerContent as $content)
                             <tr class="table-row-portal">
                                 <td class="px-5 py-5 text-left text-sm">
-                                    <p class="whitespace-no-wrap">__({{ $content->item }})</p>
+                                    <p class="whitespace-no-wrap">{{ __($content->item) }}</p>
                                 </td>
                                 <td class="px-5 py-5 text-left text-sm">
                                     <p class="whitespace-no-wrap">{{ $content->count }}</p>
