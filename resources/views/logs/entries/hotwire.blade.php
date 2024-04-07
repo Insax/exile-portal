@@ -1,18 +1,18 @@
 @php /** @var \App\Models\HotwireLog $log */ @endphp
-@include('livewire.display-account', ['uid' => $log->account->uid, 'name' => $log->account->name])
+@include('livewire.display-account', ['uid' => $log->account->uid, 'name' => $log->account->name])&nbsp;
 @if($log->clan_id)
     in Family <a
         class="whitespace-no-wrap underline"
         href="{{ route('clan.view', ['clan' => $log->clan_id]) }}">
         {{ $log->clan->name }}
-    </a>
+    </a>&nbsp;
 @endif
-hotwired a {{ __($log->vehicle_class) }}
+hotwired a {{ __($log->vehicle_class) }}&nbsp;
 @if($log->territory_id)
     in Territory <a
         class="whitespace-no-wrap underline"
         href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
         {{ $log->territory->name }}
-    </a>
+    </a>&nbsp;
 @endif
 , Player Position {{ $log->player_pos }}

@@ -1,27 +1,27 @@
 @php /** @var \App\Models\DisconnectPositionLog $log */ @endphp
-@include('livewire.display-account', ['uid' => $log->account->uid, 'name' => $log->account->name])
+@include('livewire.display-account', ['uid' => $log->account->uid, 'name' => $log->account->name])&nbsp;
 @if($log->clan_id)
     in Family <a
         class="whitespace-no-wrap underline"
         href="{{ route('clan.view', ['clan' => $log->clan_id]) }}">
         {{ $log->clan->name }}
-    </a>
+    </a>&nbsp;
 @endif
-disconnected at {{ $log->player_pos }}
+disconnected at {{ $log->player_pos }}&nbsp;
 @if($log->territory_id)
     in Territory <a
         class="whitespace-no-wrap underline"
         href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
         {{ $log->territory->name }}
-    </a>
+    </a>&nbsp;
     @if($log->build_rights)
-        with build rights
+        with build rights &nbsp;
     @else
-        without build rights
+        without build rights &nbsp;
     @endif
 @endif
 @if($log->player_is_alive)
-    while being alive
+    while being alive &nbsp;
 @else
-    while already being dead
+    while already being dead &nbsp;
 @endif

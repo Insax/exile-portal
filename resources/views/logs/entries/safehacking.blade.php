@@ -1,27 +1,27 @@
 @php /** @var \App\Models\SafeHackingLog $log */ @endphp
-@include('livewire.display-account', ['uid' => $log->account->uid, 'name' => $log->account->name])
+@include('livewire.display-account', ['uid' => $log->account->uid, 'name' => $log->account->name])&nbsp;
 @if($log->clan_id)
     in Family <a
         class="whitespace-no-wrap underline"
         href="{{ route('clan.view', ['clan' => $log->clan_id]) }}">
         {{ $log->clan->name }}
-    </a>
+    </a>&nbsp;
 @endif
 @switch($log->action)
     @case('COMPLETED')
-    completed hacking
+    completed hacking&nbsp;
     @break
     @case('Cancelled')
-    cancelled hacking
+    cancelled hacking&nbsp;
     @break
     @case('Failed')
-    failed hacking
+    failed hacking&nbsp;
     @break
     @case('Interrupted')
-    interrupted hacking
+    interrupted hacking&nbsp;
     @break
     @case('Started')
-    started hacking
+    started hacking&nbsp;
     @break
 @endswitch
 {{ __($log->container->class) }} of Territory <a

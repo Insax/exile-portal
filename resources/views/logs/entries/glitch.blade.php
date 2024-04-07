@@ -1,11 +1,11 @@
 @php /** @var \App\Models\GlitchLog $log */ @endphp
-@include('livewire.display-account', ['uid' => $log->account->uid, 'name' => $log->account->name])
+@include('livewire.display-account', ['uid' => $log->account->uid, 'name' => $log->account->name])&nbsp;
 @switch($log->action)
     @case('WallCheck')
-    tried to glitch using a vehicle
+    tried to glitch using a vehicle&nbsp;
     @break
     @case('WallIntersect')
-    tried glitch
+    tried glitch&nbsp;
     @break
 @endswitch
 through <p

@@ -5,10 +5,10 @@
         class="whitespace-no-wrap underline"
         href="{{ route('clan.view', ['clan' => $log->clan_id]) }}">
         {{ $log->clan->name }}
-    </a>
+    </a>&nbsp;
 @endif
-{{ __($log->action) }} a {{ __($log->charge_class) }}
-on a {{ __($log->construction->class) }} at Position {{ $log->position }} in Territory
+{{ __($log->action) }} a {{ __($log->charge_class) }}&nbsp;
+on a {{ __($log->construction->class) }} at Position {{ $log->position }} in Territory&nbsp;
 <a
     class="whitespace-no-wrap underline"
     href="{{ route('territory.view', ['territory' => $log->territory_id]) }}">
