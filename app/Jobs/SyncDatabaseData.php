@@ -176,7 +176,22 @@ class SyncDatabaseData implements ShouldQueue
         }
 */
         foreach ($allSmVg as $item) {
-            SmVirtualgarage::updateOrCreate(['id' => $item->id], $item->getAttributes());
+            SmVirtualgarage::updateOrCreate(['id' => $item->id], [
+                'class' => $item->class,
+                'damage' => $item->damage,
+                'id' => $item->id,
+                'owner_uid' => $item->owner_uid,
+                'fuel' => $item->fuel,
+                'cargo' => $item->cargo,
+                'hitpoints' => $item->hitpoints,
+                'items' => $item->items,
+                'puid' => $item->puid,
+                'magazines' => $item->magazines,
+                'pincode' => $item->pin_code,
+                'poptabs' => $item->poptabs,
+                'textures' => $item->textures,
+                'weapons' => $item->weapons
+            ]);
         }
 
         foreach ($allTerritories as $territory) {
