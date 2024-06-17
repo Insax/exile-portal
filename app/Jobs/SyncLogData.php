@@ -416,7 +416,7 @@ class SyncLogData implements ShouldQueue
         }
 
         foreach ($glitchLogs as $log) {
-            if(!is_numeric($log->object_id))
+            if(!is_numeric($log->object_id) || $log->object_id == 0)
                 continue;
 
             Construction::findOrCreateDummy($log->object_id);
