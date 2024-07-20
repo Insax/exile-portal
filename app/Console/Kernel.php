@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
             //ConstructionCountTracker::dispatch();
         })->everyMinute();
 
-        $schedule->job(SoftDeleteGameData::class)->everyThirtyMinutes();
+        //$schedule->job(SoftDeleteGameData::class)->everyThirtyMinutes();
     }
 
     /**
