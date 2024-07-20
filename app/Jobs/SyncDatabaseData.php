@@ -127,8 +127,6 @@ class SyncDatabaseData implements ShouldQueue
                 'last_updated_at' => $clan->last_updated_at
             ]);
 
-            Clan::onlyTrashed()->whereId($clan->id)->restore();
-
             /* Renew Clan Moderators */
             ClanModerator::whereClanId($clan->id)->delete();
             foreach ($clan->moderators as $moderator) {
@@ -163,12 +161,10 @@ class SyncDatabaseData implements ShouldQueue
                 'up_z' => $construction->up_z,
                 'spawned_at' => $construction->spawned_at,
             ]);
-            Construction::onlyTrashed()->whereId($construction->id)->restore();
         }
 
         foreach ($allContainers as $container) {
             Container::withTrashed()->updateOrCreate(['id' => $container->id], $container->getAttributes());
-            Container::onlyTrashed()->whereId($container->id)->restore();
         }
 /*
         foreach ($allMarxets as $allMarxet) {
@@ -218,8 +214,6 @@ class SyncDatabaseData implements ShouldQueue
                 'last_updated_at' => $territory->last_updated_at
             ]);
 
-            Territory::onlyTrashed()->whereId($territory->id)->restore();
-
             $territoryMembers = array();
             TerritoryModerator::whereTerritoryId($territory->id)->delete();
             foreach ($territory->moderators as $moderator) {
@@ -257,7 +251,6 @@ class SyncDatabaseData implements ShouldQueue
 
         foreach ($allVehicles as $vehicle) {
             Vehicle::withTrashed()->updateOrCreate(['id' => $vehicle->id], $vehicle->getAttributes());
-            Vehicle::onlyTrashed()->whereId($vehicle->id)->restore();
         }
     }
 }
