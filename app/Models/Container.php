@@ -96,7 +96,7 @@ class Container extends Model
 	public $timestamps = false;
 	public static $snakeAttributes = false;
 
-    const DELETED_AT = 'trashed_at';
+    const DELETED_AT = 'deleted_at';
 
 	protected $casts = [
 		'id' => 'int',
