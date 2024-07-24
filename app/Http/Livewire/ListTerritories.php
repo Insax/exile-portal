@@ -71,9 +71,9 @@ class ListTerritories extends Component
     private function queryBuilder()
     {
         $territory = match ($this->type) {
-            'Deleted' => Territory::whereNotNull('deleted_at'),
+            'Deleted' => Territory::withTrashed(),
             'Active' => Territory::whereNull('deleted_at'),
-            'Stolen' => Territory::whereNotNull('flag_stolen_at'),
+            'Stolen' => Territory::withTashed(),
             default => Territory::query(),
         };
 

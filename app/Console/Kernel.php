@@ -23,7 +23,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->job(new SyncDatabaseData)->then(function () {
+        $schedule->job(new SyncDatabaseData)->onSuccess(function () {
             ParseAllContainersJob::dispatch();
             SyncLogData::dispatch();
             //PlayerOnlineTimeTrackerJob::dispatch();
