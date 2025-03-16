@@ -20,7 +20,7 @@ class TerritoryController extends Controller
             if($terr->deleted_at <= Carbon::now()->subDays(14))
                 abort(404);
             
-            $activities = Activity::forSubject($territory)->orderBy('created_at', 'ASC')->get();
+            $activities = Activity::forSubject($terr)->orderBy('created_at', 'ASC')->get();
             return view('territory.view', [
                 'territory' => $terr,
                 'activities' => $activities
