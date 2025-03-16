@@ -26,7 +26,7 @@ class TerritoryController extends Controller
                 'activities' => $activities
             ]);
         }
-        abort(404)
+        abort(404);
     }
 }
 
