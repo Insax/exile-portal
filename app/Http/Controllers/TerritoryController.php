@@ -15,7 +15,7 @@ class TerritoryController extends Controller
 
     public function viewTerritory($territory)
     {
-        $terr = Territory::withTrashed()->whereId($territory)->limit(1);
+        $terr = Territory::withTrashed()->whereId($territory)->limit(1)->get();
         if($terr) {
             if($terr->deleted_at <= Carbon::now()->subDays(14))
                 abort(404);
