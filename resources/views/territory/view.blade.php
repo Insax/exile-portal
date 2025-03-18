@@ -12,28 +12,32 @@
         @if($territory->flag_stolen)
             <p class="block mx-auto text-3xl">Stolen</p>
         @endif
-        @can('territory.manage')
-            <p class="block mx-auto">
-                <button type="button"
-                        class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
-                        onclick='Livewire.emit("openModal", "delete-or-restore-territory", {{ json_encode(["territory" => $territory->id]) }})'>
-                    @if(!$territory->deleted_at)
-                        Delete Territory!
-                    @else
-                        Restore Territory!
-                    @endif
-                </button>
-            </p>
-        @endcan
-        @can('territory.manage')
-            <p class="block mx-auto">
-                <button type="button"
-                        class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
-                        onclick='Livewire.emit("openModal", "rename-territory", {{ json_encode(["territory" => $territory->id]) }})'>
-                    Rename Territory!
-                </button>
-            </p>
-        @endcan
+        @if($territory->deleted_at != null && $territory->deleted_at <= Carbon\Carbon::now->subdays(14))
+            <p class="block mx-auto text-3xl">Deleted {{ Illuminate\Support\Carbon::make($territory->deleted_at)->diffForHumans() }}, not elgible for modification</p>
+        @else
+            @can('territory.manage')
+                <p class="block mx-auto">
+                    <button type="button"
+                            class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
+                            onclick='Livewire.emit("openModal", "delete-or-restore-territory", {{ json_encode(["territory" => $territory->id]) }})'>
+                        @if(!$territory->deleted_at)
+                            Delete Territory!
+                        @else
+                            Restore Territory!
+                        @endif
+                    </button>
+                </p>
+            @endcan
+            @can('territory.manage')
+                <p class="block mx-auto">
+                    <button type="button"
+                            class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
+                            onclick='Livewire.emit("openModal", "rename-territory", {{ json_encode(["territory" => $territory->id]) }})'>
+                        Rename Territory!
+                    </button>
+                </p>
+            @endcan
+        @endif
         <p class="block mx-auto">
             <button type="button"
                     class="inline-block px-6 py-2.5 btn-portal font-medium text-xs leading-tight uppercase rounded shadow-md transition duration-150 ease-in-out"
