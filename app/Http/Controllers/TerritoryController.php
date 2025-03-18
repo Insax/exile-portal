@@ -16,10 +16,7 @@ class TerritoryController extends Controller
     public function viewTerritory($territory)
     {
         $terr = Territory::withTrashed()->find($territory);
-        if($terr) {
-            if($terr->deleted_at <= Carbon::now()->subDays(14) && $terr->deleted_at != null)
-                abort(404);
-            
+        if($terr) {            
             $activities = Activity::forSubject($terr)->orderBy('created_at', 'ASC')->get();
             return view('territory.view', [
                 'territory' => $terr,
