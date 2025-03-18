@@ -17,7 +17,7 @@ class TerritoryController extends Controller
     {
         $terr = Territory::withTrashed()->find($territory);
         if($terr) {
-            if($terr->deleted_at <= Carbon::now()->subDays(14))
+            if($terr->deleted_at <= Carbon::now()->subDays(14) && $terr->deleted_at != null)
                 abort(404);
             
             $activities = Activity::forSubject($terr)->orderBy('created_at', 'ASC')->get();
