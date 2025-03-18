@@ -12,7 +12,7 @@
         @if($territory->flag_stolen)
             <p class="block mx-auto text-3xl">Stolen</p>
         @endif
-        @if($territory->deleted_at != null && $territory->deleted_at <= Illuminate\Support\Carbon::now->subdays(14))
+        @if($territory->deleted_at != null && $territory->deleted_at <= Illuminate\Support\Carbon::now()->subdays(14))
             <p class="block mx-auto text-3xl">Deleted {{ Illuminate\Support\Carbon::make($territory->deleted_at)->diffForHumans() }}, not elgible for modification</p>
         @else
             @can('territory.manage')
