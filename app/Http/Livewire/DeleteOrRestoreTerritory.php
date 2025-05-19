@@ -30,7 +30,7 @@ class DeleteOrRestoreTerritory extends ModalComponent
     public function mount(int $territory)
     {
         $this->territoryId = $territory;
-        $territory = Territory::withTrashed()->findOrFail(territory);
+        $territory = Territory::withTrashed()->findOrFail($territory);
         if ($territory->deleted_at) {
             $this->needsPayment = true;
         }
