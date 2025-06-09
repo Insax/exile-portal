@@ -39,7 +39,7 @@ class DeleteOrRestoreTerritory extends ModalComponent
     public function deleteOrRestore()
     {
         $territory = GameServerTerritory::find($this->territoryId);
-        $localTerritory = Territory::find($this->territoryId);
+        $localTerritory = Territory::withTrashed()->find($this->territoryId);
         if ($territory->deleted_at) {
             $territory->deleted_at = null;
             if ($this->advancePayment)
